@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drone Graph</title>
+  <meta name="description" content="Civilization-scale AI swarms">
+  
+  <!-- Fonts: In a production environment, these should be self-hosted per requirements. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. Hero -->
+  <header class="hero section fade-in">
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-title">AI for civilization-scale work.</h1>
+        <p class="hero-subtitle">Disposable, self-organizing drones united by collective memory. Replace your fake AI org chart with something that actually finishes the job.</p>
+        <div class="hero-actions">
+          <a href="#problem" class="btn btn-primary">Kill the AI org chart</a>
+          <a href="#" class="hero-link text-cobalt font-mono">View on GitHub</a>
+        </div>
+      </div>
+      <div class="hero-visual" id="hero-visual-container">
+        <!-- Procedural Swarm Animation Container -->
+        <canvas id="hero-swarm-canvas" style="width: 100%; height: 100%; min-height: 400px;"></canvas>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. The Problem -->
+  <section id="problem" class="section fade-in">
+    <div class="container grid-2" style="align-items: center;">
+      <div>
+        <h2 class="problem-title">Hierarchy is legacy software.</h2>
+        <p>Every multi-agent framework has the same defect. They give agents job titles, personalities, org charts. One is the CEO. One is Marketing. One is a researcher named Maya with opinions about Q4 strategy. Underneath the costumes, they're all similar models with slightly different system prompts.</p>
+        <p>The result: hallucinated completion, drift away from the original goal, runaway token cost, and chat histories pretending to be memory. The systems look great in demos and collapse in production.</p>
+        <div class="pull-quote text-cobalt">
+          The org chart is the bug. AI doesn't need middle management.
+        </div>
+      </div>
+      <div class="problem-visual" style="display: flex; justify-content: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="300" class="ink-svg">
+          <style>
+            .ink-svg .line { stroke: #1A1A1A; stroke-width: 1.5; fill: none; stroke-dasharray: 2 2; opacity: 0.5; }
+            .ink-svg .box { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
+            .ink-svg .broken-line { stroke: #1E3AE5; stroke-width: 2; fill: none; }
+            .ink-svg .text-small { font-family: "JetBrains Mono", monospace; font-size: 10px; fill: #1A1A1A; }
+          </style>
+          
+          <!-- Connections -->
+          <path class="line" d="M 150 40 L 150 80 M 150 80 L 70 80 M 150 80 L 230 80 M 70 80 L 70 120 M 150 80 L 150 120 M 230 80 L 230 120" />
+          <path class="line" d="M 70 150 L 70 190 M 150 150 L 150 190 M 230 150 L 230 190 M 70 190 L 40 190 L 40 220 M 70 190 L 100 190 L 100 220" />
+          
+          <!-- Tangled/broken connections -->
+          <path class="line" style="opacity: 0.3;" d="M 100 150 Q 150 200 230 220" />
+          <path class="line" style="opacity: 0.3;" d="M 40 150 Q 80 180 150 180 T 260 220" />
+          
+          <!-- Nodes -->
+          <!-- Top -->
+          <rect x="120" y="10" width="60" height="30" class="box" />
+          <text x="150" y="29" text-anchor="middle" class="text-small" opacity="0.6">CEO</text>
+          
+          <!-- Middle row -->
+          <rect x="40" y="120" width="60" height="30" class="box" />
+          <text x="70" y="139" text-anchor="middle" class="text-small" opacity="0.6">Manager</text>
+          
+          <rect x="120" y="120" width="60" height="30" class="box" />
+          <text x="150" y="139" text-anchor="middle" class="text-small" opacity="0.6">VP</text>
+          
+          <rect x="200" y="120" width="60" height="30" class="box" />
+          <text x="230" y="139" text-anchor="middle" class="text-small" opacity="0.6">Director</text>
+          
+          <!-- Bottom row -->
+          <rect x="10" y="220" width="60" height="30" class="box" />
+          <rect x="80" y="220" width="60" height="30" class="box" />
+          
+          <!-- Broken node (detached) -->
+          <rect x="170" y="240" width="60" height="30" class="box" stroke-dasharray="4 4" transform="rotate(15, 200, 255)" />
+          
+          <!-- The cobalt strike-through -->
+          <path class="broken-line" d="M 110 5 L 190 45" />
+          <path class="broken-line" d="M 30 115 L 110 155" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The Thesis -->
+  <section class="section fade-in" style="position: relative; overflow: hidden;">
+    <!-- Abstract layers background -->
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; max-width: 800px; z-index: -1; opacity: 0.15; pointer-events: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+        <style>
+          .layer { fill: transparent; stroke: #1A1A1A; stroke-width: 1; }
+          .layer-cobalt { stroke: #1E3AE5; stroke-width: 2; opacity: 0.5; }
+        </style>
+        <!-- Concentric Layers -->
+        <circle cx="200" cy="200" r="160" class="layer" stroke-dasharray="2 4" />
+        <circle cx="200" cy="200" r="120" class="layer" stroke-dasharray="8 4" />
+        <circle cx="200" cy="200" r="80" class="layer layer-cobalt" />
+        <circle cx="200" cy="200" r="40" class="layer" />
+        
+        <!-- Connecting axes -->
+        <line x1="200" y1="20" x2="200" y2="380" class="layer" stroke-dasharray="1 6" />
+        <line x1="20" y1="200" x2="380" y2="200" class="layer" stroke-dasharray="1 6" />
+      </svg>
+    </div>
+    
+    <div class="container thesis">
+      <h2 class="thesis-statement">
+        <span class="text-cobalt">Protocols handle</span> coordination.<br>
+        <span class="text-cobalt">LLMs handle</span> semantics.<br>
+        <span class="text-cobalt">Graphs handle</span> memory.<br>
+        <span class="text-cobalt">Drones handle</span> execution.
+      </h2>
+      <p class="thesis-caption">
+        Coordination without managers. Every layer earns its place. If a box exists because it looks sophisticated, we delete it.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. The Swarm (Inverse) -->
+  <section class="section full-bleed inverse-band fade-in" style="position: relative; overflow: hidden;" id="swarm-section">
+    <!-- Procedural Chalk Swarm Background -->
+    <canvas id="inverse-swarm-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.15;"></canvas>
+
+    <div class="container" style="position: relative; z-index: 1; padding-top: 6rem; padding-bottom: 6rem;">
+      <h2 class="inverse-title">Run your AI org like a species.</h2>
+      <p>An agent is not an employee. It has no résumé, no job title, no career, no ego. It is spawned for a specific task, given the tools, context, permissions, and budget it needs, allowed to do its work, and then terminated. The next task spawns the next agent. The swarm is not assembled, it emerges, mission by mission, from a shared substrate of protocols and graphs.</p>
+      <p>Don't build a fake company, build a swarm. The individuals are short-lived. The collective endures. The work organizes itself.</p>
+      <div class="inverse-quote">
+        Mission control for the hivemind.
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. How it works (Architecture) -->
+  <section class="section fade-in">
+    <div class="container">
+      <h2>An execution substrate, not a workforce.</h2>
+      <p>Drone Graph treats AI as what it actually is: a fast, fungible, semantically capable execution unit. Around the drones sits a thin set of protocols that handle everything deterministic — task admission, capability routing, claim-and-lease, retries, budgets, escalation. Language models are called only where semantic judgment is genuinely required: decomposing a fuzzy goal into atomic tasks, checking whether outputs satisfy intent, resolving ambiguous evidence. Coordination is not the LLM's job.</p>
+      
+      <div class="architecture-visual">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" class="ink-svg">
+          <defs>
+            <!-- Arrowheads -->
+            <marker id="arrow-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1A1A1A" />
+            </marker>
+            <marker id="arrow-cobalt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1E3AE5" />
+            </marker>
+          </defs>
+
+          <!-- CSS for SVG Animation -->
+          <style>
+            .ink-svg text { font-family: "JetBrains Mono", monospace; font-size: 12px; fill: #1A1A1A; }
+            .ink-svg text.title { font-size: 14px; font-weight: 500; }
+            .ink-svg rect { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
+            .ink-svg path.ink-line { stroke: #1A1A1A; stroke-width: 1.5; fill: none; }
+            
+            .ink-svg rect.cobalt { stroke: #1E3AE5; }
+            .ink-svg path.cobalt-line { stroke: #1E3AE5; stroke-width: 2; fill: none; }
+            
+            .ink-svg .flow-dash {
+              stroke: #1E3AE5;
+              stroke-width: 2;
+              fill: none;
+              stroke-dasharray: 6 12;
+              animation: flow 30s linear infinite;
+            }
+            @keyframes flow {
+              from { stroke-dashoffset: 1000; }
+              to { stroke-dashoffset: 0; }
+            }
+          </style>
+
+          <!-- Nodes / Boxes -->
+          <!-- Input -->
+          <rect x="40" y="220" width="100" height="40" rx="4" />
+          <text x="90" y="244" text-anchor="middle">User Goal</text>
+
+          <!-- Decomposer -->
+          <rect x="180" y="220" width="100" height="40" rx="4" />
+          <text x="230" y="244" text-anchor="middle">Decomposer</text>
+
+          <!-- Task Graph (Box with stacked lines inside) -->
+          <rect x="320" y="160" width="100" height="160" rx="4" stroke-dasharray="4 4" />
+          <text x="370" y="180" text-anchor="middle" class="title">Task Graph</text>
+          <path class="ink-line" d="M 330 200 L 390 200 M 340 230 L 380 230 M 350 260 L 370 260 M 330 290 L 390 290" />
+
+          <!-- Routing & Admission -->
+          <rect x="460" y="160" width="100" height="160" rx="4" />
+          <text x="510" y="185" text-anchor="middle">Admission &</text>
+          <text x="510" y="200" text-anchor="middle">Routing</text>
+          <path class="ink-line" d="M 470 230 L 550 230" stroke-dasharray="2 2" />
+          <text x="510" y="255" text-anchor="middle">Signal Layer</text>
+
+          <!-- Drones -->
+          <rect x="600" y="80" width="140" height="40" rx="4" class="cobalt" />
+          <text x="670" y="104" text-anchor="middle" fill="#1E3AE5">Data Drone</text>
+          
+          <rect x="600" y="160" width="140" height="40" rx="4" class="cobalt" />
+          <text x="670" y="184" text-anchor="middle" fill="#1E3AE5">Research Drone</text>
+          
+          <rect x="600" y="240" width="140" height="40" rx="4" class="cobalt" />
+          <text x="670" y="264" text-anchor="middle" fill="#1E3AE5">Reasoning Drone</text>
+
+          <!-- Triage/Gatekeeper -->
+          <rect x="460" y="340" width="100" height="60" rx="4" />
+          <text x="510" y="365" text-anchor="middle">Protector /</text>
+          <text x="510" y="385" text-anchor="middle">Gatekeeper</text>
+
+          <!-- Output Graphs -->
+          <rect x="600" y="340" width="140" height="40" rx="4" stroke-dasharray="4 4" />
+          <text x="670" y="364" text-anchor="middle">Findings Graph</text>
+          
+          <rect x="600" y="420" width="140" height="40" rx="4" />
+          <text x="670" y="444" text-anchor="middle" class="title">Knowledge Graph</text>
+
+          <!-- Connections (Lines and Arrows) -->
+          <!-- Main forward path -->
+          <path class="flow-dash" d="M 140 240 L 175 240 M 280 240 L 315 240 M 420 240 L 455 240" />
+          <path class="ink-line" d="M 140 240 L 175 240" marker-end="url(#arrow-ink)" />
+          <path class="ink-line" d="M 280 240 L 315 240" marker-end="url(#arrow-ink)" />
+          <path class="ink-line" d="M 420 240 L 455 240" marker-end="url(#arrow-ink)" />
+
+          <!-- Routing to Drones -->
+          <path class="cobalt-line flow-dash" d="M 560 180 Q 580 180 580 100 T 595 100" />
+          <path class="cobalt-line" d="M 560 180 Q 580 180 580 100 T 595 100" marker-end="url(#arrow-cobalt)" />
+          
+          <path class="cobalt-line flow-dash" d="M 560 200 L 595 180" />
+          <path class="cobalt-line" d="M 560 200 L 595 180" marker-end="url(#arrow-cobalt)" />
+          
+          <path class="cobalt-line flow-dash" d="M 560 220 L 595 260" />
+          <path class="cobalt-line" d="M 560 220 L 595 260" marker-end="url(#arrow-cobalt)" />
+
+          <!-- Drones to Triage (Feedback loop) -->
+          <path class="ink-line" d="M 740 100 L 760 100 L 760 360 L 565 360" marker-end="url(#arrow-ink)" />
+          <path class="ink-line" d="M 740 180 L 750 180 L 750 360" />
+          <path class="ink-line" d="M 740 260 L 750 260 L 750 360" />
+
+          <!-- Triage to Graphs -->
+          <path class="ink-line" d="M 560 360 L 595 360" marker-end="url(#arrow-ink)" />
+          <path class="ink-line" d="M 510 400 L 510 440 L 595 440" marker-end="url(#arrow-ink)" />
+
+          <!-- Aligner / Feedback loop back to Decomposer -->
+          <path class="ink-line" d="M 510 340 L 510 110 L 230 110 L 230 215" marker-end="url(#arrow-ink)" stroke-dasharray="4 4" />
+          <text x="370" y="100" text-anchor="middle" font-size="10">Aligner (Feedback Loop)</text>
+        </svg>
+      </div>
+      
+      <div class="pull-quote text-cobalt">
+        The protocol layer for machine civilizations.
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. The Three Graphs -->
+  <section class="section fade-in">
+    <div class="container">
+      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 4rem;">Three graphs. Three truth standards.</h2>
+      <p style="margin-bottom: 4rem; max-width: var(--max-width-prose);">Every other agent stack treats memory as a chat history with retrieval glue. Drone Graph separates memory into three distinct graph spaces, each with its own truth standard, lifetime, and access rules.</p>
+      
+      <div class="grid-3" style="max-width: 1000px; margin: 0 auto;">
+        <!-- Task Graph -->
+        <div class="graph-column">
+          <div class="graph-visual">
+            <svg viewBox="0 0 200 160" width="100%" height="160" class="ink-svg">
+              <style>
+                .ink-node { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
+                .ink-link { stroke: #1A1A1A; stroke-width: 1; fill: none; }
+              </style>
+              <g transform="translate(20, 20)">
+                <!-- Links -->
+                <path class="ink-link" d="M 80 10 L 40 50 M 80 10 L 120 50 M 40 60 L 40 100 M 120 60 L 80 100 M 120 60 L 160 100 M 80 110 L 80 140" />
+                <!-- Nodes -->
+                <circle cx="80" cy="10" r="10" class="ink-node" />
+                <circle cx="40" cy="50" r="10" class="ink-node" />
+                <circle cx="120" cy="50" r="10" class="ink-node" />
+                <circle cx="40" cy="100" r="10" class="ink-node" />
+                <circle cx="80" cy="100" r="10" class="ink-node" />
+                <circle cx="160" cy="100" r="10" class="ink-node" />
+                <circle cx="80" cy="140" r="10" class="ink-node" />
+              </g>
+            </svg>
+          </div>
+          <h3 class="graph-title">Task Graph</h3>
+          <p>What is happening. Goals, atomic tasks, dependencies, ownership, retries, blockers. The execution structure of the mission. Lives only as long as the mission does.</p>
+        </div>
+
+        <!-- Findings Graph -->
+        <div class="graph-column">
+          <div class="graph-visual">
+            <svg viewBox="0 0 200 160" width="100%" height="160" class="ink-svg">
+              <g transform="translate(20, 20)">
+                <!-- Weak/fading links -->
+                <path class="ink-link" d="M 40 40 L 90 30" stroke-opacity="0.3" stroke-dasharray="2 2" />
+                <path class="ink-link" d="M 90 30 L 140 60" stroke-opacity="0.6" />
+                <path class="ink-link" d="M 140 60 L 120 110" stroke-opacity="0.4" stroke-dasharray="4 2" />
+                <path class="ink-link" d="M 40 40 L 60 90" stroke-opacity="0.8" />
+                <path class="ink-link" d="M 60 90 L 120 110" stroke-opacity="0.5" />
+                
+                <!-- Scattered nodes with varying opacity -->
+                <circle cx="40" cy="40" r="10" class="ink-node" stroke-opacity="0.8" />
+                <circle cx="90" cy="30" r="8" class="ink-node" stroke-opacity="0.4" />
+                <circle cx="140" cy="60" r="12" class="ink-node" stroke-opacity="0.6" />
+                <circle cx="60" cy="90" r="9" class="ink-node" stroke-opacity="0.9" />
+                <circle cx="120" cy="110" r="7" class="ink-node" stroke-opacity="0.3" />
+                <circle cx="160" cy="30" r="6" class="ink-node" stroke-opacity="0.2" />
+                <circle cx="20" cy="120" r="5" class="ink-node" stroke-opacity="0.5" />
+              </g>
+            </svg>
+          </div>
+          <h3 class="graph-title">Findings Graph</h3>
+          <p>What is being learned. Hypotheses, raw evidence, partial conclusions, weak signals, unresolved contradictions. Temporary by design. The Sleeper layer prunes stale findings; the Gatekeeper promotes verified ones.</p>
+        </div>
+
+        <!-- Knowledge Graph -->
+        <div class="graph-column">
+          <div class="graph-visual">
+            <svg viewBox="0 0 200 160" width="100%" height="160" class="ink-svg">
+              <g transform="translate(20, 20)">
+                <!-- Dense structured links with provenance arrows -->
+                <path class="ink-link" d="M 40 40 L 90 40 M 90 40 L 140 40 M 40 40 L 65 80 M 90 40 L 65 80 M 90 40 L 115 80 M 140 40 L 115 80 M 65 80 L 90 120 M 115 80 L 90 120 M 65 80 L 115 80" />
+                
+                <!-- Tiny provenance arrows -->
+                <path class="ink-link" d="M 60 40 L 65 35 M 60 40 L 65 45" />
+                <path class="ink-link" d="M 110 40 L 115 35 M 110 40 L 115 45" />
+                <path class="ink-link" d="M 50 60 L 55 52 M 50 60 L 45 58" />
+                <path class="ink-link" d="M 130 60 L 125 52 M 130 60 L 135 58" />
+                
+                <!-- Double-stroked nodes representing "validated" knowledge -->
+                <circle cx="40" cy="40" r="10" class="ink-node" fill="#F5F1E8" />
+                <circle cx="40" cy="40" r="6" class="ink-node" />
+                
+                <circle cx="90" cy="40" r="10" class="ink-node" fill="#F5F1E8" />
+                <circle cx="90" cy="40" r="6" class="ink-node" fill="#1A1A1A" />
+                
+                <circle cx="140" cy="40" r="10" class="ink-node" fill="#F5F1E8" />
+                <circle cx="140" cy="40" r="6" class="ink-node" />
+                
+                <circle cx="65" cy="80" r="10" class="ink-node" fill="#F5F1E8" />
+                <circle cx="65" cy="80" r="6" class="ink-node" fill="#1A1A1A" />
+                
+                <circle cx="115" cy="80" r="10" class="ink-node" fill="#F5F1E8" />
+                <circle cx="115" cy="80" r="6" class="ink-node" />
+                
+                <circle cx="90" cy="120" r="10" class="ink-node" fill="#F5F1E8" />
+                <circle cx="90" cy="120" r="6" class="ink-node" fill="#1E3AE5" stroke="none" />
+              </g>
+            </svg>
+          </div>
+          <h3 class="graph-title">Knowledge Graph</h3>
+          <p>What is known. Verified facts, validated decisions, durable conclusions. Every entry carries source, timestamp, confidence, provenance chain, verification status. Long-term memory — but structured.</p>
+        </div>
+      </div>
+      
+      <p class="graph-caption">
+        Findings are not knowledge. Knowledge is not chat history. Treating them the same is how agent systems hallucinate themselves into incoherence.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. A Worked Example -->
+  <section class="section fade-in">
+    <div class="container">
+      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem);">A mission, end to end. Self-organizing AI for complex work.</h2>
+      <p style="margin-bottom: 3rem;">A user submits a goal: <em>Identify possible new planet candidates in this Milky Way observational dataset.</em> Here is what happens.</p>
+      
+      <ol class="example-list">
+        <li class="example-item">
+          <h3>Intake</h3>
+          <p>The user's goal, dataset, and constraints enter the system.</p>
+        </li>
+        <li class="example-item">
+          <h3>Decomposition</h3>
+          <p>An LLM breaks the goal into atomic tasks: validate dataset, identify anomalies, cluster patterns, compare to known planet indicators, test alternative explanations, score candidates, summarise leads.</p>
+        </li>
+        <li class="example-item">
+          <h3>Admission</h3>
+          <p>Each task is checked for validity, capability availability, budget, and policy. Forbidden, redundant, or impossible tasks are rejected before they reach a drone.</p>
+        </li>
+        <li class="example-item">
+          <h3>Routing</h3>
+          <p>Tasks are matched to drones by capability. Anomaly analysis goes to a data-analysis drone; literature comparison to a research drone; scoring to a reasoning-heavy drone.</p>
+        </li>
+        <li class="example-item">
+          <h3>Execution</h3>
+          <p>Drones spawn, load the skills they need, do the work, emit findings, and terminate.</p>
+        </li>
+        <li class="example-item">
+          <h3>Triage</h3>
+          <p>The Protector quarantines weak or unsupported findings. Strong findings pass through.</p>
+        </li>
+        <li class="example-item">
+          <h3>Placement</h3>
+          <p>The Gatekeeper decides: raw anomaly note → Findings Graph; validated candidate score → Knowledge Graph; unsupported speculation → quarantine.</p>
+        </li>
+        <li class="example-item">
+          <h3>Lifecycle</h3>
+          <p>The Sleeper prunes stale weak signals; high-value findings persist until the mission ends.</p>
+        </li>
+        <li class="example-item">
+          <h3>Alignment</h3>
+          <p>The Aligner checks whether the actual output satisfies the original user goal. If not, new tasks are generated and the loop continues.</p>
+        </li>
+        <li class="example-item">
+          <h3>Return</h3>
+          <p>When the goal is satisfied, results are returned. The drones are gone. The Knowledge Graph remains.</p>
+        </li>
+      </ol>
+      
+      <p class="example-caption text-opacity-80">
+        Sharp systems fail the same way humans do, by becoming bloated bureaucratic institutions. Drone Graph's discipline is to refuse that fate.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. What it's for / what it isn't for -->
+  <section class="section fade-in">
+    <div class="container grid-2">
+      <div>
+        <h2 style="font-size: 1.5rem;">Use it for</h2>
+        <ul class="list-unstyled">
+          <li>Multi-step, evidence-heavy research workflows</li>
+          <li>Long-running discovery and analysis pipelines</li>
+          <li>Large codebase analysis and repair</li>
+          <li>Multi-source synthesis with verification</li>
+          <li>Investigations where provenance matters</li>
+          <li>Any work too complex for a single LLM call</li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="font-size: 1.5rem;">Don't use it for</h2>
+        <ul class="list-unstyled">
+          <li>Basic chat</li>
+          <li>One-shot Q&A</li>
+          <li>Quick drafting or summarisation</li>
+          <li>Small isolated tasks a single good model already handles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <p class="font-mono text-small text-center text-opacity-80">
+        No point rolling out a battle tank to buy milk.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. For founders / for researchers -->
+  <section class="section fade-in">
+    <div class="container grid-2">
+      <div>
+        <h2 style="font-size: 1.5rem;">If you're shipping an AI product</h2>
+        <p>Stop fighting your framework. Drone Graph handles the infrastructure no one else has built right — capability-aware routing, deterministic coordination, structured memory, provenance on every output — so your team can ship features instead of debugging hallucinated completion. Drones are disposable, so context never rots. Protocols are deterministic, so coordination is debuggable. Every output carries metadata, so you can prove what happened. The end of pretend AI employees.</p>
+      </div>
+      <div>
+        <h2 style="font-size: 1.5rem;">If you're researching agent architecture</h2>
+        <p>Drone Graph is built around principled separations: coordination vs reasoning, execution vs identity, temporary vs durable memory, capability vs confidence. The three-graph memory model makes failure modes legible — you can point at which graph an error came from. Provenance is first-class. Termination is first-class. The architecture is opinionated, documented, and open. The collective intelligence layer for AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Open source call-out -->
+  <section class="section full-bleed os-band fade-in">
+    <div class="container" style="padding-top: 6rem; padding-bottom: 6rem;">
+      <h2 class="os-title">Built in the open to be studied. Disect every line.</h2>
+      <p style="max-width: 800px; margin: 0 auto;">Drone Graph is open source. The architecture document, the protocol specifications, and the reference implementation are all public. We're building the operating system for AI civilizations the way good infrastructure has always been built: in the open, with people who care about getting it right.</p>
+      <div class="os-actions">
+        <a href="#" class="btn btn-inverse">Fire your fake AI CEO</a>
+        <a href="#" class="os-link">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Footer -->
+  <footer class="footer fade-in">
+    <div class="container">
+      <div class="footer-logo">Drone Graph</div>
+      <div class="footer-links">
+        <a href="#">Architecture</a>
+        <span>·</span>
+        <a href="#">GitHub</a>
+        <span>·</span>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-tagline">The protocol layer for machine civilizations.</div>
+      <div class="footer-copyright">© 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Fade-in observer for sections ---
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("js-enabled");
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+      });
+    });
+
+    // --- Procedural Hero Swarm Animation ---
+    (function initSwarm() {
+      const canvas = document.getElementById('hero-swarm-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const container = document.getElementById('hero-visual-container');
+      
+      let width, height;
+      const nodes = [];
+      const numNodes = 120; // 80-150 range per brief
+      
+      // Colors from CSS
+      const colorInk = 'rgba(26, 26, 26, 0.8)';
+      const colorCobalt = '#1E3AE5';
+      const colorFilament = 'rgba(26, 26, 26, 0.15)';
+      
+      // Setup Canvas size
+      function resize() {
+        const rect = container.getBoundingClientRect();
+        // Handle responsive collapse
+        width = rect.width || window.innerWidth * 0.45;
+        height = rect.height || 500;
+        
+        // High DPI displays
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+      }
+      
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Node Definition
+      class Node {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.vx = (Math.random() - 0.5) * 0.2;
+          this.vy = (Math.random() - 0.5) * 0.2;
+          this.baseRadius = Math.random() * 2 + 1.5;
+          this.type = Math.random() > 0.9 ? 'active' : 'hollow'; // 10% solid
+          
+          // Force exactly 3-4 to be cobalt
+          this.isCobalt = false;
+          this.pulsePhase = Math.random() * Math.PI * 2;
+        }
+
+        update() {
+          // Slow organic drift
+          this.x += this.vx;
+          this.y += this.vy;
+          
+          // Soft boundary bounce (keep them in a cloud)
+          const centerX = width / 2;
+          const centerY = height / 2;
+          const distToCenter = Math.sqrt((this.x - centerX) ** 2 + (this.y - centerY) ** 2);
+          const maxDist = Math.min(width, height) * 0.45;
+          
+          if (distToCenter > maxDist) {
+            this.vx += (centerX - this.x) * 0.0001;
+            this.vy += (centerY - this.y) * 0.0001;
+          }
+          
+          // Add slight noise
+          this.vx += (Math.random() - 0.5) * 0.01;
+          this.vy += (Math.random() - 0.5) * 0.01;
+          
+          // Friction
+          this.vx *= 0.99;
+          this.vy *= 0.99;
+          
+          this.pulsePhase += 0.02;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.baseRadius, 0, Math.PI * 2);
+          
+          if (this.isCobalt) {
+            // Ambient pulse on cobalt
+            const pulse = (Math.sin(this.pulsePhase) + 1) / 2; // 0 to 1
+            const opacity = 0.5 + (pulse * 0.5);
+            ctx.fillStyle = `rgba(30, 58, 229, ${opacity})`;
+            ctx.fill();
+            
+            // Glow
+            ctx.shadowBlur = 10 * pulse;
+            ctx.shadowColor = colorCobalt;
+          } else if (this.type === 'active') {
+            ctx.fillStyle = colorInk;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          } else {
+            ctx.strokeStyle = colorInk;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
+        }
+      }
+
+      // Initialize Swarm
+      for (let i = 0; i < numNodes; i++) {
+        nodes.push(new Node());
+      }
+      
+      // Assign 4 cobalt nodes specifically
+      for (let i = 0; i < 4; i++) {
+        nodes[i].type = 'active';
+        nodes[i].isCobalt = true;
+        nodes[i].baseRadius += 1; // Slightly larger
+      }
+
+      // Animation Loop
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw filaments (connections)
+        ctx.beginPath();
+        for (let i = 0; i < nodes.length; i++) {
+          nodes[i].update();
+          
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < 60) { // Connection radius
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+            }
+          }
+        }
+        ctx.strokeStyle = colorFilament;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+        
+        // Draw nodes on top of filaments
+        nodes.forEach(n => n.draw());
+        
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+    // --- Procedural Inverse Swarm Background ---
+    (function initInverseSwarm() {
+      const canvas = document.getElementById('inverse-swarm-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const section = document.getElementById('swarm-section');
+      
+      let width, height;
+      const nodes = [];
+      const numNodes = 200; // Dense field of chalk dust
+      
+      function resize() {
+        width = section.offsetWidth;
+        height = section.offsetHeight;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+      }
+      
+      window.addEventListener('resize', resize);
+      // We need to wait for layout to compute height correctly
+      setTimeout(resize, 100);
+
+      class InverseNode {
+        constructor() {
+          this.x = Math.random() * (width || 2000);
+          this.y = Math.random() * (height || 1000);
+          this.vx = (Math.random() - 0.5) * 0.1;
+          this.vy = (Math.random() - 0.5) * 0.1;
+          this.baseRadius = Math.random() * 1.5 + 0.5;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          
+          if (width && height) {
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.baseRadius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(245, 241, 232, 0.8)'; // Cream color
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < numNodes; i++) {
+        nodes.push(new InverseNode());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width || 2000, height || 1000);
+        
+        ctx.beginPath();
+        for (let i = 0; i < nodes.length; i++) {
+          nodes[i].update();
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = dx * dx + dy * dy;
+            
+            if (dist < 4000) { // ~63px radius
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+            }
+          }
+        }
+        ctx.strokeStyle = 'rgba(245, 241, 232, 0.1)';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+        
+        nodes.forEach(n => n.draw());
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+  </script>
+</body>
+</html>

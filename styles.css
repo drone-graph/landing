@@ -1,0 +1,443 @@
+:root {
+  --bg-cream: #F5F1E8;
+  --type-ink: #1A1A1A;
+  --accent-cobalt: #1E3AE5;
+  --bg-inverse: #0A0A0A;
+  --type-inverse: #F5F1E8;
+
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --spacing-section: 8rem;
+  --max-width-prose: 720px;
+}
+
+/* Base Reset & Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--type-ink);
+  font-family: var(--font-serif);
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Removed noise grain overlay due to rendering bugs in some browsers */
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: var(--accent-cobalt);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: var(--max-width-prose);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--spacing-section) 0;
+}
+
+.full-bleed {
+  width: 100%;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Typography Utilities */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-cobalt {
+  color: var(--accent-cobalt);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-small {
+  font-size: 0.875rem; /* 14px */
+}
+
+.text-opacity-70 {
+  opacity: 0.7;
+}
+
+.text-opacity-80 {
+  opacity: 0.8;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-cobalt);
+  color: var(--bg-cream);
+}
+
+.btn-inverse {
+  background-color: var(--bg-cream);
+  color: var(--accent-cobalt);
+}
+
+/* Placeholders */
+.placeholder {
+  border: 1px dashed var(--accent-cobalt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--type-ink);
+}
+
+/* Sections */
+
+/* 1. Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.hero-title {
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: 0.9;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-link {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.hero-visual .placeholder {
+  aspect-ratio: 4 / 3;
+}
+
+/* 2. The Problem */
+.problem-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.pull-quote {
+  margin-top: 4rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+/* 3. The Thesis */
+.thesis {
+  text-align: center;
+}
+
+.thesis-statement {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.2;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.thesis-caption {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+/* 4. The Swarm (Inverse) */
+.inverse-band {
+  background-color: var(--bg-inverse);
+  color: var(--type-inverse);
+}
+
+.inverse-title {
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.95;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.inverse-quote {
+  margin-top: 4rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: rgba(245, 241, 232, 0.8);
+}
+
+/* 5. Architecture */
+.architecture-visual {
+  margin: 4rem 0;
+  width: 100%;
+}
+
+.architecture-visual .placeholder {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+/* 6. Three Graphs */
+.graph-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-visual {
+  margin-bottom: 1.5rem;
+}
+
+.graph-visual .placeholder {
+  height: 160px;
+}
+
+.graph-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.graph-caption {
+  margin-top: 4rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* 7. Worked Example */
+.example-list {
+  list-style-type: none;
+  counter-reset: example-counter;
+}
+
+.example-item {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+}
+
+.example-item::before {
+  counter-increment: example-counter;
+  content: counter(example-counter) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-mono);
+  color: var(--accent-cobalt);
+  font-size: 1.25rem;
+}
+
+.example-item h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.example-item p {
+  margin-bottom: 0;
+}
+
+.example-caption {
+  margin-top: 4rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+/* 8. Use Cases & 9. Audiences */
+.list-unstyled {
+  list-style-type: none;
+}
+
+.list-unstyled li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.list-unstyled li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent-cobalt);
+}
+
+/* 10. Open Source Callout */
+.os-band {
+  background-color: var(--accent-cobalt);
+  color: var(--bg-cream);
+  text-align: center;
+}
+
+.os-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.os-actions {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.os-link {
+  color: var(--bg-cream);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+/* 11. Footer */
+.footer {
+  padding: 4rem 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  color: rgba(26, 26, 26, 0.6);
+}
+
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--type-ink);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+  color: inherit;
+}
+
+.footer-tagline {
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+}
+
+/* Animations */
+.fade-in {
+  /* Provide a fallback so content is visible if JS fails or observers fail */
+  opacity: 1;
+}
+
+/* We'll use a class added by JS to hide elements before they scroll into view */
+.js-enabled .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.js-enabled .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
