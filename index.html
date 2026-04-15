@@ -380,16 +380,8 @@
           <p>The user's goal, dataset, and constraints enter the system.</p>
         </li>
         <li class="example-item">
-          <h3>Decomposition</h3>
-          <p>An LLM breaks the goal into atomic tasks: validate dataset, identify anomalies, cluster patterns, compare to known planet indicators, test alternative explanations, score candidates, summarise leads.</p>
-        </li>
-        <li class="example-item">
-          <h3>Admission</h3>
-          <p>Each task is checked for validity, capability availability, budget, and policy. Forbidden, redundant, or impossible tasks are rejected before they reach a drone.</p>
-        </li>
-        <li class="example-item">
           <h3>Routing</h3>
-          <p>Tasks are matched to drones by capability. Anomaly analysis goes to a data-analysis drone; literature comparison to a research drone; scoring to a reasoning-heavy drone.</p>
+          <p>Tasks are assigned to disposable drone instances based on capability heuristics.</p>
         </li>
         <li class="example-item">
           <h3>Execution</h3>
@@ -397,19 +389,19 @@
         </li>
         <li class="example-item">
           <h3>Triage</h3>
-          <p>The Protector quarantines weak or unsupported findings. Strong findings pass through.</p>
+          <p>Some drones are assigned tp quarantine weak or unsupported findings. Strong findings pass through.</p>
         </li>
         <li class="example-item">
           <h3>Placement</h3>
-          <p>The Gatekeeper decides: raw anomaly note → Findings Graph; validated candidate score → Knowledge Graph; unsupported speculation → quarantine.</p>
+          <p>Deterministic gatekeepers decide: raw anomaly note → Findings Graph; validated candidate score → Knowledge Graph; unsupported speculation → quarantine.</p>
         </li>
         <li class="example-item">
           <h3>Lifecycle</h3>
-          <p>The Sleeper prunes stale weak signals; high-value findings persist until the mission ends.</p>
+          <p>A deterministic sleeper prunes stale weak signals; high-value findings persist until the mission ends.</p>
         </li>
         <li class="example-item">
           <h3>Alignment</h3>
-          <p>The Aligner checks whether the actual output satisfies the original user goal. If not, new tasks are generated and the loop continues.</p>
+          <p>Drones are spawned to check whether the actual output satisfies the original user goal. If not, new tasks are generated and the loop continues.</p>
         </li>
         <li class="example-item">
           <h3>Return</h3>
@@ -418,7 +410,7 @@
       </ol>
       
       <p class="example-caption text-opacity-80">
-        Sharp systems fail the same way humans do, by becoming bloated bureaucratic institutions. Drone Graph's discipline is to refuse that fate.
+        Sharp systems fail the same way humans do, by becoming bloated, bureaucratic institutions. Drone Graph's discipline is to refuse that fate.
       </p>
     </div>
   </section>
@@ -429,12 +421,10 @@
       <div>
         <h2 style="font-size: 1.5rem;">Use it for</h2>
         <ul class="list-unstyled">
-          <li>Multi-step, evidence-heavy research workflows</li>
-          <li>Long-running discovery and analysis pipelines</li>
-          <li>Large codebase analysis and repair</li>
-          <li>Multi-source synthesis with verification</li>
-          <li>Investigations where provenance matters</li>
-          <li>Any work too complex for a single LLM call</li>
+          <li>Lean zero-human organizations</li>
+          <li>Multi-step, high-complexity, evidence-heavy workflows</li>
+          <li>Long-running discovery, analysis and execution pipelines</li>
+          <li>Any work too complex for fake AI company simulations</li>
         </ul>
       </div>
       <div>
