@@ -192,7 +192,7 @@
 
           <!-- Task Graph (Box with stacked lines inside) -->
           <rect x="320" y="160" width="100" height="160" rx="4" stroke-dasharray="4 4" />
-          <text x="370" y="180" text-anchor="middle" class="title">Task Graph</text>
+          <text x="370" y="180" text-anchor="middle" class="title">Tasks</text>
           <path class="ink-line" d="M 330 200 L 390 200 M 340 230 L 380 230 M 350 260 L 370 260 M 330 290 L 390 290" />
 
           <!-- Routing & Admission -->
@@ -219,10 +219,10 @@
 
           <!-- Output Graphs -->
           <rect x="600" y="340" width="140" height="40" rx="4" stroke-dasharray="4 4" />
-          <text x="670" y="364" text-anchor="middle">Findings Graph</text>
+          <text x="670" y="364" text-anchor="middle">Findings</text>
           
           <rect x="600" y="420" width="140" height="40" rx="4" />
-          <text x="670" y="444" text-anchor="middle" class="title">Knowledge Graph</text>
+          <text x="670" y="444" text-anchor="middle" class="title">Knowledge</text>
 
           <!-- Connections (Lines and Arrows) -->
           <!-- Main forward path -->
@@ -265,8 +265,8 @@
   <!-- 6. The Three Graphs -->
   <section class="section fade-in">
     <div class="container">
-      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 4rem;">Three graphs. Three truth standards.</h2>
-      <p style="margin-bottom: 4rem; max-width: var(--max-width-prose);">Every other agent stack treats memory as a chat history with retrieval glue. Drone Graph separates memory into three distinct graph spaces, each with its own truth standard, lifetime, and access rules.</p>
+      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 4rem;">Graph memory as a truth standard.</h2>
+      <p style="margin-bottom: 4rem; max-width: var(--max-width-prose);">Every other agent stack treats memory as a chat history with retrieval glue. Drone Graph separates memory into distinct graph spaces, each with its own truth standard, lifetime, and access rules.</p>
       
       <div class="grid-3" style="max-width: 1000px; margin: 0 auto;">
         <!-- Task Graph -->
@@ -386,18 +386,9 @@
         <li class="example-item">
           <h3>Execution</h3>
           <p>Drones spawn, load the skills they need, do the work, emit findings, and terminate.</p>
-        </li>
-        <li class="example-item">
-          <h3>Triage</h3>
-          <p>Some drones are assigned tp quarantine weak or unsupported findings. Strong findings pass through.</p>
-        </li>
         <li class="example-item">
           <h3>Placement</h3>
           <p>Deterministic gatekeepers decide: raw anomaly note → Findings Graph; validated candidate score → Knowledge Graph; unsupported speculation → quarantine.</p>
-        </li>
-        <li class="example-item">
-          <h3>Lifecycle</h3>
-          <p>A deterministic sleeper prunes stale weak signals; high-value findings persist until the mission ends.</p>
         </li>
         <li class="example-item">
           <h3>Alignment</h3>
