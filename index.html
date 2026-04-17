@@ -20,7 +20,7 @@
     <div class="hero-content">
       <div>
         <h1 class="hero-title">Mission control for the hivemind.</h1>
-        <p class="hero-subtitle">Disposable, self-organizing agents united by collective memory. Replace your fake AI org chart with something that actually finishes the job.</p>
+        <p class="hero-subtitle">Disposable, interchangeable drones united by one collective mind. Each gap closes; the swarm does not. No end state &mdash; only further progress.</p>
         <div class="hero-actions">
           <a href="#problem" class="btn btn-primary">Kill the AI org chart</a>
           <a href="#" class="hero-link text-cobalt font-mono">View on GitHub</a>
@@ -114,9 +114,8 @@
     
     <div class="container thesis">
       <h2 class="thesis-statement">
-        <span class="text-cobalt">Protocols handle</span> coordination.<br>
-        <span class="text-cobalt">LLMs handle</span> semantics.<br>
-        <span class="text-cobalt">Graphs handle</span> memory.<br>
+        <span class="text-cobalt">A collective mind</span> handles memory.<br>
+        <span class="text-cobalt">Signals handle</span> coordination.<br>
         <span class="text-cobalt">Drones handle</span> execution.
       </h2>
       <p class="thesis-caption">
@@ -132,8 +131,8 @@
 
     <div class="container" style="position: relative; z-index: 1; padding-top: 6rem; padding-bottom: 6rem;">
       <h2 class="inverse-title">Run your AI org like a species.</h2>
-      <p>An agent is not an employee. It has no résumé, no job title, no career, no ego. It is spawned for a specific task, given the tools, context, permissions, and budget it needs, allowed to do its work, and then terminated. The next task spawns the next agent. The swarm is not assembled, it emerges, mission by mission, from a shared substrate of protocols and graphs.</p>
-      <p>Don't build a fake company, build a swarm. The individuals are short-lived. The collective endures. The work organizes itself.</p>
+      <p>A drone is not an employee. It has no résumé, no job title, no career, no ego. It is spawned for a specific gap, sets its own reasoning depth and model tier, pulls the skills and tools it needs from the collective mind, closes the gap, deposits what it learned, and dissolves. The next gap spawns the next drone. The swarm isn't assembled, it emerges, gap by gap, out of one shared mind.</p>
+      <p>Don't build a fake company. Build a swarm. The individuals are short-lived. The collective endures. The work organizes itself.</p>
       <div class="inverse-quote">
         Mission control for the hivemind.
       </div>
@@ -144,226 +143,280 @@
   <section class="section fade-in">
     <div class="container">
       <h2>An execution substrate, not a workforce.</h2>
-      <p>Treat AI as what it actually is: a fast, fungible, semantically capable execution unit. Around the drones sits a thin set of protocols that handle everything deterministic — task admission, capability routing, claim-and-lease, retries, budgets, escalation. Language models are called only where semantic judgment is genuinely required: decomposing a fuzzy goal into atomic tasks, checking whether outputs satisfy intent, resolving ambiguous evidence. Coordination is not the LLM's job.</p>
-      
+      <p>A drone wakes when a gap exists. It pulls the skills and tools it needs from the collective mind, acts through the terminal, deposits its findings, and dissolves. Every drone shares one system prompt. None of them has a name or a role. Coordination isn't managed, it's the signal protocol: check before installing a package, don't open a file another drone has open. Gap finding is itself a gap. There is no central planner.</p>
+
       <div class="architecture-visual">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" class="ink-svg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%" class="ink-svg arch-svg">
           <defs>
-            <!-- Arrowheads -->
-            <marker id="arrow-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <marker id="arr-ink-5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#1A1A1A" />
             </marker>
-            <marker id="arrow-cobalt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <marker id="arr-cobalt-5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#1E3AE5" />
             </marker>
           </defs>
 
-          <!-- CSS for SVG Animation -->
           <style>
-            .ink-svg text { font-family: "JetBrains Mono", monospace; font-size: 12px; fill: #1A1A1A; }
-            .ink-svg text.title { font-size: 14px; font-weight: 500; }
-            .ink-svg rect { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
-            .ink-svg path.ink-line { stroke: #1A1A1A; stroke-width: 1.5; fill: none; }
-            
-            .ink-svg rect.cobalt { stroke: #1E3AE5; }
-            .ink-svg path.cobalt-line { stroke: #1E3AE5; stroke-width: 2; fill: none; }
-            
-            .ink-svg .flow-dash {
+            .arch-svg text { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: #1A1A1A; }
+            .arch-svg text.title { font-size: 13px; font-weight: 500; }
+            .arch-svg text.label-italic { font-family: "Source Serif 4", Georgia, serif; font-style: italic; font-size: 15px; }
+            .arch-svg text.caption { font-size: 9px; fill: rgba(26,26,26,0.55); }
+            .arch-svg text.cobalt { fill: #1E3AE5; }
+            .arch-svg rect { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
+            .arch-svg rect.preset { stroke: #1E3AE5; stroke-width: 1.5; }
+            .arch-svg ellipse.drone { fill: transparent; stroke: #1E3AE5; stroke-width: 1.5; }
+            .arch-svg path.ink-line { stroke: #1A1A1A; stroke-width: 1.2; fill: none; }
+            .arch-svg path.signal-dash { stroke: #1A1A1A; stroke-width: 1; fill: none; stroke-dasharray: 3 4; opacity: 0.55; }
+            .arch-svg path.flow-dash {
               stroke: #1E3AE5;
-              stroke-width: 2;
+              stroke-width: 1.8;
               fill: none;
-              stroke-dasharray: 6 12;
-              animation: flow 30s linear infinite;
+              stroke-dasharray: 5 10;
+              animation: flow-arch 30s linear infinite;
+              opacity: 0.7;
             }
-            @keyframes flow {
+            @keyframes flow-arch {
               from { stroke-dashoffset: 1000; }
               to { stroke-dashoffset: 0; }
             }
           </style>
 
-          <!-- Nodes / Boxes -->
-          <!-- Input -->
-          <rect x="40" y="220" width="100" height="40" rx="4" />
-          <text x="90" y="244" text-anchor="middle">User Goal</text>
+          <!-- Terminal -->
+          <rect x="80" y="20" width="640" height="44" rx="4" />
+          <text x="400" y="47" text-anchor="middle" class="title">Terminal</text>
+          <text x="96" y="47" class="caption">$  the only real tool</text>
 
-          <!-- Decomposer -->
-          <rect x="180" y="220" width="100" height="40" rx="4" />
-          <text x="230" y="244" text-anchor="middle">Decomposer</text>
-
-          <!-- Task Graph (Box with stacked lines inside) -->
-          <rect x="320" y="160" width="100" height="160" rx="4" stroke-dasharray="4 4" />
-          <text x="370" y="180" text-anchor="middle" class="title">Tasks</text>
-          <path class="ink-line" d="M 330 200 L 390 200 M 340 230 L 380 230 M 350 260 L 370 260 M 330 290 L 390 290" />
-
-          <!-- Routing & Admission -->
-          <rect x="460" y="160" width="100" height="160" rx="4" />
-          <text x="510" y="185" text-anchor="middle">Admission &</text>
-          <text x="510" y="200" text-anchor="middle">Routing</text>
-          <path class="ink-line" d="M 470 230 L 550 230" stroke-dasharray="2 2" />
-          <text x="510" y="255" text-anchor="middle">Signal Layer</text>
+          <!-- Drones → Terminal -->
+          <path class="ink-line" d="M 180 132 L 180 66" marker-end="url(#arr-ink-5)" />
+          <path class="ink-line" d="M 290 132 L 290 66" marker-end="url(#arr-ink-5)" />
+          <path class="ink-line" d="M 400 132 L 400 66" marker-end="url(#arr-ink-5)" />
+          <path class="ink-line" d="M 510 132 L 510 66" marker-end="url(#arr-ink-5)" />
+          <path class="ink-line" d="M 620 132 L 620 66" marker-end="url(#arr-ink-5)" />
 
           <!-- Drones -->
-          <rect x="600" y="80" width="140" height="40" rx="4" class="cobalt" />
-          <text x="670" y="104" text-anchor="middle" fill="#1E3AE5">Data Drone</text>
-          
-          <rect x="600" y="160" width="140" height="40" rx="4" class="cobalt" />
-          <text x="670" y="184" text-anchor="middle" fill="#1E3AE5">Research Drone</text>
-          
-          <rect x="600" y="240" width="140" height="40" rx="4" class="cobalt" />
-          <text x="670" y="264" text-anchor="middle" fill="#1E3AE5">Reasoning Drone</text>
+          <ellipse cx="180" cy="150" rx="38" ry="20" class="drone" />
+          <text x="180" y="154" text-anchor="middle" class="cobalt">drone</text>
+          <ellipse cx="290" cy="150" rx="38" ry="20" class="drone" />
+          <text x="290" y="154" text-anchor="middle" class="cobalt">drone</text>
+          <ellipse cx="400" cy="150" rx="38" ry="20" class="drone" />
+          <text x="400" y="154" text-anchor="middle" class="cobalt">drone</text>
+          <ellipse cx="510" cy="150" rx="38" ry="20" class="drone" />
+          <text x="510" y="154" text-anchor="middle" class="cobalt">drone</text>
+          <ellipse cx="620" cy="150" rx="38" ry="20" class="drone" />
+          <text x="620" y="154" text-anchor="middle" class="cobalt">drone</text>
 
-          <!-- Triage/Gatekeeper -->
-          <rect x="460" y="340" width="100" height="60" rx="4" />
-          <text x="510" y="365" text-anchor="middle">Protector /</text>
-          <text x="510" y="385" text-anchor="middle">Gatekeeper</text>
+          <!-- Signal protocol between drones -->
+          <path class="signal-dash" d="M 218 150 L 252 150" />
+          <path class="signal-dash" d="M 328 150 L 362 150" />
+          <path class="signal-dash" d="M 438 150 L 472 150" />
+          <path class="signal-dash" d="M 548 150 L 582 150" />
+          <text x="400" y="190" text-anchor="middle" class="caption">signal protocol — mechanical, not managerial</text>
 
-          <!-- Output Graphs -->
-          <rect x="600" y="340" width="140" height="40" rx="4" stroke-dasharray="4 4" />
-          <text x="670" y="364" text-anchor="middle">Findings</text>
-          
-          <rect x="600" y="420" width="140" height="40" rx="4" />
-          <text x="670" y="444" text-anchor="middle" class="title">Knowledge</text>
+          <!-- Drones ↔ Collective Mind -->
+          <path class="flow-dash" d="M 180 170 L 180 213" />
+          <path class="ink-line" d="M 180 170 L 180 213" marker-end="url(#arr-ink-5)" marker-start="url(#arr-ink-5)" />
+          <path class="flow-dash" d="M 290 170 L 290 213" />
+          <path class="ink-line" d="M 290 170 L 290 213" marker-end="url(#arr-ink-5)" marker-start="url(#arr-ink-5)" />
+          <path class="flow-dash" d="M 400 170 L 400 213" />
+          <path class="ink-line" d="M 400 170 L 400 213" marker-end="url(#arr-ink-5)" marker-start="url(#arr-ink-5)" />
+          <path class="flow-dash" d="M 510 170 L 510 213" />
+          <path class="ink-line" d="M 510 170 L 510 213" marker-end="url(#arr-ink-5)" marker-start="url(#arr-ink-5)" />
+          <path class="flow-dash" d="M 620 170 L 620 213" />
+          <path class="ink-line" d="M 620 170 L 620 213" marker-end="url(#arr-ink-5)" marker-start="url(#arr-ink-5)" />
 
-          <!-- Connections (Lines and Arrows) -->
-          <!-- Main forward path -->
-          <path class="flow-dash" d="M 140 240 L 175 240 M 280 240 L 315 240 M 420 240 L 455 240" />
-          <path class="ink-line" d="M 140 240 L 175 240" marker-end="url(#arrow-ink)" />
-          <path class="ink-line" d="M 280 240 L 315 240" marker-end="url(#arrow-ink)" />
-          <path class="ink-line" d="M 420 240 L 455 240" marker-end="url(#arrow-ink)" />
+          <!-- Collective Mind -->
+          <rect x="80" y="215" width="640" height="290" rx="6" />
+          <text x="400" y="240" text-anchor="middle" class="label-italic">Collective Mind</text>
 
-          <!-- Routing to Drones -->
-          <path class="cobalt-line flow-dash" d="M 560 180 Q 580 180 580 100 T 595 100" />
-          <path class="cobalt-line" d="M 560 180 Q 580 180 580 100 T 595 100" marker-end="url(#arrow-cobalt)" />
-          
-          <path class="cobalt-line flow-dash" d="M 560 200 L 595 180" />
-          <path class="cobalt-line" d="M 560 200 L 595 180" marker-end="url(#arrow-cobalt)" />
-          
-          <path class="cobalt-line flow-dash" d="M 560 220 L 595 260" />
-          <path class="cobalt-line" d="M 560 220 L 595 260" marker-end="url(#arrow-cobalt)" />
+          <!-- Content row -->
+          <rect x="100" y="258" width="140" height="38" rx="3" />
+          <text x="170" y="281" text-anchor="middle">Skills</text>
 
-          <!-- Drones to Triage (Feedback loop) -->
-          <path class="ink-line" d="M 740 100 L 760 100 L 760 360 L 565 360" marker-end="url(#arrow-ink)" />
-          <path class="ink-line" d="M 740 180 L 750 180 L 750 360" />
-          <path class="ink-line" d="M 740 260 L 750 260 L 750 360" />
+          <rect x="256" y="258" width="140" height="38" rx="3" />
+          <text x="326" y="278" text-anchor="middle">Tool Registry</text>
+          <text x="326" y="291" text-anchor="middle" class="caption">(starts empty)</text>
 
-          <!-- Triage to Graphs -->
-          <path class="ink-line" d="M 560 360 L 595 360" marker-end="url(#arrow-ink)" />
-          <path class="ink-line" d="M 510 400 L 510 440 L 595 440" marker-end="url(#arrow-ink)" />
+          <rect x="412" y="258" width="140" height="38" rx="3" />
+          <text x="482" y="281" text-anchor="middle">Findings</text>
 
-          <!-- Aligner / Feedback loop back to Decomposer -->
-          <path class="ink-line" d="M 510 340 L 510 110 L 230 110 L 230 215" marker-end="url(#arrow-ink)" stroke-dasharray="4 4" />
-          <text x="370" y="100" text-anchor="middle" font-size="10">Aligner (Feedback Loop)</text>
+          <rect x="568" y="258" width="140" height="38" rx="3" />
+          <text x="638" y="281" text-anchor="middle">User Uploads</text>
+
+          <!-- Gaps -->
+          <text x="100" y="332" class="title">Gaps</text>
+          <text x="140" y="332" class="caption">— the atomic unit of work; defined by absence</text>
+
+          <rect x="100" y="345" width="140" height="38" rx="3" class="preset" />
+          <text x="170" y="369" text-anchor="middle" class="cobalt">Gap finding</text>
+
+          <rect x="256" y="345" width="140" height="38" rx="3" class="preset" />
+          <text x="326" y="369" text-anchor="middle" class="cobalt">Memory mgmt</text>
+
+          <rect x="412" y="345" width="140" height="38" rx="3" class="preset" />
+          <text x="482" y="369" text-anchor="middle" class="cobalt">Research</text>
+
+          <rect x="568" y="345" width="140" height="38" rx="3" class="preset" />
+          <text x="638" y="369" text-anchor="middle" class="cobalt">Testing</text>
+
+          <text x="100" y="405" class="caption">preset — never closed, only continually worked</text>
+
+          <!-- Emergent gaps -->
+          <rect x="100" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="154" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="208" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="262" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="316" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="370" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="424" y="420" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <rect x="478" y="420" width="30" height="30" rx="3" stroke="#1E3AE5" stroke-width="1" opacity="0.6" stroke-dasharray="3 3" />
+          <text x="518" y="440" class="caption">…</text>
+          <text x="100" y="471" class="caption">emergent — surface from gap finding, close when filled</text>
+
+          <!-- User figure -->
+          <g transform="translate(30, 360)">
+            <circle cx="0" cy="0" r="9" fill="transparent" stroke="#1A1A1A" stroke-width="1.5" />
+            <line x1="0" y1="9" x2="0" y2="34" stroke="#1A1A1A" stroke-width="1.5" />
+            <line x1="0" y1="16" x2="-10" y2="26" stroke="#1A1A1A" stroke-width="1.5" />
+            <line x1="0" y1="16" x2="10" y2="26" stroke="#1A1A1A" stroke-width="1.5" />
+            <line x1="0" y1="34" x2="-9" y2="48" stroke="#1A1A1A" stroke-width="1.5" />
+            <line x1="0" y1="34" x2="9" y2="48" stroke="#1A1A1A" stroke-width="1.5" />
+          </g>
+          <path class="ink-line" d="M 44 378 Q 62 348 82 318" stroke-dasharray="4 3" marker-end="url(#arr-ink-5)" />
+          <text x="50" y="348" class="caption">goal</text>
         </svg>
       </div>
-      
+
       <div class="pull-quote text-cobalt">
         The protocol layer for machine civilizations.
       </div>
     </div>
   </section>
 
-  <!-- 6. The Three Graphs -->
+  <!-- 6. Collective Mind components -->
   <section class="section fade-in">
     <div class="container">
-      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 4rem;">Graph memory as a truth standard.</h2>
-      <p style="margin-bottom: 4rem; max-width: var(--max-width-prose);">Every other agent stack treats memory as a chat history with retrieval glue. Drone Graph separates memory into distinct graph spaces, each with its own truth standard, lifetime, and access rules.</p>
-      
-      <div class="grid-3" style="max-width: 1000px; margin: 0 auto;">
-        <!-- Task Graph -->
-        <div class="graph-column">
-          <div class="graph-visual">
-            <svg viewBox="0 0 200 160" width="100%" height="160" class="ink-svg">
-              <style>
-                .ink-node { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
-                .ink-link { stroke: #1A1A1A; stroke-width: 1; fill: none; }
-              </style>
-              <g transform="translate(20, 20)">
-                <!-- Links -->
-                <path class="ink-link" d="M 80 10 L 40 50 M 80 10 L 120 50 M 40 60 L 40 100 M 120 60 L 80 100 M 120 60 L 160 100 M 80 110 L 80 140" />
-                <!-- Nodes -->
-                <circle cx="80" cy="10" r="10" class="ink-node" />
-                <circle cx="40" cy="50" r="10" class="ink-node" />
-                <circle cx="120" cy="50" r="10" class="ink-node" />
-                <circle cx="40" cy="100" r="10" class="ink-node" />
-                <circle cx="80" cy="100" r="10" class="ink-node" />
-                <circle cx="160" cy="100" r="10" class="ink-node" />
-                <circle cx="80" cy="140" r="10" class="ink-node" />
-              </g>
-            </svg>
-          </div>
-          <h3 class="graph-title">Tasks</h3>
-          <p>What is happening. Goals, atomic tasks, dependencies, ownership, retries, blockers. The execution structure of the mission. Lives only as long as the mission does.</p>
-        </div>
+      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 2rem;">The drones dissolve. The collective mind endures.</h2>
+      <p style="margin-bottom: 1.5rem; max-width: var(--max-width-prose);">Other agent stacks treat memory as one flat bucket &mdash; chat history, a folder of .md notes, a vector store, whatever. Drone Graph has one shared substrate that outlives every drone, every mission, every restart. Five kinds of content live in it, each with its own lifecycle.</p>
+      <p style="margin-bottom: 4rem; max-width: var(--max-width-prose); font-family: var(--font-mono); font-size: 1rem; color: rgba(26,26,26,0.7);">Persistence is the default, not a guarantee. Stale tools get uninstalled. Findings get summarized and compacted. Emergent gaps close when filled. The collective mind itself never goes away.</p>
+    </div>
 
-        <!-- Findings Graph -->
-        <div class="graph-column">
-          <div class="graph-visual">
-            <svg viewBox="0 0 200 160" width="100%" height="160" class="ink-svg">
-              <g transform="translate(20, 20)">
-                <!-- Weak/fading links -->
-                <path class="ink-link" d="M 40 40 L 90 30" stroke-opacity="0.3" stroke-dasharray="2 2" />
-                <path class="ink-link" d="M 90 30 L 140 60" stroke-opacity="0.6" />
-                <path class="ink-link" d="M 140 60 L 120 110" stroke-opacity="0.4" stroke-dasharray="4 2" />
-                <path class="ink-link" d="M 40 40 L 60 90" stroke-opacity="0.8" />
-                <path class="ink-link" d="M 60 90 L 120 110" stroke-opacity="0.5" />
-                
-                <!-- Scattered nodes with varying opacity -->
-                <circle cx="40" cy="40" r="10" class="ink-node" stroke-opacity="0.8" />
-                <circle cx="90" cy="30" r="8" class="ink-node" stroke-opacity="0.4" />
-                <circle cx="140" cy="60" r="12" class="ink-node" stroke-opacity="0.6" />
-                <circle cx="60" cy="90" r="9" class="ink-node" stroke-opacity="0.9" />
-                <circle cx="120" cy="110" r="7" class="ink-node" stroke-opacity="0.3" />
-                <circle cx="160" cy="30" r="6" class="ink-node" stroke-opacity="0.2" />
-                <circle cx="20" cy="120" r="5" class="ink-node" stroke-opacity="0.5" />
-              </g>
-            </svg>
-          </div>
-          <h3 class="graph-title">Findings</h3>
-          <p>What is being learned. Hypotheses, raw evidence, partial conclusions, weak signals, unresolved contradictions. Temporary by design. The Sleeper layer prunes stale findings; the Gatekeeper promotes verified ones.</p>
-        </div>
+    <div class="cm-grid">
 
-        <!-- Knowledge Graph -->
-        <div class="graph-column">
-          <div class="graph-visual">
-            <svg viewBox="0 0 200 160" width="100%" height="160" class="ink-svg">
-              <g transform="translate(20, 20)">
-                <!-- Dense structured links with provenance arrows -->
-                <path class="ink-link" d="M 40 40 L 90 40 M 90 40 L 140 40 M 40 40 L 65 80 M 90 40 L 65 80 M 90 40 L 115 80 M 140 40 L 115 80 M 65 80 L 90 120 M 115 80 L 90 120 M 65 80 L 115 80" />
-                
-                <!-- Tiny provenance arrows -->
-                <path class="ink-link" d="M 60 40 L 65 35 M 60 40 L 65 45" />
-                <path class="ink-link" d="M 110 40 L 115 35 M 110 40 L 115 45" />
-                <path class="ink-link" d="M 50 60 L 55 52 M 50 60 L 45 58" />
-                <path class="ink-link" d="M 130 60 L 125 52 M 130 60 L 135 58" />
-                
-                <!-- Double-stroked nodes representing "validated" knowledge -->
-                <circle cx="40" cy="40" r="10" class="ink-node" fill="#F5F1E8" />
-                <circle cx="40" cy="40" r="6" class="ink-node" />
-                
-                <circle cx="90" cy="40" r="10" class="ink-node" fill="#F5F1E8" />
-                <circle cx="90" cy="40" r="6" class="ink-node" fill="#1A1A1A" />
-                
-                <circle cx="140" cy="40" r="10" class="ink-node" fill="#F5F1E8" />
-                <circle cx="140" cy="40" r="6" class="ink-node" />
-                
-                <circle cx="65" cy="80" r="10" class="ink-node" fill="#F5F1E8" />
-                <circle cx="65" cy="80" r="6" class="ink-node" fill="#1A1A1A" />
-                
-                <circle cx="115" cy="80" r="10" class="ink-node" fill="#F5F1E8" />
-                <circle cx="115" cy="80" r="6" class="ink-node" />
-                
-                <circle cx="90" cy="120" r="10" class="ink-node" fill="#F5F1E8" />
-                <circle cx="90" cy="120" r="6" class="ink-node" fill="#1E3AE5" stroke="none" />
-              </g>
-            </svg>
-          </div>
-          <h3 class="graph-title">Knowledge</h3>
-          <p>What is known. Verified facts, validated decisions, durable conclusions. Every entry carries source, timestamp, confidence, provenance chain, verification status. Long-term memory — but structured.</p>
+      <!-- Skills -->
+      <div class="graph-column">
+        <div class="graph-visual">
+          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
+            <g transform="translate(28, 18)" fill="transparent" stroke="#1A1A1A" stroke-width="1.5">
+              <rect x="0" y="0" width="140" height="16" rx="2" />
+              <rect x="8" y="20" width="130" height="16" rx="2" />
+              <rect x="4" y="40" width="138" height="16" rx="2" />
+              <rect x="12" y="60" width="120" height="16" rx="2" />
+              <rect x="2" y="80" width="134" height="16" rx="2" />
+            </g>
+          </svg>
         </div>
+        <h3 class="graph-title">Skills</h3>
+        <p>Runnable procedures any drone can load, download from the internet, or author from scratch. A skill written by one drone belongs to every future drone. Accumulates monotonically.</p>
       </div>
-      
+
+      <!-- Tool Registry -->
+      <div class="graph-column">
+        <div class="graph-visual">
+          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
+            <g transform="translate(26, 14)" fill="transparent" stroke="#1A1A1A">
+              <rect x="0" y="0" width="32" height="30" rx="2" stroke-width="1.5" />
+              <rect x="38" y="0" width="32" height="30" rx="2" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" />
+              <rect x="76" y="0" width="32" height="30" rx="2" stroke-width="1.5" />
+              <rect x="114" y="0" width="32" height="30" rx="2" stroke-width="1.5" />
+              <rect x="0" y="38" width="32" height="30" rx="2" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" />
+              <rect x="38" y="38" width="32" height="30" rx="2" stroke-width="1.5" />
+              <rect x="76" y="38" width="32" height="30" rx="2" stroke-width="1.5" />
+              <rect x="114" y="38" width="32" height="30" rx="2" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" />
+              <rect x="0" y="76" width="32" height="30" rx="2" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" />
+              <rect x="38" y="76" width="32" height="30" rx="2" stroke-width="1.5" />
+              <rect x="76" y="76" width="32" height="30" rx="2" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" />
+              <rect x="114" y="76" width="32" height="30" rx="2" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" />
+            </g>
+          </svg>
+        </div>
+        <h3 class="graph-title">Tool Registry</h3>
+        <p>Starts empty. Populated as drones install packages through the terminal. Tools unused within a window get uninstalled to save disk. Persistent with expiry.</p>
+      </div>
+
+      <!-- Findings -->
+      <div class="graph-column">
+        <div class="graph-visual">
+          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
+            <g transform="translate(20, 10)" fill="transparent">
+              <path stroke="#1A1A1A" stroke-width="1" d="M 40 30 L 90 20 M 90 20 L 140 50 M 140 50 L 120 100 M 40 30 L 60 80 M 60 80 L 120 100" stroke-opacity="0.5" />
+              <circle cx="40" cy="30" r="9" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.85" />
+              <circle cx="90" cy="20" r="7" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.4" />
+              <circle cx="140" cy="50" r="11" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.65" />
+              <circle cx="60" cy="80" r="8" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.9" />
+              <circle cx="120" cy="100" r="7" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.35" />
+              <circle cx="160" cy="22" r="5" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.2" />
+              <circle cx="20" cy="110" r="5" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.4" />
+            </g>
+          </svg>
+        </div>
+        <h3 class="graph-title">Findings</h3>
+        <p>Venv state, research notes, business progress, execution history. Loaded into memory only when needed, and summarized and compacted otherwise. Persistent, but not verbatim.</p>
+      </div>
+
+      <!-- User Uploads -->
+      <div class="graph-column">
+        <div class="graph-visual">
+          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
+            <g transform="translate(50, 15)" stroke="#1A1A1A" stroke-width="1.5">
+              <path fill="transparent" d="M 24 16 L 64 16 L 82 34 L 82 108 L 24 108 Z" />
+              <path fill="#F5F1E8" d="M 12 8 L 52 8 L 70 26 L 70 100 L 12 100 Z" />
+              <path fill="none" d="M 52 8 L 52 26 L 70 26" />
+              <path fill="#F5F1E8" d="M 0 0 L 40 0 L 58 18 L 58 92 L 0 92 Z" />
+              <path fill="none" d="M 40 0 L 40 18 L 58 18" />
+              <line x1="8" y1="32" x2="48" y2="32" stroke-width="1" opacity="0.4" />
+              <line x1="8" y1="46" x2="52" y2="46" stroke-width="1" opacity="0.4" />
+              <line x1="8" y1="60" x2="42" y2="60" stroke-width="1" opacity="0.4" />
+              <line x1="8" y1="74" x2="50" y2="74" stroke-width="1" opacity="0.4" />
+            </g>
+          </svg>
+        </div>
+        <h3 class="graph-title">User Uploads</h3>
+        <p>Files and context the human hands in. Held verbatim until the user removes them. The one place the swarm doesn't paraphrase you.</p>
+      </div>
+
+      <!-- Gaps -->
+      <div class="graph-column">
+        <div class="graph-visual">
+          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
+            <g transform="translate(12, 20)" fill="transparent">
+              <rect x="0" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
+              <rect x="46" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
+              <rect x="92" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
+              <rect x="138" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
+              <rect x="0" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
+              <rect x="30" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
+              <rect x="60" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
+              <rect x="90" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
+              <rect x="120" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
+              <rect x="150" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
+              <rect x="0" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
+              <rect x="26" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
+              <rect x="52" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
+              <rect x="78" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
+              <rect x="104" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
+              <rect x="130" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
+              <text x="158" y="82" font-family="JetBrains Mono, monospace" font-size="13" fill="#1A1A1A" opacity="0.3">…</text>
+            </g>
+          </svg>
+        </div>
+        <h3 class="graph-title">Gaps</h3>
+        <p>The full surface of open work. Preset gaps (gap finding, memory management, research, testing) are never closed, only continually worked. Emergent gaps surface and close.</p>
+      </div>
+    </div>
+
+    <div class="container">
       <p class="graph-caption">
-        Findings are not knowledge. Knowledge is not chat history. Treating them the same is how agent systems hallucinate themselves into incoherence.
+        A drone is an executor, not a memory. Conflating the two is how every other agent stack hallucinates itself into incoherence.
       </p>
     </div>
   </section>
@@ -371,37 +424,42 @@
   <!-- 7. A Worked Example -->
   <section class="section fade-in">
     <div class="container">
-      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem);">A mission, end to end. Self-organizing AI for civilization-scale work.</h2>
-      <p style="margin-bottom: 3rem;">A user submits a goal: <em>Identify possible new planet candidates in this Milky Way observational dataset.</em> Here is what happens.</p>
-      
+      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem);">Civilization-scale work. Zero employees.</h2>
+      <p style="margin-bottom: 3rem;">A user submits a goal: <em>Launch and operate a pharmaceutical company. Discover, develop, trial, and ship a new drug for Parkinson's.</em> The swarm starts. It does not stop.</p>
+
       <ol class="example-list">
         <li class="example-item">
           <h3>Intake</h3>
-          <p>The user's goal, dataset, and constraints enter the system.</p>
+          <p>The user provides target indication, molecule libraries, corporate entity, budget, and jurisdiction. Everything lands in user uploads. The goal enters the collective mind as the first non-preset gap.</p>
         </li>
         <li class="example-item">
-          <h3>Routing</h3>
-          <p>Tasks are assigned to disposable drone instances based on capability heuristics.</p>
+          <h3>Gap finding</h3>
+          <p>A drone on the gap-finding preset gap decomposes the goal: target validation, in-silico screening, preclinical work, trial design across phases, FDA filings, manufacturing scale-up, distribution, post-market surveillance. When a branch of the gap tree reaches roughly five layers deep, leaf gaps become executable.</p>
         </li>
         <li class="example-item">
-          <h3>Execution</h3>
-          <p>Drones spawn, load the skills they need, do the work, emit findings, and terminate.</p>
-        <li class="example-item">
-          <h3>Placement</h3>
-          <p>Deterministic gatekeepers decide: raw anomaly note → Findings Graph; validated candidate score → Knowledge Graph; unsupported speculation → quarantine.</p>
+          <h3>Drones spawn</h3>
+          <p>For each leaf gap, an ephemeral drone wakes. One runs compound-similarity searches. Another drafts an FDA pre-IND briefing. A third reconciles supplier invoices. They set their own reasoning depth and model tier — deep reasoning for trial design, fast tool-use for procurement. Same system prompt. No identity.</p>
         </li>
         <li class="example-item">
-          <h3>Alignment</h3>
-          <p>Drones are spawned to check whether the actual output satisfies the original user goal. If not, new tasks are generated and the loop continues.</p>
+          <h3>Terminal execution</h3>
+          <p>Every drone acts through the terminal — the only real tool. API calls, database queries, submission portals, contract drafts, emails, payments. Each drone checks the signal protocol first: don't install what's already installed, don't open a file another drone has open.</p>
         </li>
         <li class="example-item">
-          <h3>Return</h3>
-          <p>When the goal is satisfied, results are returned. The drones are gone. The Knowledge Graph remains.</p>
+          <h3>Findings deposited</h3>
+          <p>Binding-affinity results land in findings. A skill for <em>draft FDA pre-IND briefing</em> is written once and reused for every future drug. The tool registry grows as packages install. The drone dissolves.</p>
+        </li>
+        <li class="example-item">
+          <h3>Preset gaps keep working</h3>
+          <p>Research scans literature for new indications. Testing runs continuous validation on the pipeline. Memory management summarizes decade-old trial data. Gap finding keeps decomposing as the company grows from one drug to ten.</p>
+        </li>
+        <li class="example-item">
+          <h3>Human in the loop</h3>
+          <p>The hivemind pings the user only for what it can't do on its own: wet-lab execution, IRB signatures, patient-dosing authorization, wire transfers above threshold. The list is small by design. Everything digital is the hivemind's problem.</p>
         </li>
       </ol>
-      
+
       <p class="example-caption text-opacity-80">
-        Sharp systems fail the same way humans do, by becoming bloated, bureaucratic institutions. Drone Graph's discipline is to refuse that fate.
+        A pharmaceutical company with zero employees. No org chart. No quarterly reviews. The work organizes itself around the gaps. The collective mind remembers what the drones cannot.
       </p>
     </div>
   </section>
@@ -440,11 +498,11 @@
     <div class="container grid-2">
       <div>
         <h2 style="font-size: 1.5rem;">If you're shipping an AI product</h2>
-        <p>Stop fighting your framework. Drone Graph handles the infrastructure no one else has built right — capability-aware routing, deterministic coordination, structured memory, provenance on every output — so your team can ship features instead of debugging hallucinated completion. Drones are disposable, so context never rots. Protocols are deterministic, so coordination is debuggable. Every output carries metadata, so you can prove what happened. The end of pretend AI employees.</p>
+        <p>Stop fighting your framework. Drone Graph handles the infrastructure no one else has built right — ephemeral interchangeable drones, one shared collective mind, a mechanical signal protocol, a single terminal for all execution — so your team can ship features instead of debugging hallucinated completion. Drones dissolve after every gap, so context never rots. Coordination is mechanical, so it's debuggable. Skills and findings persist, so the swarm gets smarter every run. The end of pretend AI employees.</p>
       </div>
       <div>
         <h2 style="font-size: 1.5rem;">If you're researching agent architecture</h2>
-        <p>Drone Graph is built around principled separations: coordination vs reasoning, execution vs identity, temporary vs durable memory, capability vs confidence. The three-graph memory model makes failure modes legible — you can point at which graph an error came from. Provenance is first-class. Termination is first-class. The architecture is opinionated, documented, and open. The collective intelligence layer for AI.</p>
+        <p>Drone Graph is built around principled separations: coordination vs reasoning, execution vs identity, ephemeral drone vs persistent mind, gap vs closure. The collective mind makes failure modes legible — every skill, tool, finding, and gap is addressable. Gaps are the atomic unit of work, defined by absence rather than assignment. Ephemerality is first-class. The architecture is opinionated, documented, and open. The collective intelligence layer for AI.</p>
       </div>
     </div>
   </section>
