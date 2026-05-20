@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" font-family="-apple-system, 'Inter', 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="title3 desc3">
+  <title id="title3">What the swarm does in the real world</title>
+  <desc id="desc3">Four external surfaces a drone reaches into through the terminal, each rendered in the look of the actual service: a Stripe dashboard issuing payments, a Reddit thread receiving a typed comment, a federal small-business grant form being filled, and a VS Code editor writing a webhook handler. Each lights up in turn as the drone causes the effect.</desc>
+
+  <defs>
+    <filter id="wglow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2"/>
+      <feComposite in2="SourceGraphic" operator="atop"/>
+    </filter>
+  </defs>
+
+  <!-- Drone Graph chrome bar (only signal that this is "from a drone") -->
+  <rect width="440" height="280" fill="#0b0f17"/>
+  <rect x="0" y="0" width="440" height="20" fill="#0b0f17"/>
+  <line x1="0" y1="20" x2="440" y2="20" stroke="#1f2532"/>
+  <circle cx="11" cy="10" r="2.5" fill="#3c6ef5">
+    <animate attributeName="opacity" values="0.55;1;0.55" dur="1.6s" repeatCount="indefinite"/>
+  </circle>
+  <text x="20" y="14" fill="#e3e8f1" font-family="'JetBrains Mono', monospace" font-size="7.5" letter-spacing="0.08em">DRONE · REAL-WORLD EFFECTS</text>
+  <text x="395" y="14" fill="#5e88ff" font-family="'JetBrains Mono', monospace" font-size="7.5" letter-spacing="0.04em">via terminal</text>
+
+  <!-- Cobalt signal dot — travels from off-screen left to whichever quadrant is currently firing -->
+  <circle r="3" fill="#3c6ef5" filter="url(#wglow2)">
+    <animate attributeName="cx" values="-4;14;14;14;14;14;14;14;14"
+      dur="12s" keyTimes="0;0.04;0.08;0.33;0.42;0.58;0.67;0.83;1" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="84;84;84;84;84;204;204;204;84"
+      dur="12s" keyTimes="0;0.04;0.08;0.33;0.42;0.58;0.67;0.83;1" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;1;1;1;1;1;0"
+      dur="12s" keyTimes="0;0.04;0.08;0.33;0.42;0.58;0.67;0.92;1" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ============================ STRIPE (top-left) ============================ -->
+  <g>
+    <rect x="14" y="26" width="200" height="124" rx="4" fill="#FFFFFF" stroke="#E3E8EE"/>
+    <!-- active glow when this quadrant is firing -->
+    <rect x="14" y="26" width="200" height="124" rx="4" fill="none" stroke="#635BFF" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" values="0;0.55;0.55;0" dur="12s" keyTimes="0;0.08;0.3;0.4" repeatCount="indefinite"/>
+    </rect>
+    <!-- chrome -->
+    <rect x="14" y="26" width="200" height="20" rx="4" fill="#FFFFFF"/>
+    <rect x="14" y="42" width="200" height="4" fill="#FFFFFF"/>
+    <line x1="14" y1="46" x2="214" y2="46" stroke="#E3E8EE"/>
+    <text x="22" y="40" fill="#635BFF" font-weight="700" font-size="10" letter-spacing="-0.01em">stripe</text>
+    <text x="207" y="40" text-anchor="end" fill="#6B7280" font-size="6.5" letter-spacing="0.06em">PAYMENTS</text>
+
+    <!-- column headers -->
+    <text x="22" y="58" fill="#1A1F36" font-weight="600" font-size="9">Payments</text>
+    <text x="207" y="58" text-anchor="end" fill="#6B7280" font-size="6.5">last 24h · $4,218.75</text>
+
+    <!-- transaction rows that appear one at a time -->
+    <g>
+      <!-- row 1 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1;1;1;1;1;1;0"
+          dur="12s" keyTimes="0;0.08;0.3;0.4;0.6;0.85;0.95;1" repeatCount="indefinite"/>
+        <line x1="22" y1="65" x2="206" y2="65" stroke="#F6F9FC"/>
+        <text x="22" y="76" fill="#1A1F36" font-weight="500" font-size="8">$24.00</text>
+        <text x="63" y="76" fill="#6B7280" font-size="7">m. lee</text>
+        <g>
+          <rect x="160" y="69" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
+          <text x="183" y="77" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
+        </g>
+      </g>
+      <!-- row 2 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;1;1;1;0"
+          dur="12s" keyTimes="0;0.13;0.18;0.3;0.4;0.6;0.95;1" repeatCount="indefinite"/>
+        <line x1="22" y1="82" x2="206" y2="82" stroke="#F6F9FC"/>
+        <text x="22" y="93" fill="#1A1F36" font-weight="500" font-size="8">$48.50</text>
+        <text x="63" y="93" fill="#6B7280" font-size="7">k. patel</text>
+        <g>
+          <rect x="160" y="86" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
+          <text x="183" y="94" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
+        </g>
+      </g>
+      <!-- row 3 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0;1;1;1;1;0"
+          dur="12s" keyTimes="0;0.18;0.22;0.27;0.4;0.6;0.95;1" repeatCount="indefinite"/>
+        <line x1="22" y1="99" x2="206" y2="99" stroke="#F6F9FC"/>
+        <text x="22" y="110" fill="#1A1F36" font-weight="500" font-size="8">$120.00</text>
+        <text x="63" y="110" fill="#6B7280" font-size="7">cafe pacific</text>
+        <g>
+          <rect x="160" y="103" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
+          <text x="183" y="111" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
+        </g>
+      </g>
+      <!-- row 4 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0;0;1;1;1;0"
+          dur="12s" keyTimes="0;0.22;0.27;0.31;0.34;0.6;0.95;1" repeatCount="indefinite"/>
+        <line x1="22" y1="116" x2="206" y2="116" stroke="#F6F9FC"/>
+        <text x="22" y="127" fill="#1A1F36" font-weight="500" font-size="8">$67.25</text>
+        <text x="63" y="127" fill="#6B7280" font-size="7">s. okafor</text>
+        <g>
+          <rect x="160" y="120" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
+          <text x="183" y="128" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
+        </g>
+      </g>
+    </g>
+    <line x1="14" y1="140" x2="214" y2="140" stroke="#E3E8EE"/>
+    <text x="22" y="147" fill="#6B7280" font-size="6.5">4 succeeded · $259.75 net</text>
+  </g>
+
+  <!-- ============================ REDDIT (top-right) ============================ -->
+  <g>
+    <rect x="222" y="26" width="204" height="124" rx="4" fill="#FFFFFF" stroke="#EDEFF1"/>
+    <rect x="222" y="26" width="204" height="124" rx="4" fill="none" stroke="#FF4500" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.55;0.55;0" dur="12s" keyTimes="0;0.3;0.4;0.55;0.6" repeatCount="indefinite"/>
+    </rect>
+    <!-- top bar w/ subreddit -->
+    <rect x="222" y="26" width="204" height="22" rx="4" fill="#FFFFFF"/>
+    <rect x="222" y="44" width="204" height="4" fill="#FFFFFF"/>
+    <line x1="222" y1="48" x2="426" y2="48" stroke="#EDEFF1"/>
+    <!-- snoo circle -->
+    <circle cx="232" cy="37" r="6" fill="#FF4500"/>
+    <text x="232" y="40" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="7">r</text>
+    <text x="243" y="40" fill="#1A1A1B" font-weight="600" font-size="9">r/coffee</text>
+    <text x="285" y="40" fill="#7C7C7C" font-size="7">· hot · new</text>
+    <text x="419" y="40" text-anchor="end" fill="#1A1A1B" font-weight="600" font-size="8">join</text>
+
+    <!-- post title -->
+    <text x="232" y="62" fill="#1A1A1B" font-weight="500" font-size="8.5">Looking for ethical roasters in PNW</text>
+    <text x="232" y="72" fill="#7C7C7C" font-size="6.5">▲ 47  · 14 comments · share · save</text>
+
+    <!-- comment box -->
+    <rect x="232" y="78" width="184" height="56" rx="4" fill="#FFFFFF" stroke="#EDEFF1"/>
+    <text x="240" y="92" fill="#1A1A1B" font-size="7.5">
+      <tspan opacity="0">If you're after direct-trade,
+        <animate attributeName="opacity" values="0;0;0;1;1;1;0" dur="12s" keyTimes="0;0.3;0.36;0.4;0.6;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+    <text x="240" y="103" fill="#1A1A1B" font-size="7.5">
+      <tspan opacity="0">we just shipped to a small co-op
+        <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.36;0.42;0.46;0.48;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+    <text x="240" y="114" fill="#1A1A1B" font-size="7.5">
+      <tspan opacity="0">in Portland — happy to connect.
+        <animate attributeName="opacity" values="0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.42;0.48;0.5;0.52;0.54;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+    <text x="240" y="125" fill="#0079D3" font-weight="600" font-size="7.5">
+      <tspan opacity="0">— u/pnw_coffee_co
+        <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.5;0.54;0.55;0.56;0.57;0.58;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+    <!-- reply button -->
+    <rect x="376" y="138" width="40" height="11" rx="5.5" fill="#0079D3">
+      <animate attributeName="opacity" values="0.4;0.4;0.4;0.4;0.4;0.4;1;1;0.4" dur="12s" keyTimes="0;0.5;0.55;0.57;0.58;0.6;0.62;0.92;1" repeatCount="indefinite"/>
+    </rect>
+    <text x="396" y="146" text-anchor="middle" fill="#FFFFFF" font-weight="600" font-size="6.5">Reply</text>
+  </g>
+
+  <!-- ============================ GRANT FORM (bottom-left) ============================ -->
+  <g>
+    <rect x="14" y="156" width="200" height="116" rx="4" fill="#FFFFFF" stroke="#DFE1E2"/>
+    <rect x="14" y="156" width="200" height="116" rx="4" fill="none" stroke="#005EA2" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;0;0.55;0.55;0" dur="12s" keyTimes="0;0.45;0.55;0.58;0.62;0.65;0.78;0.83" repeatCount="indefinite"/>
+    </rect>
+    <!-- USA.gov style top banner -->
+    <rect x="14" y="156" width="200" height="9" fill="#F0F0F0"/>
+    <text x="18" y="163" fill="#1B1B1B" font-size="5" letter-spacing="0.02em">★ An official website of the United States government</text>
+    <!-- navy header bar -->
+    <rect x="14" y="165" width="200" height="18" fill="#005EA2"/>
+    <text x="22" y="177" fill="#FFFFFF" font-weight="700" font-size="9" font-family="Georgia, serif">SBA · Small Business Grant</text>
+
+    <!-- form fields -->
+    <text x="22" y="194" fill="#1B1B1B" font-weight="600" font-size="6.5">Legal business name</text>
+    <rect x="22" y="196" width="184" height="11" fill="#FFFFFF" stroke="#565C65"/>
+    <text x="26" y="204" fill="#1B1B1B" font-size="7">
+      <tspan opacity="0">PNW Coffee Co., LLC
+        <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.55;0.6;0.62;0.64;0.65;0.67;0.85;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+
+    <text x="22" y="218" fill="#1B1B1B" font-weight="600" font-size="6.5">Requested amount (USD)</text>
+    <rect x="22" y="220" width="184" height="11" fill="#FFFFFF" stroke="#565C65"/>
+    <text x="26" y="228" fill="#1B1B1B" font-size="7">
+      <tspan opacity="0">48,000
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.6;0.65;0.7;0.72;0.74;0.75;0.76;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+
+    <text x="22" y="242" fill="#1B1B1B" font-weight="600" font-size="6.5">Use of funds</text>
+    <rect x="22" y="244" width="184" height="14" fill="#FFFFFF" stroke="#565C65"/>
+    <text x="26" y="251" fill="#1B1B1B" font-size="6.5">
+      <tspan opacity="0">Cold-storage expansion;
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;0.9;0" dur="12s" keyTimes="0;0.65;0.7;0.75;0.78;0.8;0.82;0.83;0.85;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+    <text x="26" y="257" fill="#1B1B1B" font-size="6.5">
+      <tspan opacity="0">year-1 wholesale inventory.
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;1;0.9;0" dur="12s" keyTimes="0;0.7;0.75;0.78;0.8;0.82;0.83;0.84;0.85;0.88;0.92;1" repeatCount="indefinite"/>
+      </tspan>
+    </text>
+
+    <!-- submit button -->
+    <rect x="155" y="262" width="51" height="9" rx="1" fill="#005EA2"/>
+    <text x="180" y="269" text-anchor="middle" fill="#FFFFFF" font-weight="600" font-size="6">SUBMIT</text>
+  </g>
+
+  <!-- ============================ VS CODE (bottom-right) ============================ -->
+  <g>
+    <!-- whole-editor bg -->
+    <rect x="222" y="156" width="204" height="116" rx="4" fill="#1E1E1E"/>
+    <rect x="222" y="156" width="204" height="116" rx="4" fill="none" stroke="#007ACC" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0.55;0.55;0" dur="12s" keyTimes="0;0.5;0.6;0.7;0.75;0.78;0.82;0.83;0.85;0.92;1" repeatCount="indefinite"/>
+    </rect>
+    <!-- activity bar (left) -->
+    <rect x="222" y="156" width="10" height="116" rx="4 0 0 4" fill="#333333"/>
+    <rect x="222" y="156" width="10" height="116" fill="#333333"/>
+    <!-- small icon stubs in activity bar -->
+    <rect x="225" y="162" width="4" height="4" fill="#858585"/>
+    <rect x="225" y="170" width="4" height="4" fill="#858585"/>
+    <rect x="225" y="178" width="4" height="4" fill="#858585"/>
+    <!-- side panel (file tree narrow) -->
+    <rect x="232" y="156" width="36" height="116" fill="#252526"/>
+    <text x="237" y="166" fill="#CCCCCC" font-size="5" letter-spacing="0.06em">EXPLORER</text>
+    <text x="237" y="178" fill="#CCCCCC" font-size="5.5">▾ src</text>
+    <text x="240" y="186" fill="#CCCCCC" font-size="5">app.py</text>
+    <text x="240" y="194" fill="#FFFFFF" font-weight="600" font-size="5">stripe_webhook.py</text>
+    <text x="240" y="202" fill="#CCCCCC" font-size="5">models.py</text>
+    <!-- tab bar -->
+    <rect x="268" y="156" width="158" height="14" fill="#2D2D30"/>
+    <rect x="268" y="156" width="78" height="14" fill="#1E1E1E"/>
+    <text x="273" y="166" fill="#FFFFFF" font-size="6">● stripe_webhook.py</text>
+    <text x="349" y="166" fill="#858585" font-size="6">app.py</text>
+    <!-- code area -->
+    <g font-family="'Menlo','Consolas',monospace" font-size="6.5">
+      <!-- line numbers + code -->
+      <text x="272" y="180" fill="#858585">1</text>
+      <text x="282" y="180" fill="#C586C0">from</text>
+      <text x="298" y="180" fill="#D4D4D4">flask </text>
+      <text x="322" y="180" fill="#C586C0">import</text>
+      <text x="346" y="180" fill="#9CDCFE">Flask, request</text>
+
+      <text x="272" y="190" fill="#858585">2</text>
+      <text x="282" y="190" fill="#C586C0">import</text>
+      <text x="306" y="190" fill="#9CDCFE">stripe</text>
+
+      <text x="272" y="200" fill="#858585">3</text>
+
+      <text x="272" y="210" fill="#858585">4</text>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.75;0.78;0.8;0.82;0.83;0.84;0.85;0.86;0.88;0.92;1" repeatCount="indefinite"/>
+        <text x="282" y="210" fill="#DCDCAA">@app.</text>
+        <text x="303" y="210" fill="#DCDCAA">route</text>
+        <text x="318" y="210" fill="#D4D4D4">(</text>
+        <text x="322" y="210" fill="#CE9178">"/webhook"</text>
+        <text x="358" y="210" fill="#D4D4D4">, methods=[</text>
+        <text x="397" y="210" fill="#CE9178">"POST"</text>
+        <text x="418" y="210" fill="#D4D4D4">])</text>
+      </g>
+      <text x="272" y="220" fill="#858585">5</text>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;0;1;0" dur="12s" keyTimes="0;0.8;0.82;0.84;0.85;0.86;0.87;0.88;0.89;0.9;0.92;1" repeatCount="indefinite"/>
+        <text x="282" y="220" fill="#569CD6">def</text>
+        <text x="296" y="220" fill="#DCDCAA">handle_event</text>
+        <text x="343" y="220" fill="#D4D4D4">():</text>
+      </g>
+      <text x="272" y="230" fill="#858585">6</text>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;0;1;0" dur="12s" keyTimes="0;0.82;0.84;0.86;0.87;0.88;0.89;0.9;0.91;0.915;0.92;1" repeatCount="indefinite"/>
+        <text x="288" y="230" fill="#9CDCFE">event</text>
+        <text x="306" y="230" fill="#D4D4D4">= </text>
+        <text x="314" y="230" fill="#9CDCFE">stripe.</text>
+        <text x="338" y="230" fill="#DCDCAA">construct_event</text>
+        <text x="397" y="230" fill="#D4D4D4">(</text>
+      </g>
+      <text x="272" y="240" fill="#858585">7</text>
+      <text x="288" y="240" fill="#D4D4D4">|</text>
+      <rect x="289" y="234" width="1" height="7" fill="#D4D4D4">
+        <animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    <!-- status bar (VS Code blue) -->
+    <rect x="222" y="264" width="204" height="8" fill="#007ACC"/>
+    <text x="227" y="270" fill="#FFFFFF" font-family="-apple-system,sans-serif" font-size="5">⎇ drone/webhook · ● 0 ▲ 1 · Python 3.12</text>
+  </g>
+</svg>

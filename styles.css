@@ -8,7 +8,7 @@
   --font-serif: "Source Serif 4", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --spacing-section: 8rem;
+  --spacing-section: 5rem;
   --max-width-prose: 720px;
 }
 
@@ -183,14 +183,16 @@ a:hover {
 
 @media (min-width: 900px) {
   .hero-content {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 3rem;
+    max-width: 1320px;
   }
 }
 
 .hero-title {
-  font-size: clamp(4.5rem, 10vw, 9rem);
-  line-height: 0.9;
-  margin-bottom: 2rem;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  line-height: 0.95;
+  margin-bottom: 1.75rem;
   letter-spacing: -0.02em;
 }
 
@@ -214,6 +216,229 @@ a:hover {
 
 .hero-visual .placeholder {
   aspect-ratio: 4 / 3;
+}
+
+/* Mission Control screenshot in the hero. The SVG is naturally ~1400×820;
+ * we let it scale to the column width with a soft drop-shadow so the dark
+ * dashboard reads as a window floating above the cream page. */
+.hero-mission-control img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 26, 0.08),
+    0 20px 60px rgba(26, 26, 26, 0.18);
+}
+.hero-visual-caption {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(26, 26, 26, 0.55);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* Full-bleed visual band — used by the hierarchy-vs-swarm SVG and the
+ * orchestrator-loop GIF. The image is constrained but the band runs
+ * edge-to-edge to give the visual weight without busting the prose column. */
+.hierarchy-visual,
+.run-gif {
+  margin: 3rem auto;
+  text-align: center;
+}
+.hierarchy-visual img,
+.run-gif img {
+  display: block;
+  margin: 0 auto;
+  max-width: min(1100px, 92vw);
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 26, 0.06),
+    0 12px 36px rgba(26, 26, 26, 0.12);
+}
+.run-caption {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+  color: rgba(26, 26, 26, 0.6);
+  letter-spacing: 0.03em;
+}
+
+/* Inline-code chip — for commands referenced in prose, e.g. `drone-graph serve`. */
+.inline-code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: rgba(30, 58, 229, 0.08);
+  color: var(--accent-cobalt);
+  white-space: nowrap;
+}
+
+/* Larger code block — used in the OS band to show the one-line install command
+ * as a concrete proof point. Sits on the cobalt band, so we invert the chip. */
+.code-block {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 12px 22px;
+  border-radius: 4px;
+  background: rgba(245, 241, 232, 0.12);
+  color: var(--bg-cream);
+  border: 1px solid rgba(245, 241, 232, 0.25);
+  letter-spacing: 0.02em;
+}
+.code-block .prompt {
+  color: rgba(245, 241, 232, 0.55);
+  margin-right: 8px;
+  user-select: none;
+}
+
+/* Terminal-window frame around the orchestrator GIF. Subtle titlebar with
+ * three dots and a label, drop shadow underneath the GIF. */
+.terminal-frame {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 26, 0.08),
+    0 14px 44px rgba(26, 26, 26, 0.18);
+  background: #070a0f;
+}
+
+/* See-it-run three-stage narrative grid. */
+.run-grid {
+  margin: 2.5rem auto;
+  max-width: min(1320px, 94vw);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+@media (min-width: 900px) {
+  .run-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+.run-panel {
+  display: flex;
+  flex-direction: column;
+}
+/* All three panels share the same aspect ratio so they line up cleanly.
+ * The terminal frame is a flex column with a fixed titlebar; the GIF inside
+ * fills the remaining height with object-fit so its native 2:1 aspect crops
+ * cleanly to match the SVGs at 11:7. */
+.run-panel-svg,
+.run-panel .terminal-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 11 / 7;
+  border-radius: 6px;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 26, 0.08),
+    0 14px 44px rgba(26, 26, 26, 0.18);
+}
+.run-panel .terminal-frame {
+  display: flex;
+  flex-direction: column;
+}
+.run-panel .terminal-frame .terminal-titlebar {
+  flex-shrink: 0;
+}
+.run-panel .terminal-frame img {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.run-panel-caption {
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+  color: rgba(26, 26, 26, 0.65);
+  letter-spacing: 0.04em;
+}
+.run-panel-caption .run-num {
+  color: var(--accent-cobalt);
+  margin-right: 0.35em;
+  font-weight: 500;
+}
+
+/* Read-deeper list: three doc/PDF links rendered as quiet card rows. */
+.deeper-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  max-width: 640px;
+}
+.deeper-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 14px 18px;
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  border-radius: 4px;
+  color: var(--type-ink);
+  text-decoration: none;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.deeper-list a:hover {
+  border-color: var(--accent-cobalt);
+  background: rgba(30, 58, 229, 0.04);
+  text-decoration: none;
+}
+.deeper-list .deeper-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.deeper-list .deeper-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(26, 26, 26, 0.55);
+  letter-spacing: 0.02em;
+}
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #11151f;
+  border-bottom: 1px solid #1f2532;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(154, 164, 184, 0.85);
+  letter-spacing: 0.04em;
+}
+.terminal-titlebar .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(154, 164, 184, 0.35);
+}
+.terminal-titlebar .dot:nth-child(1) { background: #e26b43; }
+.terminal-titlebar .dot:nth-child(2) { background: #f5b53c; }
+.terminal-titlebar .dot:nth-child(3) { background: #7fe5d0; }
+.terminal-titlebar .terminal-title {
+  margin-left: 10px;
+  flex: 1;
+  text-align: center;
+}
+.terminal-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* 2. The Problem */

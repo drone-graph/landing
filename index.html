@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drone Graph</title>
-  <meta name="description" content="Civilization-scale AI swarms">
-  
+  <title>Drone Graph — Run your AI org like a species</title>
+  <meta name="description" content="Drone Graph is an AI swarm built like a hivemind. Identical agents, one shared mind, no managers, no roles. Open source.">
+
+  <!-- Social cards -->
+  <meta property="og:title" content="Drone Graph — Run your AI org like a species">
+  <meta property="og:description" content="Identical agents. One shared mind. No managers, no roles. The Borg got it right. So did Ultron. So do bees and ants.">
+  <meta property="og:image" content="images/mission-control.svg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Drone Graph — Run your AI org like a species">
+  <meta name="twitter:description" content="The Borg got it right. So did Ultron. So do bees and ants. Drone Graph is what an AI workforce looks like when you stop pretending it's a company.">
+  <meta name="twitter:image" content="images/mission-control.svg">
+
   <!-- Fonts: In a production environment, these should be self-hosted per requirements. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;500;600&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,99 +29,38 @@
   <header class="hero section fade-in">
     <div class="hero-content">
       <div>
-        <h1 class="hero-title">Mission control for the hivemind.</h1>
-        <p class="hero-subtitle">Disposable, interchangeable drones united by one collective mind. No end state, only further progress.</p>
+        <h1 class="hero-title">Kill the AI org chart.</h1>
+        <p class="hero-subtitle"><em>Multi-agent AI is cosplay.</em> The Borg got it right. So did Ultron. So do bees and ants. Drone Graph is what an AI workforce looks like when you stop pretending it's a company — identical agents, one shared mind, no managers, no roles.</p>
         <div class="hero-actions">
-          <a href="#problem" class="btn btn-primary">Kill the AI org chart</a>
-          <a href="#" class="hero-link text-cobalt font-mono">View on GitHub</a>
+          <a href="https://github.com/drone-graph/drone-graph" class="btn btn-primary">View on GitHub →</a>
         </div>
       </div>
-      <div class="hero-visual" id="hero-visual-container">
-        <!-- Procedural Swarm Animation Container -->
-        <canvas id="hero-swarm-canvas" style="width: 100%; height: 100%; min-height: 400px;"></canvas>
+      <div class="hero-visual hero-mission-control">
+        <img src="images/mission-control.svg" alt="Drone Graph Mission Control — a dark dashboard with a left chat rail, a center substrate graph of gaps and findings with orbiting drones, and a right rail listing active drones and recently used tools.">
+        <p class="hero-visual-caption">Mission Control — the dashboard for your swarm.</p>
       </div>
     </div>
   </header>
 
-  <!-- 2. The Problem -->
-  <section id="problem" class="section fade-in">
-    <div class="container grid-2" style="align-items: center;">
-      <div>
-        <h2 class="problem-title">Hierarchy is legacy software.</h2>
-        <p>Every multi-agent framework has the same defect. They give agents job titles, personalities, org charts. One is the CEO. One is Marketing. One is a researcher named Maya with opinions about Q4 strategy. Underneath the costumes, they're all similar models with slightly different system prompts.</p>
-        <p>The result: hallucinated completion, drift away from the original goal, runaway token cost, and chat histories pretending to be memory. The systems look great in demos and collapse in production.</p>
-        <div class="pull-quote text-cobalt">
-          The org chart is the bug. AI doesn't need middle management.
-        </div>
-      </div>
-      <div class="problem-visual" style="display: flex; justify-content: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="300" class="ink-svg">
-          <style>
-            .ink-svg .line { stroke: #1A1A1A; stroke-width: 1.5; fill: none; stroke-dasharray: 2 2; opacity: 0.5; }
-            .ink-svg .box { fill: transparent; stroke: #1A1A1A; stroke-width: 1.5; }
-            .ink-svg .broken-line { stroke: #1E3AE5; stroke-width: 2; fill: none; }
-            .ink-svg .text-small { font-family: "JetBrains Mono", monospace; font-size: 10px; fill: #1A1A1A; }
-          </style>
-          
-          <!-- Connections -->
-          <path class="line" d="M 150 40 L 150 80 M 150 80 L 70 80 M 150 80 L 230 80 M 70 80 L 70 120 M 150 80 L 150 120 M 230 80 L 230 120" />
-          <path class="line" d="M 70 150 L 70 190 M 150 150 L 150 190 M 230 150 L 230 190 M 70 190 L 40 190 L 40 220 M 70 190 L 100 190 L 100 220" />
-          
-          <!-- Tangled/broken connections -->
-          <path class="line" style="opacity: 0.3;" d="M 100 150 Q 150 200 230 220" />
-          <path class="line" style="opacity: 0.3;" d="M 40 150 Q 80 180 150 180 T 260 220" />
-          
-          <!-- Nodes -->
-          <!-- Top -->
-          <rect x="120" y="10" width="60" height="30" class="box" />
-          <text x="150" y="29" text-anchor="middle" class="text-small" opacity="0.6">CEO</text>
-          
-          <!-- Middle row -->
-          <rect x="40" y="120" width="60" height="30" class="box" />
-          <text x="70" y="139" text-anchor="middle" class="text-small" opacity="0.6">Manager</text>
-          
-          <rect x="120" y="120" width="60" height="30" class="box" />
-          <text x="150" y="139" text-anchor="middle" class="text-small" opacity="0.6">VP</text>
-          
-          <rect x="200" y="120" width="60" height="30" class="box" />
-          <text x="230" y="139" text-anchor="middle" class="text-small" opacity="0.6">Director</text>
-          
-          <!-- Bottom row -->
-          <rect x="10" y="220" width="60" height="30" class="box" />
-          <rect x="80" y="220" width="60" height="30" class="box" />
-          
-          <!-- Broken node (detached) -->
-          <rect x="170" y="240" width="60" height="30" class="box" stroke-dasharray="4 4" transform="rotate(15, 200, 255)" />
-          
-          <!-- The cobalt strike-through -->
-          <path class="broken-line" d="M 110 5 L 190 45" />
-          <path class="broken-line" d="M 30 115 L 110 155" />
-        </svg>
+  <!-- 2. Hierarchy is legacy software (was "Kill the AI org chart" — now the H1) -->
+  <section id="org-chart" class="section fade-in">
+    <div class="container">
+      <h2 class="problem-title">Hierarchy is legacy software.</h2>
+      <p>Watch any multi-agent demo. One agent is the CEO. One is the researcher. One is "Maya from marketing" — personalities, job titles, opinions about Q4 strategy. Underneath, they are the same model in three coats, and the costume costs you: each agent defends the role it was assigned, hallucinates work that fits, and shares nothing with the others but a chat log pretending to be memory.</p>
+    </div>
+    <div class="hierarchy-visual full-bleed">
+      <img src="images/hierarchy-vs-swarm.svg" alt="On the left, a corporate org chart in which every role — CEO, two VPs, four managers, four ICs — is labeled with the same model, claude-sonnet-4-6, and a single cobalt slash crosses the whole diagram. On the right, seven identical glowing drones connected by dashed peer signal-protocol lines, with no roles.">
+    </div>
+    <div class="container">
+      <p>A drone has no résumé, no job title, no career, no ego. It is spawned for a gap, pulls what it needs from the shared mind, closes the gap, and dissolves. The next gap spawns the next drone. The individuals are short-lived. The collective endures.</p>
+      <div class="pull-quote text-cobalt">
+        The org chart is the bug. AI doesn't need middle management.
       </div>
     </div>
   </section>
 
   <!-- 3. The Thesis -->
-  <section class="section fade-in" style="position: relative; overflow: hidden;">
-    <!-- Abstract layers background -->
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; max-width: 800px; z-index: -1; opacity: 0.15; pointer-events: none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
-        <style>
-          .layer { fill: transparent; stroke: #1A1A1A; stroke-width: 1; }
-          .layer-cobalt { stroke: #1E3AE5; stroke-width: 2; opacity: 0.5; }
-        </style>
-        <!-- Concentric Layers -->
-        <circle cx="200" cy="200" r="160" class="layer" stroke-dasharray="2 4" />
-        <circle cx="200" cy="200" r="120" class="layer" stroke-dasharray="8 4" />
-        <circle cx="200" cy="200" r="80" class="layer layer-cobalt" />
-        <circle cx="200" cy="200" r="40" class="layer" />
-        
-        <!-- Connecting axes -->
-        <line x1="200" y1="20" x2="200" y2="380" class="layer" stroke-dasharray="1 6" />
-        <line x1="20" y1="200" x2="380" y2="200" class="layer" stroke-dasharray="1 6" />
-      </svg>
-    </div>
-    
+  <section class="section fade-in">
     <div class="container thesis">
       <h2 class="thesis-statement">
         <span class="text-cobalt">A collective mind</span> handles memory.<br>
@@ -124,18 +73,43 @@
     </div>
   </section>
 
-  <!-- 4. The Swarm (Inverse) -->
-  <section class="section full-bleed inverse-band fade-in" style="position: relative; overflow: hidden;" id="swarm-section">
-    <!-- Procedural Chalk Swarm Background -->
-    <canvas id="inverse-swarm-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.15;"></canvas>
+  <!-- 4. See it run — three-stage narrative -->
+  <section id="see-it-run" class="section fade-in">
+    <div class="container">
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3rem);">See it run.</h2>
+      <p>A single mission, three views. The orchestrator on the command line. The same run watched from Mission Control. The effects landing in the real world through the terminal — Stripe payments settle, Reddit comments post, grant forms get filed, code gets shipped.</p>
+    </div>
 
-    <div class="container" style="position: relative; z-index: 1; padding-top: 6rem; padding-bottom: 6rem;">
-      <h2 class="inverse-title">Run your AI org like a species.</h2>
-      <p>A drone is not an employee. It has no résumé, no job title, no career, no ego. It is spawned for a specific gap, sets its own reasoning depth and model tier, pulls the skills and tools it needs from the collective mind, closes the gap, deposits what it learned, and dissolves. The next gap spawns the next drone. The swarm isn't assembled, it emerges, gap by gap, out of one shared mind.</p>
-      <p>Don't build a fake company. Build a swarm. The individuals are short-lived. The collective endures. The work organizes itself.</p>
-      <div class="inverse-quote">
-        Mission control for the hivemind.
+    <div class="run-grid">
+      <!-- Panel 1: terminal GIF -->
+      <div class="run-panel">
+        <div class="terminal-frame">
+          <div class="terminal-titlebar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-title">orchestrator.loop · coffee-pivot-b2b</span>
+          </div>
+          <img src="images/orchestrator-loop.gif" alt="A terminal session running python -m drone_graph.orchestrator.loop: Gap Finding decomposes a coffee storefront goal, a worker drone fills a leaf, the user pivots mid-run to B2B wholesale, Alignment flags the drift, Gap Finding retires the DTC subtree and rewrites the root, and a parent auto-rolls up.">
+        </div>
+        <p class="run-panel-caption"><span class="run-num">1.</span> Command line</p>
       </div>
+
+      <!-- Panel 2: Mission Control substrate animation -->
+      <div class="run-panel">
+        <img class="run-panel-svg" src="images/ui-substrate.svg" alt="An animated Mission Control: preset gaps appear at the top, a root gap drops in, gap finding fans out children, drones orbit them, findings settle as satellites, and the tool registry on the right populates one tool at a time.">
+        <p class="run-panel-caption"><span class="run-num">2.</span> Mission Control</p>
+      </div>
+
+      <!-- Panel 3: real-world effects grid -->
+      <div class="run-panel">
+        <img class="run-panel-svg" src="images/world-impact.svg" alt="Four external surfaces a drone reaches into through the terminal: a Stripe dashboard issuing payments, a browser typing a Reddit comment, a grant application form being filled, and a code editor adding a webhook handler. Each lights up in turn as the drone causes the effect.">
+        <p class="run-panel-caption"><span class="run-num">3.</span> Real-world effects</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="run-caption">
+        ~9 minutes wall · $1.42 spend · 60 gap-finding cycles · packaged scenario, runs unmodified.
+      </p>
     </div>
   </section>
 
@@ -206,16 +180,16 @@
           <rect x="100" y="150" width="140" height="38" rx="3" class="preset" />
           <text x="170" y="174" text-anchor="middle" class="cobalt">Gap finding</text>
 
-          <rect x="256" y="150" width="140" height="38" rx="3" class="preset" />
-          <text x="326" y="174" text-anchor="middle" class="cobalt">Memory mgmt</text>
+          <rect x="256" y="150" width="140" height="38" rx="3" class="preset" style="stroke-dasharray: 4 3; opacity: 0.55;" />
+          <text x="326" y="174" text-anchor="middle" class="cobalt" opacity="0.6">Memory mgmt</text>
 
           <rect x="412" y="150" width="140" height="38" rx="3" class="preset" />
-          <text x="482" y="174" text-anchor="middle" class="cobalt">Research</text>
+          <text x="482" y="174" text-anchor="middle" class="cobalt">Alignment</text>
 
-          <rect x="568" y="150" width="140" height="38" rx="3" class="preset" />
-          <text x="638" y="174" text-anchor="middle" class="cobalt">Testing</text>
+          <rect x="568" y="150" width="140" height="38" rx="3" class="preset" style="stroke-dasharray: 4 3; opacity: 0.55;" />
+          <text x="638" y="174" text-anchor="middle" class="cobalt" opacity="0.6">Testing</text>
 
-          <text x="100" y="210" class="caption">preset — never closed, only continually worked</text>
+          <text x="100" y="210" class="caption">preset — never closed, only continually worked. solid = shipping (gap finding, alignment); dashed = planned.</text>
 
           <!-- Emergent gaps -->
           <rect x="100" y="225" width="46" height="30" rx="3" stroke="#1E3AE5" stroke-width="1.2" stroke-dasharray="3 3" fill="transparent" />
@@ -285,6 +259,10 @@
           <text x="50" y="128" class="caption">goal</text>
         </svg>
       </div>
+
+      <p class="thesis-caption" style="margin-top: 1.25rem;">
+        Two of those preset gaps ship today (gap finding, alignment). The other two are designed.
+      </p>
 
       <div class="pull-quote text-cobalt">
         The protocol layer for machine civilizations.
@@ -363,55 +341,6 @@
         <p>Venv state, research notes, business progress, execution history. Loaded into memory only when needed, and summarized and compacted otherwise. Persistent, but not verbatim.</p>
       </div>
 
-      <!-- User Uploads -->
-      <div class="graph-column">
-        <div class="graph-visual">
-          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
-            <g transform="translate(50, 15)" stroke="#1A1A1A" stroke-width="1.5">
-              <path fill="transparent" d="M 24 16 L 64 16 L 82 34 L 82 108 L 24 108 Z" />
-              <path fill="#F5F1E8" d="M 12 8 L 52 8 L 70 26 L 70 100 L 12 100 Z" />
-              <path fill="none" d="M 52 8 L 52 26 L 70 26" />
-              <path fill="#F5F1E8" d="M 0 0 L 40 0 L 58 18 L 58 92 L 0 92 Z" />
-              <path fill="none" d="M 40 0 L 40 18 L 58 18" />
-              <line x1="8" y1="32" x2="48" y2="32" stroke-width="1" opacity="0.4" />
-              <line x1="8" y1="46" x2="52" y2="46" stroke-width="1" opacity="0.4" />
-              <line x1="8" y1="60" x2="42" y2="60" stroke-width="1" opacity="0.4" />
-              <line x1="8" y1="74" x2="50" y2="74" stroke-width="1" opacity="0.4" />
-            </g>
-          </svg>
-        </div>
-        <h3 class="graph-title">User Uploads</h3>
-        <p>Files and context the human hands in. Held verbatim until the user removes them. The one place the swarm doesn't paraphrase you.</p>
-      </div>
-
-      <!-- Gaps -->
-      <div class="graph-column">
-        <div class="graph-visual">
-          <svg viewBox="0 0 200 140" width="100%" height="140" class="ink-svg">
-            <g transform="translate(12, 20)" fill="transparent">
-              <rect x="0" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
-              <rect x="46" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
-              <rect x="92" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
-              <rect x="138" y="0" width="42" height="28" rx="2" stroke="#1E3AE5" stroke-width="1.5" />
-              <rect x="0" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
-              <rect x="30" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
-              <rect x="60" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
-              <rect x="90" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
-              <rect x="120" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
-              <rect x="150" y="36" width="26" height="22" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.55" />
-              <rect x="0" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
-              <rect x="26" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
-              <rect x="52" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
-              <rect x="78" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
-              <rect x="104" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
-              <rect x="130" y="66" width="22" height="20" rx="2" stroke="#1E3AE5" stroke-width="1" stroke-dasharray="2 2" opacity="0.3" />
-              <text x="158" y="82" font-family="JetBrains Mono, monospace" font-size="13" fill="#1A1A1A" opacity="0.3">…</text>
-            </g>
-          </svg>
-        </div>
-        <h3 class="graph-title">Gaps</h3>
-        <p>The full surface of open work. Preset gaps (gap finding, memory management, research, testing) are never closed, only continually worked. Emergent gaps surface and close.</p>
-      </div>
     </div>
 
     <div class="container">
@@ -429,45 +358,25 @@
 
       <ol class="example-list">
         <li class="example-item">
-          <h3>Intake</h3>
-          <p>The user provides target indication, molecule libraries, corporate entity, budget, and jurisdiction. Everything lands in user uploads. The goal enters the collective mind as the first non-preset gap.</p>
+          <h3>Decompose</h3>
+          <p>Gap finding cracks the goal: target validation, in-silico screening, preclinical work, trial design across phases, FDA filings, manufacturing, distribution, post-market surveillance. Branches deepen until leaves are executable. Every gap carries its own intent, criteria, tool loadout, and model tier.</p>
         </li>
         <li class="example-item">
-          <h3>Gap finding</h3>
-          <p>A drone on the gap-finding preset gap decomposes the goal: target validation, in-silico screening, preclinical work, trial design across phases, FDA filings, manufacturing scale-up, distribution, post-market surveillance. When a branch of the gap tree reaches roughly five layers deep, leaf gaps become executable.</p>
+          <h3>Execute</h3>
+          <p>For each leaf, an ephemeral drone wakes and acts through the terminal — the only real tool. CRO booking APIs place wet-lab orders. Banking rails wire payments to contract manufacturers. E-submission portals file INDs and NDAs. E-signature services close contracts. Binding-affinity results, supplier ledgers, regulatory drafts land back in the collective mind as findings; the drone dissolves. A skill for <em>draft FDA pre-IND briefing</em> gets written once and reused for every future drug.</p>
         </li>
         <li class="example-item">
-          <h3>Drones spawn</h3>
-          <p>For each leaf gap, an ephemeral drone wakes. One runs compound-similarity searches. Another drafts an FDA pre-IND briefing. A third reconciles supplier invoices. They set their own reasoning depth and model tier — deep reasoning for trial design, fast tool-use for procurement. Same system prompt. No identity.</p>
+          <h3>Stay aligned</h3>
+          <p>Alignment compares every new finding against the root goal and flags drift the moment it appears. Memory management summarizes decade-old trial data so it stays useful but cheap. Gap finding keeps decomposing as the company grows from one drug to ten.</p>
         </li>
         <li class="example-item">
-          <h3>Terminal execution</h3>
-          <p>Every drone acts through the terminal — the only real tool. The swarm reaches into the physical world through it: CRO booking APIs place wet-lab orders, banking rails wire payments to contract manufacturers, ERP integrations move raw material, FedEx and DHL APIs track shipments, regulatory e-submission portals file INDs and NDAs, e-signature services close contracts, cap-table tools issue shares. Each drone checks the signal protocol first: don't install what's already installed, don't open a file another drone has open.</p>
-        </li>
-        <li class="example-item">
-          <h3>Findings deposited</h3>
-          <p>Binding-affinity results land in findings. A skill for <em>draft FDA pre-IND briefing</em> is written once and reused for every future drug. The tool registry grows as packages install. The drone dissolves.</p>
-        </li>
-        <li class="example-item">
-          <h3>Preset gaps keep working</h3>
-          <p>Research scans literature for new indications. Testing runs continuous validation on the pipeline. Memory management summarizes decade-old trial data. Gap finding keeps decomposing as the company grows from one drug to ten.</p>
-        </li>
-        <li class="example-item">
-          <h3>Real-world impact</h3>
-          <p>The molecule leaves the screen. CROs run the assays. Contract manufacturers press the tablets. Hospitals enrol the trial. Regulators approve the filing. Pharmacies stock the bottle. A patient in Ohio swallows a pill that existed nowhere a year earlier. The swarm measures itself against outcomes in the physical world — enrolment rates, manufacturing yield, adverse-event counts, patients reached — not tokens produced.</p>
-        </li>
-        <li class="example-item">
-          <h3>Revenue and the self-sustaining loop</h3>
-          <p>Distribution contracts generate cash. Payer reimbursements and direct sales land in the corporate account the swarm controls. A treasury preset gap pays the cloud bill, settles CRO invoices, renews API subscriptions, files taxes, and routes the surplus into the next indication — Alzheimer's, ALS, Huntington's. The company funds itself. The user never tops up a credit card. One submitted goal becomes a going concern.</p>
-        </li>
-        <li class="example-item">
-          <h3>Human in the loop</h3>
-          <p>The hivemind pings the user only for what it can't do on its own: wet-lab execution, IRB signatures, patient-dosing authorization, wire transfers above threshold. The list is small by design. Everything digital is the hivemind's problem.</p>
+          <h3>Operate in the world</h3>
+          <p>CROs run the assays. Contract manufacturers press the tablets. Hospitals enrol the trial. Regulators approve the filing. Pharmacies stock the bottle. Reimbursements and direct sales land in the corporate account the swarm controls; a treasury preset settles invoices, files taxes, routes surplus into the next indication. The user is pinged only for what the swarm can't do alone — wet-lab execution, IRB signatures, wire transfers above threshold. Everything digital is the hivemind's problem.</p>
         </li>
       </ol>
 
       <p class="example-caption text-opacity-80">
-        A pharmaceutical company with zero employees. No org chart. No quarterly reviews. Drugs ship. Money flows. The company funds its own next bet. The work organizes itself around the gaps. The collective mind remembers what the drones cannot.
+        A pharmaceutical company with zero employees. The work organizes itself around the gaps; the collective mind remembers what the drones cannot.
       </p>
     </div>
   </section>
@@ -501,28 +410,42 @@
     </div>
   </section>
 
-  <!-- 9. For founders / for researchers -->
-  <section class="section fade-in">
-    <div class="container grid-2">
-      <div>
-        <h2 style="font-size: 1.5rem;">If you're shipping an AI product</h2>
-        <p>Stop fighting your framework. Drone Graph handles the infrastructure no one else has built right — ephemeral interchangeable drones, one shared collective mind, a mechanical signal protocol, a single terminal for all execution — so your team can ship features instead of debugging hallucinated completion. Drones dissolve after every gap, so context never rots. Coordination is mechanical, so it's debuggable. Skills and findings persist, so the swarm gets smarter every run. The end of pretend AI employees.</p>
-      </div>
-      <div>
-        <h2 style="font-size: 1.5rem;">If you're researching agent architecture</h2>
-        <p>Drone Graph is built around principled separations: coordination vs reasoning, execution vs identity, ephemeral drone vs persistent mind, gap vs closure. The collective mind makes failure modes legible — every skill, tool, finding, and gap is addressable. Gaps are the atomic unit of work, defined by absence rather than assignment. Ephemerality is first-class. The architecture is opinionated, documented, and open. The collective intelligence layer for AI.</p>
-      </div>
+  <!-- 9. Read deeper -->
+  <section id="read-deeper" class="section fade-in">
+    <div class="container">
+      <h2 style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 1rem;">Read deeper.</h2>
+      <p style="margin-bottom: 2rem;">Two foundational notes lay out the thinking under the system. Each opens in a new tab; the PDF is the same content compiled for offline reading.</p>
+      <ul class="deeper-list">
+        <li>
+          <a href="https://github.com/drone-graph/drone-graph/blob/main/core-idea/drone-theory.md" target="_blank" rel="noopener">
+            <span class="deeper-title">Drone theory</span>
+            <span class="deeper-meta">the seed thesis · ~4 min</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/drone-graph/drone-graph/blob/main/core-idea/architectural_overview.md" target="_blank" rel="noopener">
+            <span class="deeper-title">Architectural overview</span>
+            <span class="deeper-meta">consolidated architecture · ~14 min</span>
+          </a>
+        </li>
+        <li>
+          <a href="papers/drone-graph.pdf" download>
+            <span class="deeper-title">Both, as a PDF</span>
+            <span class="deeper-meta">194 KB · ~30 min · download ↓</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- 10. Open source call-out -->
   <section class="section full-bleed os-band fade-in">
-    <div class="container" style="padding-top: 6rem; padding-bottom: 6rem;">
-      <h2 class="os-title">Built in the open to be studied. Disect every line.</h2>
-      <p style="max-width: 800px; margin: 0 auto;">Drone Graph is open source. The architecture document, the protocol specifications, and the reference implementation are all public. We're building the operating system for AI civilizations the way good infrastructure has always been built: in the open, with people who care about getting it right.</p>
+    <div class="container" style="padding-top: 5rem; padding-bottom: 5rem;">
+      <h2 class="os-title">Built in the open. Dissect every line.</h2>
+      <p style="max-width: 640px; margin: 0 auto 2.25rem;">MIT-licensed. Architecture notes, protocol specs, Mission Control UI, reference implementation — all public. Run it locally in one command:</p>
+      <div class="code-block"><span class="prompt">$</span>drone-graph serve</div>
       <div class="os-actions">
-        <a href="#" class="btn btn-inverse">Fire your fake AI CEO</a>
-        <a href="#" class="os-link">View on GitHub</a>
+        <a href="https://github.com/drone-graph/drone-graph" class="btn btn-inverse">View on GitHub →</a>
       </div>
     </div>
   </section>
@@ -532,14 +455,14 @@
     <div class="container">
       <div class="footer-logo">Drone Graph</div>
       <div class="footer-links">
-        <a href="#">Architecture</a>
+        <a href="https://github.com/drone-graph/drone-graph#architecture">Architecture</a>
         <span>·</span>
-        <a href="#">GitHub</a>
+        <a href="https://github.com/drone-graph/drone-graph">GitHub</a>
         <span>·</span>
-        <a href="#">Contact</a>
+        <a href="https://github.com/drone-graph/drone-graph/issues">Contact</a>
       </div>
       <div class="footer-tagline">The protocol layer for machine civilizations.</div>
-      <div class="footer-copyright">© 2026</div>
+      <div class="footer-copyright">© 2026 · Dan Porder &amp; Abhinav · MIT-licensed</div>
     </div>
   </footer>
 
@@ -568,236 +491,6 @@
       });
     });
 
-    // --- Procedural Hero Swarm Animation ---
-    (function initSwarm() {
-      const canvas = document.getElementById('hero-swarm-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const container = document.getElementById('hero-visual-container');
-      
-      let width, height;
-      const nodes = [];
-      const numNodes = 120; // 80-150 range per brief
-      
-      // Colors from CSS
-      const colorInk = 'rgba(26, 26, 26, 0.8)';
-      const colorCobalt = '#1E3AE5';
-      const colorFilament = 'rgba(26, 26, 26, 0.15)';
-      
-      // Setup Canvas size
-      function resize() {
-        const rect = container.getBoundingClientRect();
-        // Handle responsive collapse
-        width = rect.width || window.innerWidth * 0.45;
-        height = rect.height || 500;
-        
-        // High DPI displays
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        ctx.scale(dpr, dpr);
-      }
-      
-      window.addEventListener('resize', resize);
-      resize();
-
-      // Node Definition
-      class Node {
-        constructor() {
-          this.x = Math.random() * width;
-          this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.2;
-          this.vy = (Math.random() - 0.5) * 0.2;
-          this.baseRadius = Math.random() * 2 + 1.5;
-          this.type = Math.random() > 0.9 ? 'active' : 'hollow'; // 10% solid
-          
-          // Force exactly 3-4 to be cobalt
-          this.isCobalt = false;
-          this.pulsePhase = Math.random() * Math.PI * 2;
-        }
-
-        update() {
-          // Slow organic drift
-          this.x += this.vx;
-          this.y += this.vy;
-          
-          // Soft boundary bounce (keep them in a cloud)
-          const centerX = width / 2;
-          const centerY = height / 2;
-          const distToCenter = Math.sqrt((this.x - centerX) ** 2 + (this.y - centerY) ** 2);
-          const maxDist = Math.min(width, height) * 0.45;
-          
-          if (distToCenter > maxDist) {
-            this.vx += (centerX - this.x) * 0.0001;
-            this.vy += (centerY - this.y) * 0.0001;
-          }
-          
-          // Add slight noise
-          this.vx += (Math.random() - 0.5) * 0.01;
-          this.vy += (Math.random() - 0.5) * 0.01;
-          
-          // Friction
-          this.vx *= 0.99;
-          this.vy *= 0.99;
-          
-          this.pulsePhase += 0.02;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.baseRadius, 0, Math.PI * 2);
-          
-          if (this.isCobalt) {
-            // Ambient pulse on cobalt
-            const pulse = (Math.sin(this.pulsePhase) + 1) / 2; // 0 to 1
-            const opacity = 0.5 + (pulse * 0.5);
-            ctx.fillStyle = `rgba(30, 58, 229, ${opacity})`;
-            ctx.fill();
-            
-            // Glow
-            ctx.shadowBlur = 10 * pulse;
-            ctx.shadowColor = colorCobalt;
-          } else if (this.type === 'active') {
-            ctx.fillStyle = colorInk;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          } else {
-            ctx.strokeStyle = colorInk;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            ctx.shadowBlur = 0;
-          }
-        }
-      }
-
-      // Initialize Swarm
-      for (let i = 0; i < numNodes; i++) {
-        nodes.push(new Node());
-      }
-      
-      // Assign 4 cobalt nodes specifically
-      for (let i = 0; i < 4; i++) {
-        nodes[i].type = 'active';
-        nodes[i].isCobalt = true;
-        nodes[i].baseRadius += 1; // Slightly larger
-      }
-
-      // Animation Loop
-      function animate() {
-        ctx.clearRect(0, 0, width, height);
-        
-        // Draw filaments (connections)
-        ctx.beginPath();
-        for (let i = 0; i < nodes.length; i++) {
-          nodes[i].update();
-          
-          for (let j = i + 1; j < nodes.length; j++) {
-            const dx = nodes[i].x - nodes[j].x;
-            const dy = nodes[i].y - nodes[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
-            if (dist < 60) { // Connection radius
-              ctx.moveTo(nodes[i].x, nodes[i].y);
-              ctx.lineTo(nodes[j].x, nodes[j].y);
-            }
-          }
-        }
-        ctx.strokeStyle = colorFilament;
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
-        
-        // Draw nodes on top of filaments
-        nodes.forEach(n => n.draw());
-        
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-    })();
-    // --- Procedural Inverse Swarm Background ---
-    (function initInverseSwarm() {
-      const canvas = document.getElementById('inverse-swarm-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const section = document.getElementById('swarm-section');
-      
-      let width, height;
-      const nodes = [];
-      const numNodes = 200; // Dense field of chalk dust
-      
-      function resize() {
-        width = section.offsetWidth;
-        height = section.offsetHeight;
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        ctx.scale(dpr, dpr);
-      }
-      
-      window.addEventListener('resize', resize);
-      // We need to wait for layout to compute height correctly
-      setTimeout(resize, 100);
-
-      class InverseNode {
-        constructor() {
-          this.x = Math.random() * (width || 2000);
-          this.y = Math.random() * (height || 1000);
-          this.vx = (Math.random() - 0.5) * 0.1;
-          this.vy = (Math.random() - 0.5) * 0.1;
-          this.baseRadius = Math.random() * 1.5 + 0.5;
-        }
-
-        update() {
-          this.x += this.vx;
-          this.y += this.vy;
-          
-          if (width && height) {
-            if (this.x < 0) this.x = width;
-            if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            if (this.y > height) this.y = 0;
-          }
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.baseRadius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(245, 241, 232, 0.8)'; // Cream color
-          ctx.fill();
-        }
-      }
-
-      for (let i = 0; i < numNodes; i++) {
-        nodes.push(new InverseNode());
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, width || 2000, height || 1000);
-        
-        ctx.beginPath();
-        for (let i = 0; i < nodes.length; i++) {
-          nodes[i].update();
-          for (let j = i + 1; j < nodes.length; j++) {
-            const dx = nodes[i].x - nodes[j].x;
-            const dy = nodes[i].y - nodes[j].y;
-            const dist = dx * dx + dy * dy;
-            
-            if (dist < 4000) { // ~63px radius
-              ctx.moveTo(nodes[i].x, nodes[i].y);
-              ctx.lineTo(nodes[j].x, nodes[j].y);
-            }
-          }
-        }
-        ctx.strokeStyle = 'rgba(245, 241, 232, 0.1)';
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
-        
-        nodes.forEach(n => n.draw());
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-    })();
   </script>
 </body>
 </html>
