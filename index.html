@@ -6,15 +6,23 @@
   <title>Drone Graph — Run your AI org like a species</title>
   <meta name="description" content="Drone Graph is an AI swarm built like a hivemind. Identical agents, one shared mind, no managers, no roles. Open source.">
 
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
   <!-- Social cards -->
   <meta property="og:title" content="Drone Graph — Run your AI org like a species">
   <meta property="og:description" content="Identical agents. One shared mind. No managers, no roles. The Borg got it right. So did Ultron. So do bees and ants.">
-  <meta property="og:image" content="images/mission-control.svg">
+  <meta property="og:image" content="images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Drone Graph — Kill the AI org chart. Identical agents. One shared mind. No managers, no roles.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Drone Graph — Run your AI org like a species">
   <meta name="twitter:description" content="The Borg got it right. So did Ultron. So do bees and ants. Drone Graph is what an AI workforce looks like when you stop pretending it's a company.">
-  <meta name="twitter:image" content="images/mission-control.svg">
+  <meta name="twitter:image" content="images/og.png">
 
   <!-- Fonts: In a production environment, these should be self-hosted per requirements. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +31,22 @@
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="top">
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="#top" aria-label="Drone Graph — top of page">
+        <img src="images/logo.png" alt="" class="site-nav-logo" width="36" height="36">
+        <span class="site-nav-wordmark">Drone Graph</span>
+      </a>
+      <ul class="site-nav-links">
+        <li><a href="https://github.com/drone-graph/drone-graph">GitHub</a></li>
+        <li><a href="papers/drone-graph.pdf" download>PDF</a></li>
+        <li><a href="https://github.com/drone-graph/drone-graph/issues">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- 1. Hero -->
   <header class="hero section fade-in">
@@ -75,21 +98,15 @@
 
   <!-- 4. See it run — three-stage narrative -->
   <section id="see-it-run" class="section fade-in">
-    <div class="container">
-      <h2 style="font-size: clamp(2rem, 4.5vw, 3rem);">See it run.</h2>
+    <div class="container-xl">
+      <h2 class="h2-mid">See it run.</h2>
       <p>A single mission, three views. The orchestrator on the command line. The same run watched from Mission Control. The effects landing in the real world through the terminal — Stripe payments settle, Reddit comments post, grant forms get filed, code gets shipped.</p>
     </div>
 
     <div class="run-grid">
-      <!-- Panel 1: terminal GIF -->
+      <!-- Panel 1: orchestrator terminal -->
       <div class="run-panel">
-        <div class="terminal-frame">
-          <div class="terminal-titlebar">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="terminal-title">orchestrator.loop · coffee-pivot-b2b</span>
-          </div>
-          <img src="images/orchestrator-loop.gif" alt="A terminal session running python -m drone_graph.orchestrator.loop: Gap Finding decomposes a coffee storefront goal, a worker drone fills a leaf, the user pivots mid-run to B2B wholesale, Alignment flags the drift, Gap Finding retires the DTC subtree and rewrites the root, and a parent auto-rolls up.">
-        </div>
+        <img class="run-panel-svg" src="images/orchestrator-loop.svg" alt="A terminal session running python -m drone_graph.orchestrator.loop --scenario coffee-pivot-b2b. Gap Finding decomposes a DTC-coffee root, the user pivots mid-run to B2B wholesale, Alignment flags the invalidated premise, Gap Finding retires the DTC subtrees and stands up a B2B pillar, and the run lands at 9m / $1.42.">
         <p class="run-panel-caption"><span class="run-num">1.</span> Command line</p>
       </div>
 
@@ -106,7 +123,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-xl">
       <p class="run-caption">
         ~9 minutes wall · $1.42 spend · 60 gap-finding cycles · packaged scenario, runs unmodified.
       </p>
@@ -116,7 +133,7 @@
   <!-- 5. How it works (Architecture) -->
   <section class="section fade-in">
     <div class="container">
-      <h2>An execution substrate, not a workforce.</h2>
+      <h2 class="h2-mid">An execution substrate, not a workforce.</h2>
       <p>A drone wakes when a gap exists. It pulls the skills and tools it needs from the collective mind, acts through the terminal, deposits its findings, and dissolves. Every drone shares one system prompt. None of them has a name or a role. Coordination isn't managed, it's the signal protocol: check before installing a package, don't open a file another drone has open. Gap finding is itself a gap. There is no central planner.</p>
 
       <div class="architecture-visual">
@@ -260,7 +277,7 @@
         </svg>
       </div>
 
-      <p class="thesis-caption" style="margin-top: 1.25rem;">
+      <p class="thesis-caption arch-note">
         Two of those preset gaps ship today (gap finding, alignment). The other two are designed.
       </p>
 
@@ -272,10 +289,10 @@
 
   <!-- 6. Collective Mind components -->
   <section class="section fade-in">
-    <div class="container">
-      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 2rem;">The drones dissolve. The collective mind endures.</h2>
-      <p style="margin-bottom: 1.5rem; max-width: var(--max-width-prose);">Other agent stacks treat memory as one flat bucket &mdash; chat history, a folder of .md notes, a vector store, whatever. Drone Graph has one shared substrate that outlives every drone, every mission, every restart. Five kinds of content live in it, each with its own lifecycle.</p>
-      <p style="margin-bottom: 4rem; max-width: var(--max-width-prose); font-family: var(--font-mono); font-size: 1rem; color: rgba(26,26,26,0.7);">Persistence is the default, not a guarantee. Stale tools get uninstalled. Findings get summarized and compacted. Emergent gaps close when filled. The collective mind itself never goes away.</p>
+    <div class="container-lg cm-intro-wrap">
+      <h2 class="h2-mid cm-title">The drones dissolve. The collective mind endures.</h2>
+      <p class="cm-intro">Other agent stacks treat memory as one flat bucket &mdash; chat history, a folder of .md notes, a vector store, whatever. Drone Graph has one shared substrate that outlives every drone, every mission, every restart. Five kinds of content live in it, each with its own lifecycle.</p>
+      <p class="cm-intro-meta">Persistence is the default, not a guarantee. Stale tools get uninstalled. Findings get summarized and compacted. Emergent gaps close when filled. The collective mind itself never goes away.</p>
     </div>
 
     <div class="cm-grid">
@@ -353,8 +370,8 @@
   <!-- 7. A Worked Example -->
   <section class="section fade-in">
     <div class="container">
-      <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem);">Civilization-scale work. Zero employees.</h2>
-      <p style="margin-bottom: 3rem;">A user submits a goal: <em>Launch and operate a pharmaceutical company. Discover, develop, trial, and ship new, continually better drugs for Parkinson's.</em> The swarm starts. It does not stop.</p>
+      <h2 class="h2-mid">Civilization-scale work. Zero employees.</h2>
+      <p class="example-intro">A user submits a goal: <em>Launch and operate a pharmaceutical company. Discover, develop, trial, and ship new, continually better drugs for Parkinson's.</em> The swarm starts. It does not stop.</p>
 
       <ol class="example-list">
         <li class="example-item">
@@ -383,9 +400,9 @@
 
   <!-- 8. What it's for / what it isn't for -->
   <section class="section fade-in">
-    <div class="container grid-2">
+    <div class="container-md grid-2 has-divider">
       <div>
-        <h2 style="font-size: 1.5rem;">Use it for</h2>
+        <h2 class="h2-sub">Use it for</h2>
         <ul class="list-unstyled">
           <li>Lean zero-human organizations</li>
           <li>Multi-step, high-complexity, evidence-heavy workflows</li>
@@ -394,7 +411,7 @@
         </ul>
       </div>
       <div>
-        <h2 style="font-size: 1.5rem;">Don't use it for</h2>
+        <h2 class="h2-sub">Don't use it for</h2>
         <ul class="list-unstyled">
           <li>Basic chat</li>
           <li>One-shot Q&A</li>
@@ -403,7 +420,7 @@
         </ul>
       </div>
     </div>
-    <div class="container" style="margin-top: 3rem;">
+    <div class="container use-cases-note">
       <p class="font-mono text-small text-center text-opacity-80">
         No point rolling out a battle tank to buy milk.
       </p>
@@ -413,8 +430,8 @@
   <!-- 9. Read deeper -->
   <section id="read-deeper" class="section fade-in">
     <div class="container">
-      <h2 style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 1rem;">Read deeper.</h2>
-      <p style="margin-bottom: 2rem;">Two foundational notes lay out the thinking under the system. Each opens in a new tab; the PDF is the same content compiled for offline reading.</p>
+      <h2 class="h2-quiet">Read deeper.</h2>
+      <p class="deeper-intro">Two foundational notes lay out the thinking under the system. Each opens in a new tab; the PDF is the same content compiled for offline reading.</p>
       <ul class="deeper-list">
         <li>
           <a href="https://github.com/drone-graph/drone-graph/blob/main/core-idea/drone-theory.md" target="_blank" rel="noopener">
@@ -440,9 +457,9 @@
 
   <!-- 10. Open source call-out -->
   <section class="section full-bleed os-band fade-in">
-    <div class="container" style="padding-top: 5rem; padding-bottom: 5rem;">
+    <div class="container os-inner">
       <h2 class="os-title">Built in the open. Dissect every line.</h2>
-      <p style="max-width: 640px; margin: 0 auto 2.25rem;">MIT-licensed. Architecture notes, protocol specs, Mission Control UI, reference implementation — all public. Run it locally in one command:</p>
+      <p class="os-intro">MIT-licensed. Architecture notes, protocol specs, Mission Control UI, reference implementation — all public. Run it locally in one command:</p>
       <div class="code-block"><span class="prompt">$</span>drone-graph serve</div>
       <div class="os-actions">
         <a href="https://github.com/drone-graph/drone-graph" class="btn btn-inverse">View on GitHub →</a>

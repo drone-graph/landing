@@ -1,281 +1,470 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" font-family="-apple-system, 'Inter', 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="title3 desc3">
-  <title id="title3">What the swarm does in the real world</title>
-  <desc id="desc3">Four external surfaces a drone reaches into through the terminal, each rendered in the look of the actual service: a Stripe dashboard issuing payments, a Reddit thread receiving a typed comment, a federal small-business grant form being filled, and a VS Code editor writing a webhook handler. Each lights up in turn as the drone causes the effect.</desc>
+  <title id="title3">Real-world effects landing through the terminal</title>
+  <desc id="desc3">Four external surfaces a drone reaches into through the terminal, each rendered close to the real app: the Stripe Dashboard issuing payments, a Reddit thread receiving a typed comment, Grants.gov filling out a federal application, and VS Code writing a webhook handler. Each lights up in turn as the drone causes the effect, and the prior surfaces stay populated.</desc>
 
   <defs>
-    <filter id="wglow2" x="-50%" y="-50%" width="200%" height="200%">
+    <filter id="wglow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur in="SourceGraphic" stdDeviation="1.2"/>
       <feComposite in2="SourceGraphic" operator="atop"/>
     </filter>
+
+    <!-- Reddit snoo: round head + antennae, eyes with pupils, mouth.
+         viewBox padded so antennae aren't tight against the symbol edge. -->
+    <symbol id="snoo" viewBox="-4 -2 40 36">
+      <line x1="11" y1="6" x2="11" y2="2" stroke="#FF4500" stroke-width="2.4" stroke-linecap="round"/>
+      <line x1="21" y1="6" x2="21" y2="2" stroke="#FF4500" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="11" cy="2" r="2.2" fill="#FF4500"/>
+      <circle cx="21" cy="2" r="2.2" fill="#FF4500"/>
+      <circle cx="16" cy="17" r="11" fill="#FF4500"/>
+      <ellipse cx="12" cy="15" rx="2.4" ry="2.6" fill="#FFFFFF"/>
+      <ellipse cx="20" cy="15" rx="2.4" ry="2.6" fill="#FFFFFF"/>
+      <circle cx="12.3" cy="15.2" r="0.9" fill="#1A1A1B"/>
+      <circle cx="20.3" cy="15.2" r="0.9" fill="#1A1A1B"/>
+      <path d="M 12 20 Q 16 23 20 20" stroke="#1A1A1B" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Grants.gov-style seal: ring + inner ring + 5-point star.
+         Reads more "official emblem" than the prior reticle. -->
+    <symbol id="govSeal" viewBox="-10 -10 20 20">
+      <circle r="9" fill="none" stroke="#FFFFFF" stroke-width="1.1"/>
+      <circle r="7.2" fill="#FFFFFF" opacity="0.18"/>
+      <path d="M 0 -6 L 1.76 -1.85 L 5.7 -1.85 L 2.85 0.7 L 3.53 4.85 L 0 2.5 L -3.53 4.85 L -2.85 0.7 L -5.7 -1.85 L -1.76 -1.85 Z" fill="#FFFFFF"/>
+    </symbol>
+
+    <!-- Tiny speech-bubble icon (replaces 💬 emoji, which renders too large) -->
+    <symbol id="bubble" viewBox="0 0 8 6">
+      <path d="M 0.5 0.5 L 7.5 0.5 L 7.5 4 L 4.6 4 L 3 5.6 L 3 4 L 0.5 4 Z" stroke="#878A8C" stroke-width="0.6" fill="none" stroke-linejoin="round"/>
+    </symbol>
   </defs>
 
-  <!-- Drone Graph chrome bar (only signal that this is "from a drone") -->
+  <!-- ============ Drone Graph chrome strip ============ -->
   <rect width="440" height="280" fill="#0b0f17"/>
-  <rect x="0" y="0" width="440" height="20" fill="#0b0f17"/>
+  <rect width="440" height="20" fill="#0b0f17"/>
   <line x1="0" y1="20" x2="440" y2="20" stroke="#1f2532"/>
   <circle cx="11" cy="10" r="2.5" fill="#3c6ef5">
     <animate attributeName="opacity" values="0.55;1;0.55" dur="1.6s" repeatCount="indefinite"/>
   </circle>
   <text x="20" y="14" fill="#e3e8f1" font-family="'JetBrains Mono', monospace" font-size="7.5" letter-spacing="0.08em">DRONE · REAL-WORLD EFFECTS</text>
-  <text x="395" y="14" fill="#5e88ff" font-family="'JetBrains Mono', monospace" font-size="7.5" letter-spacing="0.04em">via terminal</text>
+  <text x="430" y="14" text-anchor="end" fill="#5e88ff" font-family="'JetBrains Mono', monospace" font-size="7.5" letter-spacing="0.04em">via terminal</text>
 
-  <!-- Cobalt signal dot — travels from off-screen left to whichever quadrant is currently firing -->
-  <circle r="3" fill="#3c6ef5" filter="url(#wglow2)">
-    <animate attributeName="cx" values="-4;14;14;14;14;14;14;14;14"
-      dur="12s" keyTimes="0;0.04;0.08;0.33;0.42;0.58;0.67;0.83;1" repeatCount="indefinite"/>
-    <animate attributeName="cy" values="84;84;84;84;84;204;204;204;84"
-      dur="12s" keyTimes="0;0.04;0.08;0.33;0.42;0.58;0.67;0.83;1" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0;1;1;1;1;1;1;1;0"
-      dur="12s" keyTimes="0;0.04;0.08;0.33;0.42;0.58;0.67;0.92;1" repeatCount="indefinite"/>
+  <!-- Cobalt signal dot traveling to whichever quadrant is currently firing. -->
+  <circle r="3" fill="#3c6ef5" filter="url(#wglow)">
+    <animate attributeName="cx"
+      values="-4; 120; 120; 320; 320; 120; 120; 320; 320; -4"
+      dur="12s"
+      keyTimes="0; 0.04; 0.28; 0.32; 0.54; 0.58; 0.78; 0.82; 0.96; 1"
+      repeatCount="indefinite"/>
+    <animate attributeName="cy"
+      values="84; 84; 84; 84; 84; 204; 204; 204; 204; 84"
+      dur="12s"
+      keyTimes="0; 0.04; 0.28; 0.32; 0.54; 0.58; 0.78; 0.82; 0.96; 1"
+      repeatCount="indefinite"/>
+    <animate attributeName="opacity"
+      values="0; 1; 1; 1; 1; 1; 1; 1; 1; 0"
+      dur="12s"
+      keyTimes="0; 0.04; 0.28; 0.32; 0.54; 0.58; 0.78; 0.82; 0.96; 1"
+      repeatCount="indefinite"/>
   </circle>
 
-  <!-- ============================ STRIPE (top-left) ============================ -->
+  <!-- ============================ STRIPE DASHBOARD (top-left) ============================ -->
   <g>
     <rect x="14" y="26" width="200" height="124" rx="4" fill="#FFFFFF" stroke="#E3E8EE"/>
-    <!-- active glow when this quadrant is firing -->
     <rect x="14" y="26" width="200" height="124" rx="4" fill="none" stroke="#635BFF" stroke-width="1.2" opacity="0">
-      <animate attributeName="opacity" values="0;0.55;0.55;0" dur="12s" keyTimes="0;0.08;0.3;0.4" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0.6; 0.6; 0; 0; 0" dur="12s" keyTimes="0; 0.04; 0.28; 0.32; 0.96; 1" repeatCount="indefinite"/>
     </rect>
-    <!-- chrome -->
-    <rect x="14" y="26" width="200" height="20" rx="4" fill="#FFFFFF"/>
-    <rect x="14" y="42" width="200" height="4" fill="#FFFFFF"/>
-    <line x1="14" y1="46" x2="214" y2="46" stroke="#E3E8EE"/>
-    <text x="22" y="40" fill="#635BFF" font-weight="700" font-size="10" letter-spacing="-0.01em">stripe</text>
-    <text x="207" y="40" text-anchor="end" fill="#6B7280" font-size="6.5" letter-spacing="0.06em">PAYMENTS</text>
 
-    <!-- column headers -->
-    <text x="22" y="58" fill="#1A1F36" font-weight="600" font-size="9">Payments</text>
-    <text x="207" y="58" text-anchor="end" fill="#6B7280" font-size="6.5">last 24h · $4,218.75</text>
+    <!-- Dark sidebar (Stripe Dashboard chrome) — bold italic "stripe" wordmark -->
+    <rect x="14" y="26" width="42" height="124" fill="#0A2540"/>
+    <text x="19" y="40" fill="#FFFFFF" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-style="italic" font-size="11" letter-spacing="-0.04em">stripe</text>
+    <text x="19" y="49" fill="#8FA0B7" font-size="5" letter-spacing="0.06em">TEST MODE</text>
+    <line x1="14" y1="54" x2="56" y2="54" stroke="#1B3A5F"/>
+    <g font-family="'Inter', sans-serif" font-size="5.5">
+      <text x="19" y="63" fill="#8FA0B7">Home</text>
+      <text x="19" y="73" fill="#8FA0B7">Balances</text>
+      <!-- active item -->
+      <rect x="14" y="76" width="42" height="11" fill="#0E2D4F"/>
+      <rect x="14" y="76" width="1.6" height="11" fill="#7AC4F7"/>
+      <text x="19" y="84" fill="#FFFFFF" font-weight="600">Payments</text>
+      <text x="19" y="95" fill="#8FA0B7">Customers</text>
+      <text x="19" y="105" fill="#8FA0B7">Products</text>
+      <text x="19" y="115" fill="#8FA0B7">Reports</text>
+      <text x="19" y="125" fill="#8FA0B7">Connect</text>
+      <text x="19" y="138" fill="#8FA0B7">Developers</text>
+    </g>
 
-    <!-- transaction rows that appear one at a time -->
+    <!-- Top bar: search + user avatar circle (no more "DPo ▾") -->
+    <rect x="56" y="26" width="158" height="13" fill="#FFFFFF"/>
+    <line x1="56" y1="39" x2="214" y2="39" stroke="#E3E8EE"/>
+    <text x="62" y="35" fill="#697386" font-size="6">⌕ Search by amount, customer, or ID</text>
+    <circle cx="204" cy="32.5" r="4" fill="#635BFF"/>
+    <text x="204" y="34.5" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="4.5">DP</text>
+
+    <!-- Page header — moved LIVE pill right so it no longer clips "Payments" -->
+    <text x="62" y="52" fill="#1A1F36" font-weight="700" font-size="10" letter-spacing="-0.01em">Payments</text>
+    <rect x="119" y="46" width="22" height="8" rx="4" fill="#D7F7E8"/>
+    <text x="130" y="52" text-anchor="middle" fill="#0E6245" font-weight="700" font-size="5" letter-spacing="0.05em">LIVE</text>
+    <rect x="172" y="44" width="40" height="11" rx="3" fill="#635BFF"/>
+    <text x="192" y="52" text-anchor="middle" fill="#FFFFFF" font-weight="600" font-size="6.5">+ Create</text>
+
+    <!-- Filter chips -->
+    <rect x="62" y="58" width="22" height="9" rx="4.5" fill="#F7FAFC" stroke="#E3E8EE" stroke-width="0.5"/>
+    <text x="73" y="64" text-anchor="middle" fill="#3C4257" font-weight="500" font-size="5.5">All</text>
+    <rect x="86" y="58" width="32" height="9" rx="4.5" fill="#F7FAFC" stroke="#E3E8EE" stroke-width="0.5"/>
+    <text x="102" y="64" text-anchor="middle" fill="#3C4257" font-weight="500" font-size="5.5">Today ▾</text>
+
+    <!-- Table header -->
+    <line x1="62" y1="72" x2="208" y2="72" stroke="#E3E8EE"/>
+    <text x="62" y="80" fill="#697386" font-weight="600" font-size="5" letter-spacing="0.08em">AMOUNT</text>
+    <text x="108" y="80" fill="#697386" font-weight="600" font-size="5" letter-spacing="0.08em">CUSTOMER</text>
+    <text x="172" y="80" fill="#697386" font-weight="600" font-size="5" letter-spacing="0.08em">STATUS</text>
+
+    <!-- Transaction rows — appear during Stripe focus window, persist after -->
     <g>
-      <!-- row 1 -->
       <g opacity="0">
-        <animate attributeName="opacity" values="0;1;1;1;1;1;1;0"
-          dur="12s" keyTimes="0;0.08;0.3;0.4;0.6;0.85;0.95;1" repeatCount="indefinite"/>
-        <line x1="22" y1="65" x2="206" y2="65" stroke="#F6F9FC"/>
-        <text x="22" y="76" fill="#1A1F36" font-weight="500" font-size="8">$24.00</text>
-        <text x="63" y="76" fill="#6B7280" font-size="7">m. lee</text>
-        <g>
-          <rect x="160" y="69" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
-          <text x="183" y="77" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
-        </g>
+        <animate attributeName="opacity" values="0; 1; 1; 0" dur="12s" keyTimes="0; 0.06; 0.96; 1" repeatCount="indefinite"/>
+        <line x1="62" y1="83" x2="208" y2="83" stroke="#F2F5F8"/>
+        <text x="62" y="91" fill="#1A1F36" font-weight="500" font-size="7">$24.00</text>
+        <text x="108" y="91" fill="#3C4257" font-size="6.5">m. lee</text>
+        <circle cx="172" cy="88" r="1.8" fill="#3E9E62"/>
+        <text x="177" y="90.5" fill="#0E6245" font-weight="600" font-size="6">Succeeded</text>
       </g>
-      <!-- row 2 -->
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;1;1;1;1;1;0"
-          dur="12s" keyTimes="0;0.13;0.18;0.3;0.4;0.6;0.95;1" repeatCount="indefinite"/>
-        <line x1="22" y1="82" x2="206" y2="82" stroke="#F6F9FC"/>
-        <text x="22" y="93" fill="#1A1F36" font-weight="500" font-size="8">$48.50</text>
-        <text x="63" y="93" fill="#6B7280" font-size="7">k. patel</text>
-        <g>
-          <rect x="160" y="86" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
-          <text x="183" y="94" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
-        </g>
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.10; 0.13; 0.96; 1" repeatCount="indefinite"/>
+        <line x1="62" y1="95" x2="208" y2="95" stroke="#F2F5F8"/>
+        <text x="62" y="103" fill="#1A1F36" font-weight="500" font-size="7">$48.50</text>
+        <text x="108" y="103" fill="#3C4257" font-size="6.5">k. patel</text>
+        <circle cx="172" cy="100" r="1.8" fill="#3E9E62"/>
+        <text x="177" y="102.5" fill="#0E6245" font-weight="600" font-size="6">Succeeded</text>
       </g>
-      <!-- row 3 -->
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;1;1;1;1;0"
-          dur="12s" keyTimes="0;0.18;0.22;0.27;0.4;0.6;0.95;1" repeatCount="indefinite"/>
-        <line x1="22" y1="99" x2="206" y2="99" stroke="#F6F9FC"/>
-        <text x="22" y="110" fill="#1A1F36" font-weight="500" font-size="8">$120.00</text>
-        <text x="63" y="110" fill="#6B7280" font-size="7">cafe pacific</text>
-        <g>
-          <rect x="160" y="103" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
-          <text x="183" y="111" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
-        </g>
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.15; 0.18; 0.96; 1" repeatCount="indefinite"/>
+        <line x1="62" y1="107" x2="208" y2="107" stroke="#F2F5F8"/>
+        <text x="62" y="115" fill="#1A1F36" font-weight="500" font-size="7">$120.00</text>
+        <text x="108" y="115" fill="#3C4257" font-size="6.5">cafe pacific</text>
+        <circle cx="172" cy="112" r="1.8" fill="#3E9E62"/>
+        <text x="177" y="114.5" fill="#0E6245" font-weight="600" font-size="6">Succeeded</text>
       </g>
-      <!-- row 4 -->
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;0;1;1;1;0"
-          dur="12s" keyTimes="0;0.22;0.27;0.31;0.34;0.6;0.95;1" repeatCount="indefinite"/>
-        <line x1="22" y1="116" x2="206" y2="116" stroke="#F6F9FC"/>
-        <text x="22" y="127" fill="#1A1F36" font-weight="500" font-size="8">$67.25</text>
-        <text x="63" y="127" fill="#6B7280" font-size="7">s. okafor</text>
-        <g>
-          <rect x="160" y="120" width="46" height="11" rx="5.5" fill="#D7F7E8"/>
-          <text x="183" y="128" text-anchor="middle" fill="#0E6245" font-weight="600" font-size="6.5">Succeeded</text>
-        </g>
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.20; 0.23; 0.96; 1" repeatCount="indefinite"/>
+        <line x1="62" y1="119" x2="208" y2="119" stroke="#F2F5F8"/>
+        <text x="62" y="127" fill="#1A1F36" font-weight="500" font-size="7">$67.25</text>
+        <text x="108" y="127" fill="#3C4257" font-size="6.5">s. okafor</text>
+        <circle cx="172" cy="124" r="1.8" fill="#3E9E62"/>
+        <text x="177" y="126.5" fill="#0E6245" font-weight="600" font-size="6">Succeeded</text>
       </g>
     </g>
-    <line x1="14" y1="140" x2="214" y2="140" stroke="#E3E8EE"/>
-    <text x="22" y="147" fill="#6B7280" font-size="6.5">4 succeeded · $259.75 net</text>
+    <line x1="62" y1="131" x2="208" y2="131" stroke="#E3E8EE"/>
+    <!-- Single text so the "·" and net amount don't get eaten by overlap -->
+    <text x="62" y="141" font-size="6" xml:space="preserve"><tspan fill="#697386">4 succeeded  ·  </tspan><tspan fill="#1A1F36" font-weight="600">$259.75 net</tspan></text>
+    <text x="206" y="141" text-anchor="end" fill="#697386" font-size="6">‹ 1 ›</text>
   </g>
 
   <!-- ============================ REDDIT (top-right) ============================ -->
   <g>
     <rect x="222" y="26" width="204" height="124" rx="4" fill="#FFFFFF" stroke="#EDEFF1"/>
     <rect x="222" y="26" width="204" height="124" rx="4" fill="none" stroke="#FF4500" stroke-width="1.2" opacity="0">
-      <animate attributeName="opacity" values="0;0;0.55;0.55;0" dur="12s" keyTimes="0;0.3;0.4;0.55;0.6" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0; 0.6; 0.6; 0; 0" dur="12s" keyTimes="0; 0.30; 0.34; 0.54; 0.58; 1" repeatCount="indefinite"/>
     </rect>
-    <!-- top bar w/ subreddit -->
-    <rect x="222" y="26" width="204" height="22" rx="4" fill="#FFFFFF"/>
-    <rect x="222" y="44" width="204" height="4" fill="#FFFFFF"/>
-    <line x1="222" y1="48" x2="426" y2="48" stroke="#EDEFF1"/>
-    <!-- snoo circle -->
-    <circle cx="232" cy="37" r="6" fill="#FF4500"/>
-    <text x="232" y="40" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="7">r</text>
-    <text x="243" y="40" fill="#1A1A1B" font-weight="600" font-size="9">r/coffee</text>
-    <text x="285" y="40" fill="#7C7C7C" font-size="7">· hot · new</text>
-    <text x="419" y="40" text-anchor="end" fill="#1A1A1B" font-weight="600" font-size="8">join</text>
 
-    <!-- post title -->
-    <text x="232" y="62" fill="#1A1A1B" font-weight="500" font-size="8.5">Looking for ethical roasters in PNW</text>
-    <text x="232" y="72" fill="#7C7C7C" font-size="6.5">▲ 47  · 14 comments · share · save</text>
+    <!-- Reddit top bar — larger snoo so antennae are readable -->
+    <rect x="222" y="26" width="204" height="14" fill="#FFFFFF"/>
+    <use href="#snoo" x="226" y="26" width="14" height="14"/>
+    <text x="243" y="36" fill="#1A1A1B" font-weight="700" font-size="8" letter-spacing="-0.02em">reddit</text>
+    <rect x="266" y="30" width="96" height="9" rx="4.5" fill="#F6F7F8"/>
+    <text x="272" y="36" fill="#878A8C" font-size="5.5">⌕ Search Reddit</text>
+    <rect x="396" y="29" width="22" height="11" rx="5.5" fill="#FF4500"/>
+    <text x="407" y="36" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="6">Post</text>
+    <line x1="222" y1="40" x2="426" y2="40" stroke="#EDEFF1"/>
 
-    <!-- comment box -->
-    <rect x="232" y="78" width="184" height="56" rx="4" fill="#FFFFFF" stroke="#EDEFF1"/>
-    <text x="240" y="92" fill="#1A1A1B" font-size="7.5">
-      <tspan opacity="0">If you're after direct-trade,
-        <animate attributeName="opacity" values="0;0;0;1;1;1;0" dur="12s" keyTimes="0;0.3;0.36;0.4;0.6;0.92;1" repeatCount="indefinite"/>
-      </tspan>
+    <!-- Subreddit header -->
+    <use href="#snoo" x="226" y="42" width="14" height="14"/>
+    <text x="243" y="53" fill="#1A1A1B" font-weight="700" font-size="9">r/coffee</text>
+    <text x="275" y="53" fill="#7C7C7C" font-size="6.5">· 142k members</text>
+    <rect x="392" y="46" width="26" height="9" rx="4.5" fill="#0079D3"/>
+    <text x="405" y="52" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="6">Joined</text>
+
+    <!-- Post card — taller (30px) so title / byline / meta breathe -->
+    <rect x="226" y="59" width="196" height="30" rx="3" fill="#FFFFFF" stroke="#EDEFF1"/>
+    <rect x="226" y="59" width="20" height="30" fill="#F8F9FA"/>
+    <g transform="translate(236, 64)">
+      <path d="M -3 0 L 0 -3 L 3 0 Z" fill="#878A8C"/>
+      <text x="0" y="13" text-anchor="middle" fill="#FF4500" font-weight="700" font-size="7">47</text>
+      <path d="M -3 19 L 0 22 L 3 19 Z" fill="#878A8C"/>
+    </g>
+    <text x="251" y="68" fill="#7C7C7C" font-size="5.5">Posted by u/coffee_lover · 4h</text>
+    <text x="251" y="77" fill="#1A1A1B" font-weight="500" font-size="7.5">Looking for ethical roasters in PNW</text>
+    <!-- Meta row with proper SVG bubble icon instead of giant emoji -->
+    <g transform="translate(251, 83)" fill="#878A8C" font-size="5.5">
+      <use href="#bubble" x="0" y="-4.5" width="8" height="6"/>
+      <text x="11" y="0">14 comments</text>
+      <text x="48" y="0">↗ Share</text>
+      <text x="74" y="0">☆ Save</text>
+    </g>
+
+    <!-- Comment compose box — moved down to follow taller post card -->
+    <rect x="226" y="93" width="196" height="52" rx="4" fill="#FFFFFF" stroke="#EDEFF1"/>
+    <text x="232" y="101" fill="#1A1A1B" font-weight="500" font-size="6">Comment as u/pnw_coffee_co</text>
+    <line x1="226" y1="104" x2="422" y2="104" stroke="#EDEFF1"/>
+    <text x="232" y="115" fill="#878A8C" font-size="7" opacity="0">
+      <animate attributeName="opacity" values="1; 1; 0; 0" dur="12s" keyTimes="0; 0.34; 0.36; 1" repeatCount="indefinite"/>
+      What are your thoughts?
     </text>
-    <text x="240" y="103" fill="#1A1A1B" font-size="7.5">
-      <tspan opacity="0">we just shipped to a small co-op
-        <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.36;0.42;0.46;0.48;0.92;1" repeatCount="indefinite"/>
-      </tspan>
+    <text x="232" y="115" fill="#1A1A1B" font-size="7" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.36; 0.40; 0.96; 1" repeatCount="indefinite"/>
+      If you're after direct-trade,
     </text>
-    <text x="240" y="114" fill="#1A1A1B" font-size="7.5">
-      <tspan opacity="0">in Portland — happy to connect.
-        <animate attributeName="opacity" values="0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.42;0.48;0.5;0.52;0.54;0.92;1" repeatCount="indefinite"/>
-      </tspan>
+    <text x="232" y="124" fill="#1A1A1B" font-size="7" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.42; 0.46; 0.96; 1" repeatCount="indefinite"/>
+      we just shipped to a small co-op
     </text>
-    <text x="240" y="125" fill="#0079D3" font-weight="600" font-size="7.5">
-      <tspan opacity="0">— u/pnw_coffee_co
-        <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.5;0.54;0.55;0.56;0.57;0.58;0.92;1" repeatCount="indefinite"/>
-      </tspan>
+    <text x="232" y="133" fill="#1A1A1B" font-size="7" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.48; 0.52; 0.96; 1" repeatCount="indefinite"/>
+      in Portland — happy to connect.
     </text>
-    <!-- reply button -->
-    <rect x="376" y="138" width="40" height="11" rx="5.5" fill="#0079D3">
-      <animate attributeName="opacity" values="0.4;0.4;0.4;0.4;0.4;0.4;1;1;0.4" dur="12s" keyTimes="0;0.5;0.55;0.57;0.58;0.6;0.62;0.92;1" repeatCount="indefinite"/>
+
+    <!-- Formatting toolbar: real icon glyphs (bold B, italic I, link, code,
+         bullet list, numbered list) drawn as small SVG primitives rather
+         than raw "B i </> · 1." text. -->
+    <g transform="translate(232, 140)" stroke="#878A8C" fill="#878A8C">
+      <!-- Bold -->
+      <text x="0" y="2" font-weight="900" font-size="6" stroke="none">B</text>
+      <!-- Italic -->
+      <text x="8" y="2" font-style="italic" font-weight="600" font-size="6" stroke="none">I</text>
+      <!-- Link icon -->
+      <g transform="translate(15, -2.5)" stroke-width="0.7" fill="none">
+        <path d="M 1.5 2.5 L 3.5 0.5 M 0.5 1.5 A 1.4 1.4 0 0 1 2.5 -0.5 L 3 -1"/>
+        <path d="M 3.5 2.5 L 1.5 4.5 M 4.5 3.5 A 1.4 1.4 0 0 1 2.5 5.5 L 2 6"/>
+      </g>
+      <!-- Code icon (chevrons) -->
+      <g transform="translate(24, 0)" stroke-width="0.7" fill="none">
+        <polyline points="2,-2 0,0 2,2"/>
+        <polyline points="4,-2 6,0 4,2"/>
+      </g>
+      <!-- Bullet list -->
+      <g transform="translate(34, -1.5)" stroke="none">
+        <circle cx="0" cy="0" r="0.7"/>
+        <rect x="1.6" y="-0.5" width="4" height="1"/>
+        <circle cx="0" cy="2.4" r="0.7"/>
+        <rect x="1.6" y="1.9" width="4" height="1"/>
+      </g>
+      <!-- Numbered list -->
+      <g transform="translate(44, -1.5)" stroke="none">
+        <text x="0" y="0.6" font-size="3.8" font-weight="600">1</text>
+        <rect x="3" y="-0.5" width="4" height="1"/>
+        <text x="0" y="3.4" font-size="3.8" font-weight="600">2</text>
+        <rect x="3" y="2.4" width="4" height="1"/>
+      </g>
+    </g>
+
+    <!-- Comment submit button — disabled (gray) → blue when text typed -->
+    <rect x="382" y="135" width="36" height="9" rx="4.5" fill="#EDEFF1">
+      <animate attributeName="fill" values="#EDEFF1; #EDEFF1; #0079D3; #0079D3; #EDEFF1" dur="12s" keyTimes="0; 0.40; 0.44; 0.96; 1" repeatCount="indefinite"/>
     </rect>
-    <text x="396" y="146" text-anchor="middle" fill="#FFFFFF" font-weight="600" font-size="6.5">Reply</text>
+    <text x="400" y="141.5" text-anchor="middle" font-weight="700" font-size="6" fill="#878A8C">
+      <animate attributeName="fill" values="#878A8C; #878A8C; #FFFFFF; #FFFFFF; #878A8C" dur="12s" keyTimes="0; 0.40; 0.44; 0.96; 1" repeatCount="indefinite"/>
+      Comment
+    </text>
   </g>
 
-  <!-- ============================ GRANT FORM (bottom-left) ============================ -->
+  <!-- ============================ GRANTS.GOV (bottom-left) ============================ -->
   <g>
     <rect x="14" y="156" width="200" height="116" rx="4" fill="#FFFFFF" stroke="#DFE1E2"/>
     <rect x="14" y="156" width="200" height="116" rx="4" fill="none" stroke="#005EA2" stroke-width="1.2" opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;0;0.55;0.55;0" dur="12s" keyTimes="0;0.45;0.55;0.58;0.62;0.65;0.78;0.83" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0; 0.6; 0.6; 0; 0" dur="12s" keyTimes="0; 0.55; 0.59; 0.78; 0.82; 1" repeatCount="indefinite"/>
     </rect>
-    <!-- USA.gov style top banner -->
+
+    <!-- USWDS .usa-banner -->
     <rect x="14" y="156" width="200" height="9" fill="#F0F0F0"/>
-    <text x="18" y="163" fill="#1B1B1B" font-size="5" letter-spacing="0.02em">★ An official website of the United States government</text>
-    <!-- navy header bar -->
-    <rect x="14" y="165" width="200" height="18" fill="#005EA2"/>
-    <text x="22" y="177" fill="#FFFFFF" font-weight="700" font-size="9" font-family="Georgia, serif">SBA · Small Business Grant</text>
+    <g transform="translate(18, 158)">
+      <rect width="6" height="4" fill="#B22234"/>
+      <rect width="3" height="2" fill="#3C3B6E"/>
+      <line x1="0" y1="1" x2="6" y2="1" stroke="#FFFFFF" stroke-width="0.3"/>
+      <line x1="0" y1="3" x2="6" y2="3" stroke="#FFFFFF" stroke-width="0.3"/>
+    </g>
+    <text x="27" y="163" fill="#1B1B1B" font-size="4.5">An official website of the United States government</text>
+    <text x="206" y="163" text-anchor="end" fill="#005EA2" font-size="4.5">Here's how you know ▾</text>
 
-    <!-- form fields -->
-    <text x="22" y="194" fill="#1B1B1B" font-weight="600" font-size="6.5">Legal business name</text>
-    <rect x="22" y="196" width="184" height="11" fill="#FFFFFF" stroke="#565C65"/>
-    <text x="26" y="204" fill="#1B1B1B" font-size="7">
-      <tspan opacity="0">PNW Coffee Co., LLC
-        <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.55;0.6;0.62;0.64;0.65;0.67;0.85;1" repeatCount="indefinite"/>
-      </tspan>
+    <!-- Navy header — denser, more "official" seal -->
+    <rect x="14" y="165" width="200" height="22" fill="#112E51"/>
+    <use href="#govSeal" x="20" y="170" width="14" height="14"/>
+    <text x="37" y="175" fill="#FFFFFF" font-weight="700" font-size="9" font-family="Georgia, serif" letter-spacing="0.01em">GRANTS.GOV</text>
+    <text x="37" y="183" fill="#9BB7D4" font-size="4.5" letter-spacing="0.04em">FIND. APPLY. SUCCEED.<tspan dx="2">℠</tspan></text>
+    <text x="206" y="173" text-anchor="end" fill="#FFFFFF" font-size="5">SEARCH ⌕</text>
+    <text x="206" y="182" text-anchor="end" fill="#9BB7D4" font-size="5">Help · Sign Out</text>
+
+    <!-- Workspace bar -->
+    <rect x="14" y="187" width="200" height="14" fill="#E1F3F8"/>
+    <text x="20" y="196" fill="#1A4480" font-weight="600" font-size="6">Workspace · WS-2026-04832</text>
+    <text x="135" y="196" fill="#71767A" font-size="5.5">Step</text>
+    <text x="148" y="196" fill="#1B1B1B" font-weight="700" font-size="5.5">2</text>
+    <text x="152" y="196" fill="#71767A" font-size="5.5">of 4</text>
+    <g transform="translate(170, 192)">
+      <circle cx="0" cy="2" r="2" fill="#162E51"/>
+      <line x1="2" y1="2" x2="6" y2="2" stroke="#162E51" stroke-width="0.7"/>
+      <circle cx="8" cy="2" r="2" fill="#162E51"/>
+      <line x1="10" y1="2" x2="14" y2="2" stroke="#DFE1E2" stroke-width="0.7"/>
+      <circle cx="16" cy="2" r="2" fill="#FFFFFF" stroke="#71767A" stroke-width="0.6"/>
+      <line x1="18" y1="2" x2="22" y2="2" stroke="#DFE1E2" stroke-width="0.7"/>
+      <circle cx="24" cy="2" r="2" fill="#FFFFFF" stroke="#71767A" stroke-width="0.6"/>
+    </g>
+
+    <!-- Form heading -->
+    <text x="20" y="212" fill="#1B1B1B" font-weight="700" font-size="7" font-family="'Source Sans 3', 'Source Sans Pro', Arial, sans-serif">Applicant information</text>
+
+    <!-- Legal business name -->
+    <text x="20" y="221" fill="#1B1B1B" font-weight="600" font-size="5.5">Legal business name <tspan fill="#B50909">*</tspan></text>
+    <rect x="20" y="223" width="188" height="9" fill="#FFFFFF" stroke="#1B1B1B" stroke-width="0.8"/>
+    <text x="24" y="230" fill="#1B1B1B" font-size="6" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.59; 0.62; 0.96; 1" repeatCount="indefinite"/>
+      PNW Coffee Co., LLC
     </text>
 
-    <text x="22" y="218" fill="#1B1B1B" font-weight="600" font-size="6.5">Requested amount (USD)</text>
-    <rect x="22" y="220" width="184" height="11" fill="#FFFFFF" stroke="#565C65"/>
-    <text x="26" y="228" fill="#1B1B1B" font-size="7">
-      <tspan opacity="0">48,000
-        <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.6;0.65;0.7;0.72;0.74;0.75;0.76;0.92;1" repeatCount="indefinite"/>
-      </tspan>
+    <!-- Requested amount + UEI side by side -->
+    <text x="20" y="243" fill="#1B1B1B" font-weight="600" font-size="5.5">Requested amount <tspan fill="#B50909">*</tspan></text>
+    <rect x="20" y="245" width="86" height="9" fill="#FFFFFF" stroke="#1B1B1B" stroke-width="0.8"/>
+    <text x="24" y="252" fill="#71767A" font-size="6">$</text>
+    <text x="28" y="252" fill="#1B1B1B" font-size="6" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.62; 0.66; 0.96; 1" repeatCount="indefinite"/>
+      48,000.00
+    </text>
+    <text x="122" y="243" fill="#1B1B1B" font-weight="600" font-size="5.5">UEI <tspan fill="#B50909">*</tspan></text>
+    <rect x="122" y="245" width="86" height="9" fill="#FFFFFF" stroke="#1B1B1B" stroke-width="0.8"/>
+    <text x="126" y="252" fill="#1B1B1B" font-size="6" letter-spacing="0.06em" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.66; 0.70; 0.96; 1" repeatCount="indefinite"/>
+      XK7H4Q2NM9W3
     </text>
 
-    <text x="22" y="242" fill="#1B1B1B" font-weight="600" font-size="6.5">Use of funds</text>
-    <rect x="22" y="244" width="184" height="14" fill="#FFFFFF" stroke="#565C65"/>
-    <text x="26" y="251" fill="#1B1B1B" font-size="6.5">
-      <tspan opacity="0">Cold-storage expansion;
-        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;0.9;0" dur="12s" keyTimes="0;0.65;0.7;0.75;0.78;0.8;0.82;0.83;0.85;0.92;1" repeatCount="indefinite"/>
-      </tspan>
-    </text>
-    <text x="26" y="257" fill="#1B1B1B" font-size="6.5">
-      <tspan opacity="0">year-1 wholesale inventory.
-        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;1;0.9;0" dur="12s" keyTimes="0;0.7;0.75;0.78;0.8;0.82;0.83;0.84;0.85;0.88;0.92;1" repeatCount="indefinite"/>
-      </tspan>
+    <!-- Use of funds -->
+    <text x="20" y="263" fill="#1B1B1B" font-weight="600" font-size="5.5">Use of funds <tspan fill="#B50909">*</tspan></text>
+    <rect x="20" y="265" width="140" height="6.5" fill="#FFFFFF" stroke="#1B1B1B" stroke-width="0.8"/>
+    <text x="24" y="270" fill="#1B1B1B" font-size="5.5" opacity="0">
+      <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.70; 0.74; 0.96; 1" repeatCount="indefinite"/>
+      Cold-storage expansion; year-1 inventory.
     </text>
 
-    <!-- submit button -->
-    <rect x="155" y="262" width="51" height="9" rx="1" fill="#005EA2"/>
-    <text x="180" y="269" text-anchor="middle" fill="#FFFFFF" font-weight="600" font-size="6">SUBMIT</text>
+    <rect x="167" y="263" width="40" height="9" rx="1" fill="#162E51"/>
+    <text x="187" y="269.5" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="5">CONTINUE ▸</text>
   </g>
 
   <!-- ============================ VS CODE (bottom-right) ============================ -->
   <g>
-    <!-- whole-editor bg -->
-    <rect x="222" y="156" width="204" height="116" rx="4" fill="#1E1E1E"/>
+    <rect x="222" y="156" width="204" height="116" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
     <rect x="222" y="156" width="204" height="116" rx="4" fill="none" stroke="#007ACC" stroke-width="1.2" opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0.55;0.55;0" dur="12s" keyTimes="0;0.5;0.6;0.7;0.75;0.78;0.82;0.83;0.85;0.92;1" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0; 0.6; 0.6; 0; 0" dur="12s" keyTimes="0; 0.78; 0.82; 0.96; 0.98; 1" repeatCount="indefinite"/>
     </rect>
-    <!-- activity bar (left) -->
-    <rect x="222" y="156" width="10" height="116" rx="4 0 0 4" fill="#333333"/>
-    <rect x="222" y="156" width="10" height="116" fill="#333333"/>
-    <!-- small icon stubs in activity bar -->
-    <rect x="225" y="162" width="4" height="4" fill="#858585"/>
-    <rect x="225" y="170" width="4" height="4" fill="#858585"/>
-    <rect x="225" y="178" width="4" height="4" fill="#858585"/>
-    <!-- side panel (file tree narrow) -->
-    <rect x="232" y="156" width="36" height="116" fill="#252526"/>
-    <text x="237" y="166" fill="#CCCCCC" font-size="5" letter-spacing="0.06em">EXPLORER</text>
-    <text x="237" y="178" fill="#CCCCCC" font-size="5.5">▾ src</text>
-    <text x="240" y="186" fill="#CCCCCC" font-size="5">app.py</text>
-    <text x="240" y="194" fill="#FFFFFF" font-weight="600" font-size="5">stripe_webhook.py</text>
-    <text x="240" y="202" fill="#CCCCCC" font-size="5">models.py</text>
-    <!-- tab bar -->
-    <rect x="268" y="156" width="158" height="14" fill="#2D2D30"/>
-    <rect x="268" y="156" width="78" height="14" fill="#1E1E1E"/>
-    <text x="273" y="166" fill="#FFFFFF" font-size="6">● stripe_webhook.py</text>
-    <text x="349" y="166" fill="#858585" font-size="6">app.py</text>
-    <!-- code area -->
-    <g font-family="'Menlo','Consolas',monospace" font-size="6.5">
-      <!-- line numbers + code -->
-      <text x="272" y="180" fill="#858585">1</text>
-      <text x="282" y="180" fill="#C586C0">from</text>
-      <text x="298" y="180" fill="#D4D4D4">flask </text>
-      <text x="322" y="180" fill="#C586C0">import</text>
-      <text x="346" y="180" fill="#9CDCFE">Flask, request</text>
 
-      <text x="272" y="190" fill="#858585">2</text>
-      <text x="282" y="190" fill="#C586C0">import</text>
-      <text x="306" y="190" fill="#9CDCFE">stripe</text>
+    <!-- Activity bar -->
+    <rect x="222" y="156" width="16" height="108" fill="#F3F3F3"/>
+    <line x1="238" y1="156" x2="238" y2="264" stroke="#E0E0E0"/>
+    <rect x="222" y="160" width="1.6" height="10" fill="#007ACC"/>
+    <g stroke="#424242" stroke-width="0.7" fill="none">
+      <path d="M 226 162 L 232 162 L 234 164 L 234 169 L 226 169 Z"/>
+    </g>
+    <g stroke="#616161" stroke-width="0.7" fill="none">
+      <circle cx="230" cy="178" r="2.6"/>
+      <line x1="232" y1="180" x2="234" y2="182"/>
+    </g>
+    <g stroke="#616161" stroke-width="0.7" fill="none">
+      <circle cx="227" cy="190" r="1.4"/>
+      <circle cx="233" cy="194" r="1.4"/>
+      <line x1="227" y1="192" x2="233" y2="194"/>
+    </g>
+    <path d="M 227 202 L 234 205.5 L 227 209 Z" stroke="#616161" stroke-width="0.7" fill="none"/>
+    <g stroke="#616161" stroke-width="0.7" fill="none">
+      <rect x="226" y="215" width="3" height="3"/>
+      <rect x="231" y="215" width="3" height="3"/>
+      <rect x="226" y="220" width="3" height="3"/>
+      <rect x="231" y="220" width="3" height="3"/>
+    </g>
 
-      <text x="272" y="200" fill="#858585">3</text>
+    <!-- File tree -->
+    <rect x="238" y="156" width="48" height="108" fill="#F8F8F8"/>
+    <line x1="286" y1="156" x2="286" y2="264" stroke="#E0E0E0"/>
+    <text x="241" y="165" fill="#616161" font-weight="600" font-size="5" letter-spacing="0.08em">EXPLORER</text>
+    <text x="241" y="175" fill="#424242" font-weight="600" font-size="5" letter-spacing="0.08em">▾ DRONE-PAY</text>
+    <text x="244" y="183" fill="#424242" font-size="5.5">▾ src</text>
+    <text x="249" y="190" fill="#424242" font-size="5.5">app.py</text>
+    <rect x="238" y="192" width="48" height="6" fill="#E4E6F1"/>
+    <rect x="238" y="192" width="1.6" height="6" fill="#007ACC"/>
+    <text x="249" y="197" fill="#000000" font-weight="500" font-size="5.5">stripe_webhook.py</text>
+    <text x="249" y="204" fill="#424242" font-size="5.5">models.py</text>
+    <text x="249" y="211" fill="#424242" font-size="5.5">__init__.py</text>
+    <text x="244" y="219" fill="#424242" font-size="5.5">▸ tests</text>
+    <text x="241" y="227" fill="#424242" font-size="5.5">README.md</text>
+    <text x="241" y="234" fill="#424242" font-size="5.5">pyproject.toml</text>
+    <text x="241" y="242" fill="#424242" font-size="5.5">requirements.txt</text>
 
-      <text x="272" y="210" fill="#858585">4</text>
+    <!-- Tab bar -->
+    <rect x="286" y="156" width="140" height="14" fill="#ECECEC"/>
+    <rect x="286" y="156" width="88" height="14" fill="#FFFFFF"/>
+    <line x1="286" y1="170" x2="426" y2="170" stroke="#E0E0E0"/>
+    <line x1="374" y1="156" x2="374" y2="170" stroke="#E0E0E0"/>
+    <circle cx="291" cy="163" r="1.4" fill="#007ACC"/>
+    <text x="296" y="166" fill="#000000" font-weight="500" font-size="6">stripe_webhook.py</text>
+    <text x="368" y="166" text-anchor="end" fill="#616161" font-size="6">×</text>
+    <text x="380" y="166" fill="#5C5C5C" font-size="6">app.py</text>
+    <text x="420" y="166" text-anchor="end" fill="#9C9C9C" font-size="6">×</text>
+
+    <!-- Breadcrumb -->
+    <rect x="286" y="170" width="140" height="8" fill="#FFFFFF"/>
+    <text x="290" y="176" fill="#616161" font-size="5">src ▸ stripe_webhook.py ▸</text>
+    <text x="357" y="176" fill="#5C2D91" font-size="5" font-style="italic">handle_event</text>
+    <line x1="286" y1="178" x2="426" y2="178" stroke="#F0F0F0"/>
+
+    <!-- Code: font-size dropped to 6 and lines shortened so nothing
+         overflows the panel's right edge. -->
+    <g font-family="'Menlo','Consolas','Courier New',monospace" font-size="6" xml:space="preserve">
+      <text x="304" y="186" text-anchor="end" fill="#237893">1</text>
+      <text x="308" y="186"><tspan fill="#AF00DB">from</tspan><tspan fill="#001080"> flask </tspan><tspan fill="#AF00DB">import</tspan><tspan fill="#001080"> Flask, request</tspan></text>
+
+      <text x="304" y="194" text-anchor="end" fill="#237893">2</text>
+      <text x="308" y="194"><tspan fill="#AF00DB">import</tspan><tspan fill="#001080"> stripe, os</tspan></text>
+
+      <text x="304" y="202" text-anchor="end" fill="#237893">3</text>
+
+      <text x="304" y="210" text-anchor="end" fill="#237893">4</text>
+      <text x="308" y="210"><tspan fill="#001080">app </tspan><tspan fill="#000000">= </tspan><tspan fill="#795E26">Flask</tspan><tspan fill="#000000">(</tspan><tspan fill="#001080">__name__</tspan><tspan fill="#000000">)</tspan></text>
+
+      <text x="304" y="218" text-anchor="end" fill="#237893">5</text>
+
+      <text x="304" y="226" text-anchor="end" fill="#237893">6</text>
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;1;1;0" dur="12s" keyTimes="0;0.75;0.78;0.8;0.82;0.83;0.84;0.85;0.86;0.88;0.92;1" repeatCount="indefinite"/>
-        <text x="282" y="210" fill="#DCDCAA">@app.</text>
-        <text x="303" y="210" fill="#DCDCAA">route</text>
-        <text x="318" y="210" fill="#D4D4D4">(</text>
-        <text x="322" y="210" fill="#CE9178">"/webhook"</text>
-        <text x="358" y="210" fill="#D4D4D4">, methods=[</text>
-        <text x="397" y="210" fill="#CE9178">"POST"</text>
-        <text x="418" y="210" fill="#D4D4D4">])</text>
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.82; 0.86; 0.96; 1" repeatCount="indefinite"/>
+        <text x="308" y="226"><tspan fill="#795E26">@app.post</tspan><tspan fill="#000000">(</tspan><tspan fill="#A31515">"/webhook"</tspan><tspan fill="#000000">)</tspan></text>
       </g>
-      <text x="272" y="220" fill="#858585">5</text>
+
+      <text x="304" y="234" text-anchor="end" fill="#237893">7</text>
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;0;1;0" dur="12s" keyTimes="0;0.8;0.82;0.84;0.85;0.86;0.87;0.88;0.89;0.9;0.92;1" repeatCount="indefinite"/>
-        <text x="282" y="220" fill="#569CD6">def</text>
-        <text x="296" y="220" fill="#DCDCAA">handle_event</text>
-        <text x="343" y="220" fill="#D4D4D4">():</text>
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.85; 0.88; 0.96; 1" repeatCount="indefinite"/>
+        <text x="308" y="234"><tspan fill="#0000FF">def</tspan><tspan fill="#795E26"> handle_event</tspan><tspan fill="#000000">():</tspan></text>
       </g>
-      <text x="272" y="230" fill="#858585">6</text>
+
+      <text x="304" y="242" text-anchor="end" fill="#237893">8</text>
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0;0;1;0" dur="12s" keyTimes="0;0.82;0.84;0.86;0.87;0.88;0.89;0.9;0.91;0.915;0.92;1" repeatCount="indefinite"/>
-        <text x="288" y="230" fill="#9CDCFE">event</text>
-        <text x="306" y="230" fill="#D4D4D4">= </text>
-        <text x="314" y="230" fill="#9CDCFE">stripe.</text>
-        <text x="338" y="230" fill="#DCDCAA">construct_event</text>
-        <text x="397" y="230" fill="#D4D4D4">(</text>
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.88; 0.91; 0.96; 1" repeatCount="indefinite"/>
+        <text x="316" y="242"><tspan fill="#001080">payload </tspan><tspan fill="#000000">= </tspan><tspan fill="#001080">request</tspan><tspan fill="#000000">.</tspan><tspan fill="#001080">data</tspan></text>
       </g>
-      <text x="272" y="240" fill="#858585">7</text>
-      <text x="288" y="240" fill="#D4D4D4">|</text>
-      <rect x="289" y="234" width="1" height="7" fill="#D4D4D4">
-        <animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>
+
+      <text x="304" y="250" text-anchor="end" fill="#237893">9</text>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.91; 0.93; 0.96; 1" repeatCount="indefinite"/>
+        <text x="316" y="250"><tspan fill="#001080">event </tspan><tspan fill="#000000">= </tspan><tspan fill="#001080">stripe</tspan><tspan fill="#000000">.</tspan><tspan fill="#795E26">Webhook</tspan></text>
+      </g>
+
+      <text x="304" y="258" text-anchor="end" fill="#237893">10</text>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0; 0; 1; 1; 0" dur="12s" keyTimes="0; 0.93; 0.95; 0.96; 1" repeatCount="indefinite"/>
+        <text x="324" y="258"><tspan fill="#000000">.</tspan><tspan fill="#795E26">construct_event</tspan><tspan fill="#000000">(...)</tspan></text>
+      </g>
+
+      <!-- Caret sits just after the last line written -->
+      <rect x="386" y="252" width="1.2" height="7" fill="#000000">
+        <animate attributeName="opacity" values="1; 0; 1" dur="0.9s" repeatCount="indefinite"/>
       </rect>
     </g>
-    <!-- status bar (VS Code blue) -->
+
+    <!-- Status bar -->
     <rect x="222" y="264" width="204" height="8" fill="#007ACC"/>
-    <text x="227" y="270" fill="#FFFFFF" font-family="-apple-system,sans-serif" font-size="5">⎇ drone/webhook · ● 0 ▲ 1 · Python 3.12</text>
+    <text x="225" y="270" fill="#FFFFFF" font-family="-apple-system,sans-serif" font-size="5">⎇ drone/webhook · ● 0 ▲ 1 · Ln 10, Col 24 · Spaces: 4 · UTF-8 · Python 3.12 · Light+</text>
   </g>
 </svg>

@@ -1,6 +1,10 @@
 :root {
   --bg-cream: #F5F1E8;
   --type-ink: #1A1A1A;
+  --type-muted: rgba(26, 26, 26, 0.6);
+  --type-faint: rgba(26, 26, 26, 0.4);
+  --rule-soft: rgba(26, 26, 26, 0.1);
+  --rule-hairline: rgba(26, 26, 26, 0.08);
   --accent-cobalt: #1E3AE5;
   --bg-inverse: #0A0A0A;
   --type-inverse: #F5F1E8;
@@ -10,6 +14,23 @@
 
   --spacing-section: 5rem;
   --max-width-prose: 720px;
+  --nav-height: 60px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 12px);
+}
+
+::selection {
+  background: var(--accent-cobalt);
+  color: var(--bg-cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-cobalt);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Base Reset & Styles */
@@ -26,8 +47,8 @@ body {
   font-size: 1.125rem; /* 18px */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  
-  /* Removed noise grain overlay due to rendering bugs in some browsers */
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 @media (min-width: 768px) {
@@ -54,13 +75,36 @@ a {
 
 a:hover {
   text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 /* Layout Utilities */
-.container {
-  max-width: var(--max-width-prose);
-  margin: 0 auto;
-  padding: 0 1.5rem;
+.container,
+.container-md,
+.container-lg,
+.container-xl {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.container { max-width: var(--max-width-prose); }       /* 720 — prose */
+.container-md { max-width: 880px; }                      /* slight breakout for paired columns */
+.container-lg { max-width: 1100px; }                     /* wide grid alignment */
+.container-xl { max-width: 1320px; }                     /* hero + run-grid alignment */
+
+/* H2 size tiers — replaces the inline font-sizes that were scattered through the HTML. */
+.h2-mid {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+}
+.h2-quiet {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+.h2-sub {
+  font-size: 1.5rem;
 }
 
 .section {
@@ -122,20 +166,34 @@ a:hover {
 
 /* Buttons */
 .btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
   font-family: var(--font-serif);
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   font-weight: 500;
+  letter-spacing: -0.005em;
   text-decoration: none;
   cursor: pointer;
   border: none;
-  transition: opacity 0.2s;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(26, 26, 26, 0.10);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(26, 26, 26, 0.16);
   text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(26, 26, 26, 0.10);
 }
 
 .btn-primary {
@@ -146,6 +204,98 @@ a:hover {
 .btn-inverse {
   background-color: var(--bg-cream);
   color: var(--accent-cobalt);
+}
+
+.btn-inverse:hover {
+  box-shadow: 0 6px 22px rgba(10, 10, 10, 0.25);
+}
+
+/* Sticky translucent nav at the very top of the page. */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245, 241, 232, 0.78);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--rule-hairline);
+}
+
+.site-nav-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: var(--nav-height);
+}
+
+.site-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--type-ink);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.site-nav-brand:hover {
+  color: var(--type-ink);
+  text-decoration: none;
+}
+
+.site-nav-logo {
+  width: 32px;
+  height: 32px;
+  display: block;
+  border-radius: 6px;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.site-nav-wordmark {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.site-nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav-links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--type-ink);
+  padding: 4px 2px;
+  transition: color 0.15s ease;
+  text-decoration: none;
+}
+
+.site-nav-links a:hover {
+  color: var(--accent-cobalt);
+  text-decoration: none;
+}
+
+@media (max-width: 540px) {
+  .site-nav-wordmark { display: none; }
+  .site-nav-links { gap: 1.25rem; }
+  .site-nav-inner { padding: 0.625rem 1rem; }
 }
 
 /* Placeholders */
@@ -165,17 +315,16 @@ a:hover {
 
 /* 1. Hero */
 .hero {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 4rem 0;
+  align-items: flex-start;
+  padding: 4.5rem 0 6rem;
 }
 
 .hero-content {
   display: grid;
   grid-template-columns: 1fr;
   gap: 4rem;
-  align-items: center;
+  align-items: start;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -184,7 +333,7 @@ a:hover {
 @media (min-width: 900px) {
   .hero-content {
     grid-template-columns: 1fr 1.25fr;
-    gap: 3rem;
+    gap: 3.5rem;
     max-width: 1320px;
   }
 }
@@ -193,13 +342,15 @@ a:hover {
   font-size: clamp(3rem, 5.5vw, 5.5rem);
   line-height: 0.95;
   margin-bottom: 1.75rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
-  margin-bottom: 3rem;
+  line-height: 1.55;
+  margin-bottom: 2.25rem;
   max-width: 600px;
+  color: rgba(26, 26, 26, 0.88);
 }
 
 .hero-actions {
@@ -231,10 +382,10 @@ a:hover {
     0 20px 60px rgba(26, 26, 26, 0.18);
 }
 .hero-visual-caption {
-  margin-top: 0.75rem;
+  margin-top: 0.875rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: rgba(26, 26, 26, 0.55);
+  font-size: 0.8125rem;
+  color: var(--type-muted);
   letter-spacing: 0.04em;
   text-align: center;
 }
@@ -244,7 +395,7 @@ a:hover {
  * edge-to-edge to give the visual weight without busting the prose column. */
 .hierarchy-visual,
 .run-gif {
-  margin: 3rem auto;
+  margin: 4rem auto;
   text-align: center;
 }
 .hierarchy-visual img,
@@ -254,17 +405,17 @@ a:hover {
   max-width: min(1100px, 92vw);
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow:
     0 1px 2px rgba(26, 26, 26, 0.06),
-    0 12px 36px rgba(26, 26, 26, 0.12);
+    0 18px 48px rgba(26, 26, 26, 0.14);
 }
 .run-caption {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-align: center;
-  color: rgba(26, 26, 26, 0.6);
+  color: var(--type-muted);
   letter-spacing: 0.03em;
 }
 
@@ -310,10 +461,12 @@ a:hover {
   background: #070a0f;
 }
 
-/* See-it-run three-stage narrative grid. */
+/* See-it-run three-stage narrative grid.
+ * Width matches .container-xl so the H2 + intro + caption + grid share a left edge. */
 .run-grid {
-  margin: 2.5rem auto;
-  max-width: min(1320px, 94vw);
+  margin: 2.75rem auto 1.25rem;
+  max-width: 1320px;
+  padding: 0 1.5rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
@@ -321,7 +474,7 @@ a:hover {
 @media (min-width: 900px) {
   .run-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 }
 .run-panel {
@@ -359,17 +512,22 @@ a:hover {
   display: block;
 }
 .run-panel-caption {
-  margin-top: 0.85rem;
+  margin-top: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-align: center;
-  color: rgba(26, 26, 26, 0.65);
+  color: var(--type-muted);
   letter-spacing: 0.04em;
 }
 .run-panel-caption .run-num {
   color: var(--accent-cobalt);
-  margin-right: 0.35em;
+  margin-right: 0.4em;
   font-weight: 500;
+}
+
+/* Read-deeper section intro paragraph. */
+.deeper-intro {
+  margin-bottom: 2rem;
 }
 
 /* Read-deeper list: three doc/PDF links rendered as quiet card rows. */
@@ -379,7 +537,7 @@ a:hover {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.5rem;
+  gap: 0.625rem;
   max-width: 640px;
 }
 .deeper-list a {
@@ -387,26 +545,30 @@ a:hover {
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  padding: 14px 18px;
-  border: 1px solid rgba(26, 26, 26, 0.12);
-  border-radius: 4px;
+  padding: 18px 22px;
+  border: 1px solid rgba(26, 26, 26, 0.16);
+  border-radius: 6px;
   color: var(--type-ink);
   text-decoration: none;
-  transition: border-color 120ms ease, background-color 120ms ease;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 150ms ease;
 }
 .deeper-list a:hover {
   border-color: var(--accent-cobalt);
   background: rgba(30, 58, 229, 0.04);
+  transform: translateX(2px);
   text-decoration: none;
 }
 .deeper-list .deeper-title {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 500;
 }
 .deeper-list .deeper-meta {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: rgba(26, 26, 26, 0.55);
+  font-size: 0.8125rem;
+  color: var(--type-muted);
   letter-spacing: 0.02em;
 }
 .terminal-titlebar {
@@ -444,12 +606,19 @@ a:hover {
 /* 2. The Problem */
 .problem-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
 }
 
+/* Pull-quotes — used between prose paragraphs to highlight a single line.
+ * The left rule + slight indent makes them read as deliberate callouts
+ * rather than orphaned mono text. */
 .pull-quote {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid currentColor;
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 
 /* 3. The Thesis */
@@ -460,16 +629,26 @@ a:hover {
 .thesis-statement {
   font-size: clamp(2.25rem, 5vw, 3.75rem);
   line-height: 1.2;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 .thesis-caption {
   font-family: var(--font-mono);
-  font-size: 1rem;
-  max-width: 600px;
+  font-size: 0.9375rem;
+  max-width: 540px;
   margin: 0 auto;
-  color: rgba(26, 26, 26, 0.7);
+  color: var(--type-muted);
+  line-height: 1.55;
+}
+
+/* The architecture diagram's footnote ("Two of those preset gaps ship today…")
+ * sits inside left-aligned prose, not a centered thesis. Override the
+ * inherited centering so it reads with the surrounding text. */
+.arch-note {
+  margin: 1.5rem auto 0;
+  text-align: center;
 }
 
 /* 4. The Swarm (Inverse) */
@@ -492,10 +671,21 @@ a:hover {
   color: rgba(245, 241, 232, 0.8);
 }
 
-/* 5. Architecture */
+/* 5. Architecture
+ * The diagram is denser than the surrounding prose and benefits from
+ * extra horizontal room. Break it out of the 720px prose container
+ * (via negative side margins) and re-cap the SVG inside at 960px. */
 .architecture-visual {
-  margin: 4rem 0;
+  margin: 4rem calc(50% - 50vw) 3rem;
+  padding: 0 1.5rem;
+}
+
+.architecture-visual svg {
+  display: block;
   width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  height: auto;
 }
 
 .architecture-visual .placeholder {
@@ -506,48 +696,56 @@ a:hover {
 }
 
 /* 6. Collective Mind components */
+.cm-intro-wrap {
+  margin-bottom: 3.5rem;
+}
+
+.cm-title {
+  margin-bottom: 1.75rem;
+}
+
+.cm-intro {
+  margin-bottom: 1.25rem;
+  max-width: var(--max-width-prose);
+}
+
+.cm-intro-meta {
+  max-width: var(--max-width-prose);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--type-muted);
+  line-height: 1.6;
+}
+
 .cm-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 1200px;
+  gap: 2.5rem;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 @media (min-width: 900px) {
   .cm-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .cm-grid > * {
-    grid-column: span 2;
-  }
-  .cm-grid > *:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-  .cm-grid > *:nth-child(5) {
-    grid-column: 4 / span 2;
-  }
-}
-
-@media (min-width: 1200px) {
-  .cm-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .cm-grid > *,
-  .cm-grid > *:nth-child(4),
-  .cm-grid > *:nth-child(5) {
-    grid-column: auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
   }
 }
 
 .graph-column {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .graph-visual {
   margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
 }
 
 .graph-visual .placeholder {
@@ -555,27 +753,36 @@ a:hover {
 }
 
 .graph-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.375rem;
+  margin-bottom: 0.875rem;
 }
 
 .graph-caption {
   margin-top: 4rem;
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   text-align: center;
+  color: var(--type-muted);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* 7. Worked Example */
+.example-intro {
+  margin-bottom: 3rem;
+}
+
 .example-list {
   list-style-type: none;
   counter-reset: example-counter;
+  padding: 0;
 }
 
 .example-item {
   position: relative;
   padding-left: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .example-item::before {
@@ -583,15 +790,18 @@ a:hover {
   content: counter(example-counter) ".";
   position: absolute;
   left: 0;
-  top: 0;
+  top: 0.05em;
   font-family: var(--font-mono);
   color: var(--accent-cobalt);
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .example-item h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.625rem;
+  letter-spacing: -0.01em;
 }
 
 .example-item p {
@@ -601,40 +811,81 @@ a:hover {
 .example-caption {
   margin-top: 4rem;
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.9375rem;
+  color: var(--type-muted);
 }
 
 /* 8. Use Cases & 9. Audiences */
 .list-unstyled {
   list-style-type: none;
+  padding: 0;
 }
 
 .list-unstyled li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.625rem;
   padding-left: 1.5rem;
   position: relative;
+  line-height: 1.5;
 }
 
 .list-unstyled li::before {
   content: "—";
   position: absolute;
   left: 0;
+  top: 0;
   color: var(--accent-cobalt);
 }
 
+/* Vertical divider between "Use it for" / "Don't use it for" columns
+ * on desktop. Reads as two genuinely contrasting columns rather than
+ * two stacked lists that happen to live side by side. */
+.grid-2.has-divider {
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .grid-2.has-divider::after {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 50%;
+    width: 1px;
+    background: var(--rule-soft);
+    transform: translateX(-50%);
+  }
+}
+
+.use-cases-note {
+  margin-top: 3rem;
+}
+
 /* 10. Open Source Callout */
-.os-band {
+.section.os-band {
   background-color: var(--accent-cobalt);
   color: var(--bg-cream);
   text-align: center;
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+}
+
+.os-inner {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .os-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+.os-intro {
+  max-width: 620px;
+  margin: 0 auto 2rem;
 }
 
 .os-actions {
-  margin-top: 3rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -650,38 +901,57 @@ a:hover {
 
 /* 11. Footer */
 .footer {
-  padding: 4rem 0;
+  padding: 3rem 0 2.5rem;
+  border-top: 1px solid var(--rule-hairline);
   text-align: center;
   font-family: var(--font-mono);
-  color: rgba(26, 26, 26, 0.6);
+  color: var(--type-muted);
 }
 
 .footer-logo {
   font-family: var(--font-serif);
   font-size: 1.25rem;
   color: var(--type-ink);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
 }
 
 .footer-links a {
   color: inherit;
+  padding: 2px 6px;
+  transition: color 0.15s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-cobalt);
+  text-decoration: none;
+}
+
+.footer-links span {
+  color: var(--type-faint);
+  user-select: none;
 }
 
 .footer-tagline {
   font-size: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.625rem;
+  letter-spacing: 0.02em;
 }
 
 .footer-copyright {
   font-size: 0.75rem;
+  color: var(--type-faint);
 }
 
 /* Animations */

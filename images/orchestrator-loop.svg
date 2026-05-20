@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" font-family="'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace" role="img" aria-labelledby="title1 desc1">
+  <title id="title1">orchestrator.loop · coffee-pivot-b2b</title>
+  <desc id="desc1">A terminal running python -m drone_graph.orchestrator.loop --scenario coffee-pivot-b2b. Gap Finding decomposes a DTC-coffee root; the user pivots mid-run to B2B wholesale; Alignment flags an invalidated premise; Gap Finding retires the DTC subtrees and stands up a B2B pillar; the run lands at 9m / $1.42.</desc>
+
+  <defs>
+    <clipPath id="termClip">
+      <rect x="0" y="22" width="440" height="258"/>
+    </clipPath>
+  </defs>
+
+  <!-- ============ TERMINAL CHROME ============ -->
+  <rect width="440" height="280" fill="#070a0f"/>
+  <rect width="440" height="22" fill="#11151f"/>
+  <line x1="0" y1="22" x2="440" y2="22" stroke="#1f2532"/>
+  <circle cx="14" cy="11" r="4" fill="#e26b43"/>
+  <circle cx="28" cy="11" r="4" fill="#f5b53c"/>
+  <circle cx="42" cy="11" r="4" fill="#7fe5d0"/>
+  <text x="220" y="15" text-anchor="middle" fill="#9aa4b8" font-size="9" letter-spacing="0.04em">orchestrator.loop · coffee-pivot-b2b</text>
+
+  <!-- ============ TERMINAL BODY ============ -->
+  <g clip-path="url(#termClip)" font-size="9.5">
+
+    <!-- 1. command, line 1 -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0" dur="12s" keyTimes="0;0.03;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="40">
+        <tspan fill="#3c6ef5">$</tspan>
+        <tspan fill="#e3e8f1"> python -m drone_graph.orchestrator.loop \</tspan>
+      </text>
+    </g>
+
+    <!-- 2. command, line 2 -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.05;0.07;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="54" fill="#e3e8f1">      --scenario coffee-pivot-b2b</text>
+    </g>
+
+    <!-- 3. boot -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.09;0.11;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="74">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#9aa4b8">boot </tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> substrate up · presets minted</tspan>
+      </text>
+    </g>
+
+    <!-- 4. gf decompose root -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.14;0.16;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="88">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf  1</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> decompose </tspan>
+        <tspan fill="#9aa4b8">g001</tspan>
+        <tspan fill="#5e6b82"> →</tspan>
+        <tspan fill="#e3e8f1"> 5 children </tspan>
+        <tspan fill="#5e6b82">($0.12)</tspan>
+      </text>
+    </g>
+
+    <!-- 5. gf decompose g002 -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.19;0.21;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="102">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf  2</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> decompose </tspan>
+        <tspan fill="#9aa4b8">g002</tspan>
+        <tspan fill="#5e6b82"> →</tspan>
+        <tspan fill="#e3e8f1"> supply, storefront, support </tspan>
+      </text>
+    </g>
+
+    <!-- 6. gf decompose g004 (DTC storefront) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.25;0.27;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="116">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf  5</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> decompose </tspan>
+        <tspan fill="#9aa4b8">g004</tspan>
+        <tspan fill="#5e6b82"> →</tspan>
+        <tspan fill="#e3e8f1"> 6 children (DTC storefront)</tspan>
+      </text>
+    </g>
+
+    <!-- 7. alignment confirms coherent -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.30;0.32;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="130">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#f5b53c">align</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> no_issue · tree coherent</tspan>
+      </text>
+    </g>
+
+    <!-- 8. user pivot (highlighted) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.36;0.38;0.95;1" repeatCount="indefinite"/>
+      <!-- subtle cobalt-tinted highlight band for the inbound user signal -->
+      <rect x="6" y="138" width="408" height="12" fill="rgba(60,110,245,0.10)"/>
+      <text x="10" y="148">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#5e88ff" font-weight="500">user </tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#5e88ff"> pivot </tspan>
+        <tspan fill="#5e6b82">→</tspan>
+        <tspan fill="#e3e8f1"> B2B wholesale, pause DTC work</tspan>
+      </text>
+    </g>
+
+    <!-- 9. gf retire DTC subtree -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.43;0.45;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="162">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf  7</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e26b43"> retire </tspan>
+        <tspan fill="#9aa4b8">g004</tspan>
+        <tspan fill="#e3e8f1"> (DTC storefront, 6 leaves)</tspan>
+      </text>
+    </g>
+
+    <!-- 10. gf create B2B pillar -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.50;0.52;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="176">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf  8</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#7fe5d0"> create </tspan>
+        <tspan fill="#9aa4b8">g023</tspan>
+        <tspan fill="#e3e8f1"> (B2B sales motion)</tspan>
+      </text>
+    </g>
+
+    <!-- 11. alignment invalidates g005 -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.57;0.59;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="190">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#f5b53c">align</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#f5b53c"> invalidated_premise </tspan>
+        <tspan fill="#9aa4b8">g005</tspan>
+      </text>
+    </g>
+
+    <!-- 12. gf retires g005 -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.63;0.65;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="204">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf 10</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e26b43"> retire </tspan>
+        <tspan fill="#9aa4b8">g005</tspan>
+        <tspan fill="#e3e8f1"> (DTC marketing)</tspan>
+      </text>
+    </g>
+
+    <!-- 13. gf decompose new B2B pillar -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.70;0.72;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="218">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#b48cff">gf 11</tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> decompose </tspan>
+        <tspan fill="#9aa4b8">g023</tspan>
+        <tspan fill="#5e6b82"> →</tspan>
+        <tspan fill="#e3e8f1"> pricing, outreach, account mgmt</tspan>
+      </text>
+    </g>
+
+    <!-- 14. system rollup -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.77;0.79;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="232">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#687589">sys  </tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#9aa4b8"> auto-rollup · </tspan>
+        <tspan fill="#9aa4b8">g023</tspan>
+        <tspan fill="#9aa4b8"> filled (3/3 children)</tspan>
+      </text>
+    </g>
+
+    <!-- 15. summary -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="12s" keyTimes="0;0.84;0.86;0.95;1" repeatCount="indefinite"/>
+      <text x="10" y="252">
+        <tspan fill="#5e6b82">[</tspan><tspan fill="#7fe5d0">done </tspan><tspan fill="#5e6b82">]</tspan>
+        <tspan fill="#e3e8f1"> 9m 14s · </tspan>
+        <tspan fill="#7fe5d0">$1.42</tspan>
+        <tspan fill="#e3e8f1"> · 60 gf cycles · 36 gaps · 8 retired</tspan>
+      </text>
+    </g>
+
+    <!-- ============ CURSOR ============
+         The cursor steps down line by line as new output lands, mirroring
+         a tailing terminal. Sits one line below the latest visible line. -->
+    <rect width="6" height="2" fill="#7fe5d0">
+      <animate attributeName="y"
+        values="42;42;56;76;90;104;118;132;150;164;178;192;206;220;234;254"
+        keyTimes="0;0.03;0.06;0.10;0.15;0.20;0.26;0.31;0.37;0.44;0.51;0.58;0.64;0.71;0.78;0.85"
+        dur="12s" fill="freeze" repeatCount="indefinite"/>
+      <animate attributeName="x"
+        values="16;16;220;58;58;58;58;58;192;58;58;58;58;58;58;58"
+        keyTimes="0;0.03;0.06;0.10;0.15;0.20;0.26;0.31;0.37;0.44;0.51;0.58;0.64;0.71;0.78;0.85"
+        dur="12s" fill="freeze" repeatCount="indefinite"/>
+      <animate attributeName="opacity"
+        values="1;0;1;0;1;0;1;0;1;0;1;0;1;0;1;0"
+        dur="0.85s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>

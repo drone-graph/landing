@@ -1,294 +1,379 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" font-family="'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace" role="img" aria-labelledby="title2 desc2">
-  <title id="title2">Mission Control — a mission running end-to-end</title>
-  <desc id="desc2">A mini Mission Control over a 12-second loop: presets pulse, the user submits a goal, gap finding decomposes the root into labelled children, workers spawn and orbit them, findings settle as satellites, a child fills, a parent rolls up. A chat ticker at the bottom narrates each event.</desc>
+  <title id="title2">Mission Control — substrate canvas mid-mission</title>
+  <desc id="desc2">A mini Mission Control center pane: the real top chrome (brand, state, cost meter), the HUD counts and filter+legend row, a single live finding ticker, then the substrate canvas itself — preset gaps pulse, the user goal drops in, gap finding fans out children, drones orbit them, findings settle as satellites, a child fills, a parent rolls up. A sediment band and event tape close the panel.</desc>
 
   <defs>
-    <radialGradient id="auP" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#b48cff" stop-opacity="0.5"/>
+    <!-- aurora halos for gap nodes -->
+    <radialGradient id="auroraP" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b48cff" stop-opacity="0.45"/>
+      <stop offset="45%" stop-color="#b48cff" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#b48cff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="auA" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#f5b53c" stop-opacity="0.5"/>
+    <radialGradient id="auroraA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5b53c" stop-opacity="0.42"/>
+      <stop offset="45%" stop-color="#f5b53c" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#f5b53c" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="auC" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7aa4ff" stop-opacity="0.5"/>
+    <radialGradient id="auroraC" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7aa4ff" stop-opacity="0.42"/>
+      <stop offset="45%" stop-color="#7aa4ff" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#7aa4ff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="auT" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#9be8d4" stop-opacity="0.5"/>
+    <radialGradient id="auroraT" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9be8d4" stop-opacity="0.42"/>
+      <stop offset="45%" stop-color="#9be8d4" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#9be8d4" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="coP" cx="35%" cy="35%" r="65%">
+
+    <!-- jewel-tone cores -->
+    <radialGradient id="coreP" cx="35%" cy="35%" r="65%">
       <stop offset="0%" stop-color="#dac9ff"/>
       <stop offset="50%" stop-color="#b48cff"/>
       <stop offset="100%" stop-color="#2c1f4e"/>
     </radialGradient>
-    <radialGradient id="coA" cx="35%" cy="35%" r="65%">
+    <radialGradient id="coreA" cx="35%" cy="35%" r="65%">
       <stop offset="0%" stop-color="#fcdb8e"/>
       <stop offset="50%" stop-color="#f5b53c"/>
       <stop offset="100%" stop-color="#46340e"/>
     </radialGradient>
-    <radialGradient id="coC" cx="35%" cy="35%" r="65%">
+    <radialGradient id="coreC" cx="35%" cy="35%" r="65%">
       <stop offset="0%" stop-color="#9bbcff"/>
       <stop offset="50%" stop-color="#5b87e5"/>
       <stop offset="100%" stop-color="#142546"/>
     </radialGradient>
-    <radialGradient id="coT" cx="35%" cy="35%" r="65%">
+    <radialGradient id="coreT" cx="35%" cy="35%" r="65%">
       <stop offset="0%" stop-color="#cef5e9"/>
       <stop offset="50%" stop-color="#9be0cf"/>
       <stop offset="100%" stop-color="#1d3a35"/>
     </radialGradient>
-    <linearGradient id="ed" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#5e88ff" stop-opacity="0.32"/>
-      <stop offset="100%" stop-color="#7fe5d0" stop-opacity="0.5"/>
+
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5e88ff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#7fe5d0" stop-opacity="0.50"/>
     </linearGradient>
+
     <filter id="gg" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.1"/>
       <feComposite in2="SourceGraphic" operator="atop"/>
     </filter>
-    <!-- Clip path to keep ticker rows from spilling outside the ticker strip -->
-    <clipPath id="tickerClip"><rect x="0" y="222" width="440" height="58"/></clipPath>
+
+    <!-- Keep substrate elements inside the canvas band only -->
+    <clipPath id="canvasClip"><rect x="0" y="76" width="440" height="160"/></clipPath>
+    <!-- Keep ticker text from spilling outside the ticker strip -->
+    <clipPath id="tickerClip"><rect x="0" y="56" width="440" height="20"/></clipPath>
   </defs>
 
-  <!-- Field background -->
+  <!-- ============ FIELD ============ -->
   <rect width="440" height="280" fill="#070a0f"/>
 
-  <!-- ============ TOP CHROME (0–22) ============ -->
+  <!-- ============ TOP CHROME (0–22) — brand, state, cost ============ -->
   <rect x="0" y="0" width="440" height="22" fill="#0b0f17"/>
   <line x1="0" y1="22" x2="440" y2="22" stroke="#1f2532"/>
-  <circle cx="11" cy="11" r="2.8" fill="#3c6ef5">
-    <animate attributeName="opacity" values="0.55;1;0.55" dur="1.6s" repeatCount="indefinite"/>
+  <circle cx="11" cy="11" r="2.6" fill="#3c6ef5">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="1.6s" repeatCount="indefinite"/>
   </circle>
   <text x="20" y="14" fill="#e3e8f1" font-size="7.5" letter-spacing="0.08em">DRONE GRAPH · MISSION CONTROL</text>
-  <text x="240" y="14" fill="#5e88ff" font-size="7.5" letter-spacing="0.04em">◉ active</text>
-  <!-- Cost meter -->
-  <rect x="312" y="9" width="64" height="5" rx="1.5" fill="#11151f" stroke="#1f2532"/>
-  <rect x="312" y="9" width="20" height="5" rx="1.5" fill="#3c6ef5">
+  <text x="180" y="14" fill="#5e6b82" font-size="7" letter-spacing="0.04em">anthropic · sonnet-4-6 ×3</text>
+  <text x="285" y="14" fill="#5e88ff" font-size="7.5" letter-spacing="0.04em">◉ active</text>
+  <text x="320" y="14" fill="#5e6b82" font-size="7">(38s)</text>
+  <!-- cost meter -->
+  <rect x="350" y="9" width="62" height="5" rx="1.5" fill="#11151f" stroke="#1f2532"/>
+  <rect x="350" y="9" width="6" height="5" rx="1.5" fill="#3c6ef5">
     <animate attributeName="width" values="6;58" dur="11.5s" repeatCount="indefinite"/>
   </rect>
-  <text x="384" y="14" fill="#e3e8f1" font-size="7" text-anchor="start">
-    <tspan>$</tspan>
-    <tspan fill="#9aa4b8">0</tspan>
-    <tspan>.</tspan>
+  <text x="416" y="14" fill="#e3e8f1" font-size="7">
+    <tspan>$1.</tspan>
     <tspan fill="#e3e8f1">
-      <animate attributeName="textContent" values="03;12;28;41;58;71;94;1.12;1.31;1.42" dur="11.5s" repeatCount="indefinite"/>
+      <animate attributeName="textContent" values="03;12;28;41" dur="11.5s" repeatCount="indefinite"/>
       03
     </tspan>
   </text>
 
-  <!-- ============ SUBSTRATE EDGES (drawn before nodes so nodes overlay) ============ -->
-  <g fill="none" stroke="url(#ed)" stroke-linecap="round">
-    <!-- preset → root (t≈0.16) -->
-    <path d="M 56,52 Q 90,84 184,110" stroke-width="1">
-      <animate attributeName="stroke-opacity" values="0;0;1;1;1;0" dur="11.5s" keyTimes="0;0.13;0.18;0.45;0.95;1" repeatCount="indefinite"/>
-    </path>
-    <path d="M 384,52 Q 340,84 236,110" stroke-width="1">
-      <animate attributeName="stroke-opacity" values="0;0;1;1;1;0" dur="11.5s" keyTimes="0;0.13;0.18;0.45;0.95;1" repeatCount="indefinite"/>
-    </path>
-    <!-- root → children (t=0.22, 0.27, 0.32) -->
-    <path d="M 200,130 Q 144,160 84,186" stroke-width="0.9">
-      <animate attributeName="stroke-opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.19;0.22;0.27;0.95;1" repeatCount="indefinite"/>
-    </path>
-    <path d="M 210,134 Q 210,164 210,186" stroke-width="0.9">
-      <animate attributeName="stroke-opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.24;0.27;0.32;0.95;1" repeatCount="indefinite"/>
-    </path>
-    <path d="M 220,130 Q 280,160 336,186" stroke-width="0.9">
-      <animate attributeName="stroke-opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.29;0.32;0.38;0.95;1" repeatCount="indefinite"/>
-    </path>
+  <!-- ============ HUD CHIPS (22–40) ============ -->
+  <rect x="6" y="26" width="60" height="11" rx="1.5" fill="#0b0f17" stroke="#2a2f38" stroke-width="0.6"/>
+  <text x="36" y="34" text-anchor="middle" fill="#9aa4b8" font-size="7">
+    <tspan>gaps </tspan>
+    <tspan fill="#e3e8f1">
+      <animate attributeName="textContent" values="2;4;7;9;11;12;13" dur="11.5s" keyTimes="0;0.18;0.26;0.34;0.45;0.6;0.95" repeatCount="indefinite"/>
+      2
+    </tspan>
+    <tspan> · edges </tspan>
+    <tspan fill="#e3e8f1">
+      <animate attributeName="textContent" values="0;1;3;5;7;9;10" dur="11.5s" keyTimes="0;0.18;0.26;0.34;0.45;0.6;0.95" repeatCount="indefinite"/>
+      0
+    </tspan>
+  </text>
+  <rect x="70" y="26" width="60" height="11" rx="1.5" fill="#0b0f17" stroke="#2a2f38" stroke-width="0.6"/>
+  <text x="100" y="34" text-anchor="middle" fill="#9aa4b8" font-size="7">
+    <tspan fill="#7fe5d0">
+      <animate attributeName="textContent" values="0;0;2;3;3;2;1" dur="11.5s" keyTimes="0;0.16;0.30;0.45;0.6;0.78;0.95" repeatCount="indefinite"/>
+      0
+    </tspan>
+    <tspan> drones live</tspan>
+  </text>
+
+  <!-- filter pills + legend -->
+  <rect x="138" y="26" width="56" height="11" rx="1.5" fill="#11151f" stroke="#1f2532" stroke-width="0.6"/>
+  <text x="142" y="34" fill="#9aa4b8" font-size="7">all authors ▾</text>
+  <rect x="198" y="26" width="50" height="11" rx="1.5" fill="#11151f" stroke="#1f2532" stroke-width="0.6"/>
+  <text x="202" y="34" fill="#9aa4b8" font-size="7">all kinds ▾</text>
+  <!-- legend dots: user, GF, align, worker, sys -->
+  <g font-size="6.5" fill="#5e6b82">
+    <circle cx="258" cy="32" r="2" fill="#3c6ef5"/><text x="263" y="34">user</text>
+    <circle cx="284" cy="32" r="2" fill="#b48cff"/><text x="289" y="34">GF</text>
+    <circle cx="306" cy="32" r="2" fill="#f5b53c"/><text x="311" y="34">align</text>
+    <circle cx="334" cy="32" r="2" fill="#6fd0a8"/><text x="339" y="34">worker</text>
+    <circle cx="370" cy="32" r="2" fill="#687589"/><text x="375" y="34">sys</text>
   </g>
 
-  <!-- ============ PRESET GAPS (top corners) ============ -->
-  <!-- GF (active, sonar pulsing) -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" dur="11.5s" keyTimes="0;0.04;0.95;1" repeatCount="indefinite"/>
-    <g transform="translate(56, 44)">
-      <circle r="18" fill="url(#auP)"/>
-      <circle r="9" fill="url(#coP)"/>
-      <circle r="12" fill="none" stroke="#b48cff" stroke-opacity="0.6"/>
-      <text y="-15" text-anchor="middle" fill="#9aa4b8" font-size="6" letter-spacing="0.04em">preset</text>
-      <text y="28" text-anchor="middle" fill="#b48cff" font-size="7" letter-spacing="0.04em">gap_finding</text>
-      <circle r="10" fill="none" stroke="#b48cff" stroke-opacity="0">
-        <animate attributeName="r" values="9;28" dur="1.9s" repeatCount="indefinite"/>
-        <animate attributeName="stroke-opacity" values="0.35;0" dur="1.9s" repeatCount="indefinite"/>
-      </circle>
+  <!-- ============ FINDING TICKER (40–56) — single live row ============ -->
+  <rect x="0" y="40" width="440" height="16" fill="rgba(11,15,23,0.85)"/>
+  <line x1="0" y1="40" x2="440" y2="40" stroke="#1f2532"/>
+  <line x1="0" y1="56" x2="440" y2="56" stroke="#1f2532"/>
+  <g clip-path="url(#tickerClip)">
+    <!-- Each "row" lives at y=51 inside the strip, sliding in from the right
+         and out to the left. opacity locks them to their slot. -->
+    <!-- USER user_input -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0" dur="11.5s" keyTimes="0;0.10;0.22;0.24" repeatCount="indefinite"/>
+      <rect x="6" y="44" width="30" height="9" rx="1.5" fill="none" stroke="#3c6ef5" stroke-width="0.6"/>
+      <text x="21" y="50.5" text-anchor="middle" fill="#5e88ff" font-size="6" letter-spacing="0.04em">USER</text>
+      <text x="40" y="51" fill="#9aa4b8" font-size="6.5">user_input</text>
+      <text x="84" y="51" fill="#e3e8f1" font-size="7">operate DTC coffee storefront</text>
     </g>
-  </g>
-  <!-- ALIGN (more muted, occasional pulse) -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" dur="11.5s" keyTimes="0;0.04;0.95;1" repeatCount="indefinite"/>
-    <g transform="translate(384, 44)">
-      <circle r="15" fill="url(#auA)" opacity="0.7"/>
-      <circle r="8" fill="url(#coA)"/>
-      <circle r="11" fill="none" stroke="#f5b53c" stroke-opacity="0.5"/>
-      <text y="-12" text-anchor="middle" fill="#9aa4b8" font-size="6" letter-spacing="0.04em">preset</text>
-      <text y="26" text-anchor="middle" fill="#f5b53c" font-size="7" letter-spacing="0.04em">alignment</text>
+    <!-- GF decompose -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.24;0.26;0.40;0.42" repeatCount="indefinite"/>
+      <rect x="6" y="44" width="30" height="9" rx="1.5" fill="none" stroke="#b48cff" stroke-width="0.6"/>
+      <text x="21" y="50.5" text-anchor="middle" fill="#b48cff" font-size="6" letter-spacing="0.04em">GF</text>
+      <text x="40" y="51" fill="#9aa4b8" font-size="6.5">decompose</text>
+      <text x="84" y="51" fill="#e3e8f1" font-size="7">g001 → suppliers, storefront, payments</text>
+    </g>
+    <!-- WORKER fill -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.42;0.44;0.58;0.60" repeatCount="indefinite"/>
+      <rect x="6" y="44" width="30" height="9" rx="1.5" fill="none" stroke="#7fe5d0" stroke-width="0.6"/>
+      <text x="21" y="50.5" text-anchor="middle" fill="#7fe5d0" font-size="6" letter-spacing="0.04em">WORK</text>
+      <text x="40" y="51" fill="#9aa4b8" font-size="6.5">fill</text>
+      <text x="62" y="51" fill="#e3e8f1" font-size="7">DNS + Shopify storefront wired; staging green</text>
+    </g>
+    <!-- ALIGN drift -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.60;0.62;0.76;0.78" repeatCount="indefinite"/>
+      <rect x="6" y="44" width="30" height="9" rx="1.5" fill="none" stroke="#f5b53c" stroke-width="0.6"/>
+      <text x="21" y="50.5" text-anchor="middle" fill="#f5b53c" font-size="6" letter-spacing="0.04em">ALIGN</text>
+      <text x="40" y="51" fill="#9aa4b8" font-size="6.5">invalidated_premise</text>
+      <text x="120" y="51" fill="#e3e8f1" font-size="7">DTC subtree, B2B pivot</text>
+    </g>
+    <!-- SYS rollup -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.78;0.80;0.95;1" repeatCount="indefinite"/>
+      <rect x="6" y="44" width="30" height="9" rx="1.5" fill="none" stroke="#5e6b82" stroke-width="0.6"/>
+      <text x="21" y="50.5" text-anchor="middle" fill="#9aa4b8" font-size="6" letter-spacing="0.04em">SYS</text>
+      <text x="40" y="51" fill="#9aa4b8" font-size="6.5">rollup</text>
+      <text x="68" y="51" fill="#e3e8f1" font-size="7">parent gap filled · 3/3 children done</text>
     </g>
   </g>
 
-  <!-- ============ ROOT (emergent, labelled) ============ -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.13;0.17;0.95;1" repeatCount="indefinite"/>
-    <g transform="translate(210, 116)">
-      <rect x="-78" y="-30" width="156" height="14" rx="2" fill="rgba(7,10,15,0.92)" stroke="#1f2532"/>
-      <text y="-21" text-anchor="middle" fill="#e3e8f1" font-size="7">operate DTC coffee storefront</text>
-      <circle r="16" fill="url(#auC)"/>
-      <circle r="8" fill="url(#coC)"/>
-      <text y="-44" text-anchor="middle" fill="#5e6b82" font-size="5.5" letter-spacing="0.06em">USER GOAL · a91c</text>
-    </g>
-  </g>
+  <!-- ============ SUBSTRATE CANVAS (76–236) ============ -->
+  <g clip-path="url(#canvasClip)">
 
-  <!-- ============ EMERGENT CHILDREN (3 children, each labelled) ============ -->
-  <!-- Child 1: source greens — fills teal eventually -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.22;0.26;0.3;0.95;1" repeatCount="indefinite"/>
-    <g transform="translate(84, 192)">
-      <circle r="14" fill="url(#auC)">
-        <animate attributeName="fill" values="url(#auC);url(#auC);url(#auT)" dur="11.5s" keyTimes="0;0.65;0.72" repeatCount="indefinite" fill="freeze"/>
-      </circle>
-      <circle r="7" fill="url(#coC)">
-        <animate attributeName="fill" values="url(#coC);url(#coC);url(#coT)" dur="11.5s" keyTimes="0;0.65;0.72" repeatCount="indefinite" fill="freeze"/>
-      </circle>
-      <text y="29" text-anchor="middle" fill="#9aa4b8" font-size="6.5">source greens</text>
-      <!-- "filled" tag appears late -->
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.6;0.65;0.68;0.7;0.72;0.95;1" repeatCount="indefinite"/>
-        <rect x="-14" y="-32" width="28" height="9" rx="1.5" fill="rgba(127,229,208,0.16)" stroke="#7fe5d0" stroke-width="0.6"/>
-        <text y="-25" text-anchor="middle" fill="#7fe5d0" font-size="5.5" letter-spacing="0.04em">FILLED</text>
+    <!-- Edges (gradient strokes), each fading in at its event -->
+    <g fill="none" stroke="url(#edge)" stroke-linecap="round">
+      <!-- gf_finding preset → user root -->
+      <path d="M 60,108 Q 100,124 196,140" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.18;0.22;0.95;1" repeatCount="indefinite"/>
+      </path>
+      <!-- alignment preset → user root (later) -->
+      <path d="M 380,108 Q 340,124 244,140" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0;0;0.8;0.8;0" dur="11.5s" keyTimes="0;0.18;0.22;0.95;1" repeatCount="indefinite"/>
+      </path>
+      <!-- user root → child 1 -->
+      <path d="M 210,160 Q 150,180 80,202" stroke-width="0.9">
+        <animate attributeName="stroke-opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.27;0.30;0.33;0.95;1" repeatCount="indefinite"/>
+      </path>
+      <!-- user root → child 2 -->
+      <path d="M 220,164 Q 220,184 220,206" stroke-width="0.9">
+        <animate attributeName="stroke-opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.30;0.33;0.36;0.95;1" repeatCount="indefinite"/>
+      </path>
+      <!-- user root → child 3 -->
+      <path d="M 230,160 Q 290,180 360,202" stroke-width="0.9">
+        <animate attributeName="stroke-opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.33;0.36;0.39;0.95;1" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <!-- Preset gaps (top, pinned, always visible) -->
+    <!-- gap_finding (active, sonar pulsing) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0" dur="11.5s" keyTimes="0;0.05;0.95;1" repeatCount="indefinite"/>
+      <g transform="translate(60, 100)">
+        <circle r="20" fill="url(#auroraP)"/>
+        <circle r="9" fill="url(#coreP)"/>
+        <circle r="12" fill="none" stroke="#b48cff" stroke-opacity="0.65" stroke-width="0.8"/>
+        <text y="-15" text-anchor="middle" fill="#9aa4b8" font-size="5.5" letter-spacing="0.06em">PRESET</text>
+        <text y="28" text-anchor="middle" fill="#b48cff" font-size="6.5" letter-spacing="0.04em">GAP_FINDING</text>
+        <circle r="10" fill="none" stroke="#b48cff">
+          <animate attributeName="r" values="10;30" dur="1.9s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values="0.4;0" dur="1.9s" repeatCount="indefinite"/>
+        </circle>
       </g>
     </g>
-  </g>
-  <!-- Child 2: storefront — active worker orbiting -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.27;0.31;0.34;0.95;1" repeatCount="indefinite"/>
-    <g transform="translate(210, 196)">
-      <circle r="14" fill="url(#auC)"/>
-      <circle r="7" fill="url(#coC)"/>
-      <text y="29" text-anchor="middle" fill="#9aa4b8" font-size="6.5">storefront DNS</text>
-      <!-- sonar pulses (active worker) -->
-      <circle r="10" fill="none" stroke="#7aa4ff" stroke-opacity="0">
-        <animate attributeName="r" values="8;22" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
-        <animate attributeName="stroke-opacity" values="0.35;0" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
-      </circle>
-      <!-- orbiting worker drone with trail -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="2.6s" repeatCount="indefinite"/>
-        <g transform="translate(15, 0)">
-          <circle r="2" fill="#6fd0a8" filter="url(#gg)"/>
-          <circle cx="-4" cy="-1.5" r="1.4" fill="#6fd0a8" opacity="0.55"/>
+    <!-- alignment (idle most of cycle, pulses on drift) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0" dur="11.5s" keyTimes="0;0.05;0.95;1" repeatCount="indefinite"/>
+      <g transform="translate(380, 100)">
+        <circle r="17" fill="url(#auroraA)" opacity="0.7"/>
+        <circle r="8" fill="url(#coreA)"/>
+        <circle r="11" fill="none" stroke="#f5b53c" stroke-opacity="0.55" stroke-width="0.8"/>
+        <text y="-13" text-anchor="middle" fill="#9aa4b8" font-size="5.5" letter-spacing="0.06em">PRESET</text>
+        <text y="26" text-anchor="middle" fill="#f5b53c" font-size="6.5" letter-spacing="0.04em">ALIGNMENT</text>
+        <!-- amber pulse coinciding with the drift ticker entry -->
+        <circle r="11" fill="none" stroke="#f5b53c">
+          <animate attributeName="r" values="11;28" dur="11.5s" keyTimes="0;0.62;0.70;1" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values="0;0;0.55;0" dur="11.5s" keyTimes="0;0.60;0.62;0.72" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </g>
+
+    <!-- User goal / root emergent -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="11.5s" keyTimes="0;0.18;0.22;0.95;1" repeatCount="indefinite"/>
+      <g transform="translate(220, 146)">
+        <!-- intent label, focused style -->
+        <rect x="-90" y="-32" width="180" height="14" rx="2" fill="rgba(7,10,15,0.92)" stroke="#1f2532" stroke-width="0.6"/>
+        <text y="-22" text-anchor="middle" fill="#e3e8f1" font-size="7.5">operate DTC coffee storefront</text>
+        <text y="-44" text-anchor="middle" fill="#5e6b82" font-size="5.5" letter-spacing="0.06em">USER GOAL · g001</text>
+        <circle r="16" fill="url(#auroraC)"/>
+        <circle r="8" fill="url(#coreC)"/>
+      </g>
+    </g>
+
+    <!-- Emergent children -->
+    <!-- child 1: source greens (becomes filled / teal) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.27;0.30;0.33;0.95;1" repeatCount="indefinite"/>
+      <g transform="translate(80, 212)">
+        <!-- cobalt halo + core, faded out at fill -->
+        <circle r="14" fill="url(#auroraC)">
+          <animate attributeName="opacity" values="1;1;0" dur="11.5s" keyTimes="0;0.62;0.68" fill="freeze" repeatCount="indefinite"/>
+        </circle>
+        <circle r="7" fill="url(#coreC)">
+          <animate attributeName="opacity" values="1;1;0" dur="11.5s" keyTimes="0;0.62;0.68" fill="freeze" repeatCount="indefinite"/>
+        </circle>
+        <!-- teal halo + core, faded in at fill -->
+        <circle r="14" fill="url(#auroraT)" opacity="0">
+          <animate attributeName="opacity" values="0;0;1" dur="11.5s" keyTimes="0;0.62;0.68" fill="freeze" repeatCount="indefinite"/>
+        </circle>
+        <circle r="7" fill="url(#coreT)" opacity="0">
+          <animate attributeName="opacity" values="0;0;1" dur="11.5s" keyTimes="0;0.62;0.68" fill="freeze" repeatCount="indefinite"/>
+        </circle>
+        <text y="26" text-anchor="middle" fill="#9aa4b8" font-size="6.5">source greens</text>
+      </g>
+    </g>
+
+    <!-- child 2: storefront DNS (active worker orbiting) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.30;0.33;0.36;0.95;1" repeatCount="indefinite"/>
+      <g transform="translate(220, 216)">
+        <circle r="14" fill="url(#auroraC)"/>
+        <circle r="7" fill="url(#coreC)"/>
+        <text y="26" text-anchor="middle" fill="#9aa4b8" font-size="6.5">storefront DNS</text>
+        <!-- sonar -->
+        <circle r="10" fill="none" stroke="#7aa4ff">
+          <animate attributeName="r" values="9;22" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values="0.4;0" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
+        </circle>
+        <!-- orbiting drone with comet tail -->
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="2.6s" repeatCount="indefinite"/>
+          <g transform="translate(15, 0)">
+            <circle r="2" fill="#6fd0a8" filter="url(#gg)"/>
+            <circle cx="-4" cy="-1.5" r="1.4" fill="#6fd0a8" opacity="0.55"/>
+            <circle cx="-7" cy="-2.5" r="1" fill="#6fd0a8" opacity="0.25"/>
+          </g>
         </g>
       </g>
     </g>
-  </g>
-  <!-- Child 3: payments — active worker -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.32;0.36;0.4;0.95;1" repeatCount="indefinite"/>
-    <g transform="translate(336, 192)">
-      <circle r="14" fill="url(#auC)"/>
-      <circle r="7" fill="url(#coC)"/>
-      <text y="29" text-anchor="middle" fill="#9aa4b8" font-size="6.5">stripe payments</text>
-      <circle r="10" fill="none" stroke="#7aa4ff" stroke-opacity="0">
-        <animate attributeName="r" values="8;20" dur="1.8s" begin="0.3s" repeatCount="indefinite"/>
-        <animate attributeName="stroke-opacity" values="0.32;0" dur="1.8s" begin="0.3s" repeatCount="indefinite"/>
-      </circle>
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="3s" repeatCount="indefinite"/>
-        <g transform="translate(14, 0)">
-          <circle r="2" fill="#6fd0a8" filter="url(#gg)"/>
+
+    <!-- child 3: stripe payments (active worker orbiting) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.33;0.36;0.39;0.95;1" repeatCount="indefinite"/>
+      <g transform="translate(360, 212)">
+        <circle r="14" fill="url(#auroraC)"/>
+        <circle r="7" fill="url(#coreC)"/>
+        <text y="26" text-anchor="middle" fill="#9aa4b8" font-size="6.5">stripe payments</text>
+        <circle r="10" fill="none" stroke="#7aa4ff">
+          <animate attributeName="r" values="9;20" dur="1.8s" begin="0.3s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values="0.35;0" dur="1.8s" begin="0.3s" repeatCount="indefinite"/>
+        </circle>
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="3s" repeatCount="indefinite"/>
+          <g transform="translate(14, 0)">
+            <circle r="2" fill="#6fd0a8" filter="url(#gg)"/>
+            <circle cx="-4" cy="-1.5" r="1.4" fill="#6fd0a8" opacity="0.55"/>
+          </g>
         </g>
+      </g>
+    </g>
+
+    <!-- Findings settling around children (satellites) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.45;0.50;0.53;0.55;0.95;1" repeatCount="indefinite"/>
+      <!-- around source greens -->
+      <g transform="translate(80, 212)" fill="#6fd0a8">
+        <circle cx="0" cy="-18" r="1.6"/><circle cx="14" cy="-10" r="1.6"/>
+        <circle cx="17" cy="3" r="1.6"/><circle cx="-14" cy="-10" r="1.6"/>
+        <circle cx="-17" cy="3" r="1.6"/>
+      </g>
+      <!-- around storefront -->
+      <g transform="translate(220, 216)" fill="#6fd0a8">
+        <circle cx="0" cy="-18" r="1.6"/><circle cx="13" cy="-11" r="1.6"/>
+        <circle cx="-13" cy="-11" r="1.6"/>
+      </g>
+      <!-- around stripe — one purple GF satellite mixed in -->
+      <g transform="translate(360, 212)">
+        <circle cx="0" cy="-18" r="1.6" fill="#6fd0a8"/>
+        <circle cx="14" cy="-8" r="1.6" fill="#6fd0a8"/>
+        <circle cx="-12" cy="-12" r="1.6" fill="#b48cff"/>
       </g>
     </g>
   </g>
 
-  <!-- ============ FINDINGS settling around children ============ -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="11.5s" keyTimes="0;0.45;0.5;0.52;0.55;0.95;1" repeatCount="indefinite"/>
-    <!-- around child 1 -->
-    <g transform="translate(84, 192)" fill="#6fd0a8">
-      <circle cx="0" cy="-18" r="1.6"/><circle cx="14" cy="-10" r="1.6"/>
-      <circle cx="17" cy="3" r="1.6"/><circle cx="-14" cy="-10" r="1.6"/>
-      <circle cx="-17" cy="3" r="1.6"/>
-    </g>
-    <!-- around child 2 -->
-    <g transform="translate(210, 196)" fill="#6fd0a8">
-      <circle cx="0" cy="-18" r="1.6"/><circle cx="13" cy="-11" r="1.6"/>
-      <circle cx="-13" cy="-11" r="1.6"/>
-    </g>
-    <!-- around child 3 -->
-    <g transform="translate(336, 192)" fill="#6fd0a8">
-      <circle cx="0" cy="-18" r="1.6"/><circle cx="14" cy="-8" r="1.6"/>
-    </g>
+  <!-- ============ SEDIMENT BAND (236–256) ============ -->
+  <rect x="0" y="236" width="440" height="20" fill="rgba(42,47,56,0.40)"/>
+  <line x1="0" y1="236" x2="440" y2="236" stroke="#1f2532"/>
+  <text x="8" y="249" fill="#9aa4b8" font-size="6.5" letter-spacing="0.04em">sediment ·
+    <tspan fill="#e3e8f1">
+      <animate attributeName="textContent" values="0;0;1;3;5;6" dur="11.5s" keyTimes="0;0.30;0.45;0.60;0.75;0.95" repeatCount="indefinite"/>
+      0
+    </tspan>
+    <tspan> retired · click to expand</tspan>
+  </text>
+  <!-- faint retired dots -->
+  <g fill="#9aa4b8" opacity="0.45">
+    <circle cx="200" cy="246" r="1.3"/><circle cx="214" cy="245" r="1.3"/>
+    <circle cx="228" cy="247" r="1.3"/><circle cx="242" cy="246" r="1.3"/>
+    <circle cx="256" cy="245" r="1.3"/><circle cx="312" cy="246" r="1.3"/>
+    <circle cx="326" cy="245" r="1.3"/><circle cx="340" cy="247" r="1.3"/>
+    <circle cx="402" cy="246" r="1.3"/><circle cx="416" cy="245" r="1.3"/>
   </g>
 
-  <!-- ============ CHAT TICKER (bottom strip, 222–280) ============ -->
-  <line x1="0" y1="222" x2="440" y2="222" stroke="#1f2532"/>
-  <text x="8" y="232" fill="#5e6b82" font-size="6" letter-spacing="0.06em">GLOBAL CHAT · THE HIVEMIND</text>
-  <text x="432" y="232" text-anchor="end" fill="#5e6b82" font-size="6" letter-spacing="0.04em">live</text>
-  <circle cx="430" cy="230" r="1.5" fill="#7fe5d0">
+  <!-- ============ EVENT TAPE FOOTER (256–280) ============ -->
+  <rect x="0" y="256" width="440" height="24" fill="#0b0f17"/>
+  <line x1="0" y1="256" x2="440" y2="256" stroke="#1f2532"/>
+  <text x="8" y="270" fill="#9aa4b8" font-size="6.5" letter-spacing="0.08em">EVENT TAPE</text>
+  <text x="58" y="270" fill="#e3e8f1" font-size="7">▸
+    <tspan>
+      <animate attributeName="textContent" values="12;48;124;231;312;398;412" dur="11.5s" keyTimes="0;0.15;0.30;0.45;0.60;0.75;0.95" repeatCount="indefinite"/>
+      12
+    </tspan>
+    <tspan fill="#9aa4b8"> events · last </tspan>
+    <tspan fill="#7fe5d0">worker.fill</tspan>
+    <tspan fill="#9aa4b8"> 2s ago</tspan>
+  </text>
+  <!-- live indicator dot -->
+  <circle cx="432" cy="268" r="1.6" fill="#7fe5d0">
     <animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" repeatCount="indefinite"/>
   </circle>
-
-  <!-- Ticker rows — each appears at its causal moment, slides up to make room -->
-  <g clip-path="url(#tickerClip)">
-    <!-- Slot 1: user goal (appears t≈0.13, slides up at t≈0.32) -->
-    <g>
-      <animateTransform attributeName="transform" type="translate"
-        values="0,0; 0,0; 0,-14; 0,-14; 0,-28; 0,-28; 0,-42; 0,-42; 0,0"
-        keyTimes="0;0.13;0.18;0.3;0.32;0.55;0.58;0.95;1"
-        dur="11.5s" repeatCount="indefinite"/>
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;1;1;1;1;0;0" dur="11.5s" keyTimes="0;0.13;0.55;0.85;0.93;0.96;1" repeatCount="indefinite"/>
-        <rect x="6" y="238" width="32" height="9" rx="1.5" fill="none" stroke="#3c6ef5" stroke-width="0.6"/>
-        <text x="22" y="244.5" text-anchor="middle" fill="#5e88ff" font-size="6" letter-spacing="0.04em">USER</text>
-        <text x="42" y="245" fill="#e3e8f1" font-size="7">operate a DTC coffee storefront</text>
-      </g>
-    </g>
-    <!-- Slot 2: gap_finding decomposed -->
-    <g>
-      <animateTransform attributeName="transform" type="translate"
-        values="0,14; 0,14; 0,0; 0,0; 0,-14; 0,-14; 0,-28; 0,-28; 0,14"
-        keyTimes="0;0.3;0.32;0.55;0.58;0.7;0.72;0.95;1"
-        dur="11.5s" repeatCount="indefinite"/>
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;0;1;1;1;1;0;0" dur="11.5s" keyTimes="0;0.28;0.32;0.7;0.85;0.93;0.96;1" repeatCount="indefinite"/>
-        <rect x="6" y="238" width="32" height="9" rx="1.5" fill="none" stroke="#b48cff" stroke-width="0.6"/>
-        <text x="22" y="244.5" text-anchor="middle" fill="#b48cff" font-size="6" letter-spacing="0.04em">GF</text>
-        <text x="42" y="245" fill="#e3e8f1" font-size="7">decomposed root → 3 children</text>
-      </g>
-    </g>
-    <!-- Slot 3: worker filled -->
-    <g>
-      <animateTransform attributeName="transform" type="translate"
-        values="0,14; 0,14; 0,14; 0,14; 0,0; 0,0; 0,-14; 0,-14; 0,14"
-        keyTimes="0;0.55;0.56;0.57;0.58;0.72;0.74;0.95;1"
-        dur="11.5s" repeatCount="indefinite"/>
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;1;1;1;1;0;0" dur="11.5s" keyTimes="0;0.55;0.57;0.58;0.85;0.92;0.95;0.96;1" repeatCount="indefinite"/>
-        <rect x="6" y="238" width="32" height="9" rx="1.5" fill="none" stroke="#7fe5d0" stroke-width="0.6"/>
-        <text x="22" y="244.5" text-anchor="middle" fill="#7fe5d0" font-size="6" letter-spacing="0.04em">WORK</text>
-        <text x="42" y="245" fill="#e3e8f1" font-size="7">filled: 3 green-coffee suppliers shortlisted</text>
-      </g>
-    </g>
-    <!-- Slot 4: system auto-rollup -->
-    <g>
-      <animateTransform attributeName="transform" type="translate"
-        values="0,14; 0,14; 0,14; 0,14; 0,14; 0,14; 0,0; 0,0; 0,14"
-        keyTimes="0;0.7;0.71;0.72;0.73;0.74;0.76;0.95;1"
-        dur="11.5s" repeatCount="indefinite"/>
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;0;0;0;0;1;1;0;0" dur="11.5s" keyTimes="0;0.72;0.74;0.75;0.76;0.78;0.92;0.96;1" repeatCount="indefinite"/>
-        <rect x="6" y="238" width="32" height="9" rx="1.5" fill="none" stroke="#5e6b82" stroke-width="0.6"/>
-        <text x="22" y="244.5" text-anchor="middle" fill="#9aa4b8" font-size="6" letter-spacing="0.04em">SYS</text>
-        <text x="42" y="245" fill="#e3e8f1" font-size="7">auto-rollup · parent gap filled</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- Bottom-most footer with counters -->
-  <line x1="0" y1="262" x2="440" y2="262" stroke="#1f2532"/>
-  <text x="8" y="272" fill="#5e6b82" font-size="6.5">
-    <tspan>4 gaps · 5 edges · </tspan>
-    <tspan fill="#7fe5d0">2 drones live</tspan>
-    <tspan> · tools: requests, stripe</tspan>
-  </text>
+  <text x="426" y="270" text-anchor="end" fill="#5e6b82" font-size="6">live</text>
 </svg>
